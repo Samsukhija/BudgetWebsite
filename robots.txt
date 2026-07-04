@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /form2.html
+
+Sitemap: https://www.budgetwebsite.in/sitemap.xml

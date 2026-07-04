@@ -3,20 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget Website — Real Websites. Real Fast. Real Cheap.</title>
-<meta name="description" content="Professional, custom websites for local businesses — built and delivered in a single day, at prices that actually make sense. No agency timelines, no agency pricing.">
-<meta property="og:title" content="Budget Website — Real Websites. Real Fast. Real Cheap.">
-<meta property="og:description" content="Professional, custom websites for local businesses — built and delivered in a single day, at prices that actually make sense.">
+<title>Budget Website | Affordable Website Design for Small Businesses in India</title>
+<meta name="description" content="Get a professional, custom website for your small business in India — built and delivered in a single day, starting at ₹5,000. Affordable website design with no agency timelines or overpricing.">
+<meta name="keywords" content="budget website design India, affordable website for small business, small business website India, cheap website design India, one day website design, website designer for local business, low cost website India">
+<link rel="canonical" href="https://www.budgetwebsite.in/">
+<meta property="og:title" content="Budget Website | Affordable Website Design for Small Businesses in India">
+<meta property="og:description" content="Professional, custom websites for small businesses in India — built and delivered in a single day, starting at ₹5,000.">
 <meta property="og:image" content="https://www.budgetwebsite.in/logo-512.png">
 <meta property="og:url" content="https://www.budgetwebsite.in">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Budget Website — Real Websites. Real Fast. Real Cheap.">
-<meta name="twitter:description" content="Professional, custom websites for local businesses — built and delivered in a single day, at prices that actually make sense.">
+<meta name="twitter:title" content="Budget Website | Affordable Website Design for Small Businesses in India">
+<meta name="twitter:description" content="Professional, custom websites for small businesses in India — built and delivered in a single day, starting at ₹5,000.">
 <meta name="twitter:image" content="https://www.budgetwebsite.in/logo-512.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="192x192" href="logo-192.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Budget Website",
+  "description": "Affordable, professionally built websites for small businesses across India, delivered in a single day.",
+  "url": "https://www.budgetwebsite.in",
+  "priceRange": "₹5,000 - ₹15,000",
+  "areaServed": "IN",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Starter Website",
+      "price": "5000",
+      "priceCurrency": "INR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Standard Website",
+      "price": "8000",
+      "priceCurrency": "INR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Premium Website",
+      "price": "12000",
+      "priceCurrency": "INR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro Website",
+      "price": "15000",
+      "priceCurrency": "INR"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -104,6 +143,12 @@
     transition: border-color 0.2s, background 0.2s; flex-shrink: 0;
   }
   .font-toggle-btn:hover { border-color: var(--green); background: rgba(141,198,63,0.08); }
+  .nav-blog-link {
+    color: var(--text); font-size: 14px; font-weight: 600;
+    text-decoration: none; padding: 8px 4px; flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .nav-blog-link:hover { color: var(--green); }
 
   body {
     background: var(--black);
@@ -665,6 +710,7 @@
     .nav-cta { padding: 9px 11px; font-size: 10px; }
     .nav-tool-btn, .font-toggle-btn { width: 30px; height: 30px; }
     .font-toggle-btn { width: 40px; font-size: 12px; }
+    .nav-blog-link { display: none; }
   }
 </style>
 </head>
@@ -672,8 +718,9 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">budget<span>website</span>.in</div>
+  <a href="/" class="nav-logo" style="text-decoration:none;">budget<span>website</span>.in</a>
   <div class="nav-tools">
+    <a href="/blog/" class="nav-blog-link">Blog</a>
     <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
     <button class="nav-tool-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle dark / light mode">🌙</button>
     <a href="#contact" class="nav-cta">Get Your Website →</a>
@@ -1051,7 +1098,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">budget<span>website</span>.in</div>
-  <p>© 2026 · Built in a day, just like yours will be.</p>
+  <p><a href="/blog/" style="color:var(--muted);text-decoration:underline;">Blog</a> · © 2026 · Built in a day, just like yours will be.</p>
 </footer>
 
 <script>
