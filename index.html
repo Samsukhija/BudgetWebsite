@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Budget Website — Real Websites. Real Fast. Real Cheap.</title>
+<meta name="description" content="Professional, custom websites for local businesses — built and delivered in a single day, at prices that actually make sense. No agency timelines, no agency pricing.">
+<meta property="og:title" content="Budget Website — Real Websites. Real Fast. Real Cheap.">
+<meta property="og:description" content="Professional, custom websites for local businesses — built and delivered in a single day, at prices that actually make sense.">
+<meta property="og:image" content="https://www.budgetwebsite.in/logo-512.png">
+<meta property="og:url" content="https://www.budgetwebsite.in">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Budget Website — Real Websites. Real Fast. Real Cheap.">
+<meta name="twitter:description" content="Professional, custom websites for local businesses — built and delivered in a single day, at prices that actually make sense.">
+<meta name="twitter:image" content="https://www.budgetwebsite.in/logo-512.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="192x192" href="logo-192.png">
@@ -646,6 +656,15 @@
     .terms-box { padding: 26px 22px; }
     .portfolio-grid { grid-template-columns: 1fr; }
     .cta-band { padding: 60px 24px; }
+  }
+  /* Small phones (iPhone SE, budget Android ~360-390px wide) — nav gets tight, compact it further */
+  @media (max-width: 420px) {
+    nav { padding: 14px 16px; }
+    .nav-logo { font-size: 17px; }
+    .nav-tools { gap: 5px; }
+    .nav-cta { padding: 9px 11px; font-size: 10px; }
+    .nav-tool-btn, .font-toggle-btn { width: 30px; height: 30px; }
+    .font-toggle-btn { width: 40px; font-size: 12px; }
   }
 </style>
 </head>

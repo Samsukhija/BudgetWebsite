@@ -4,8 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Brief — budgetwebsite.in</title>
+<meta name="description" content="Tell us about your business so we can build your website — takes about 5 minutes.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -31,8 +35,8 @@
     display: flex; align-items: center; gap: 12px;
   }
   .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900; font-size: 22px; color: #fff;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800; font-size: 20px; color: #fff;
   }
   .logo span { color: var(--green); }
   .top-bar p { font-size: 13px; color: var(--muted); }
@@ -48,9 +52,9 @@
     margin-bottom: 12px;
   }
   .hero-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900; font-size: 52px; line-height: 0.95;
-    text-transform: uppercase; color: #fff; letter-spacing: -1px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700; font-size: clamp(30px, 6vw, 42px); line-height: 1.2;
+    color: #fff; letter-spacing: -0.3px;
     margin-bottom: 16px;
   }
   .hero-title span { color: var(--green); }
@@ -131,27 +135,35 @@
   }
   .success-box .check { font-size: 48px; margin-bottom: 16px; }
   .success-box h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900; font-size: 42px; color: #fff;
-    text-transform: uppercase; letter-spacing: -1px; margin-bottom: 12px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700; font-size: clamp(26px, 5vw, 34px); color: #fff;
+    letter-spacing: -0.3px; margin-bottom: 12px;
   }
   .success-box p { font-size: 15px; color: var(--muted); line-height: 1.7; }
   .success-box strong { color: #fff; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .top-bar { padding: 14px 16px; flex-wrap: wrap; gap: 6px; }
+    .wrapper { padding: 32px 16px 60px; }
+    .hero-sub { margin-bottom: 28px; }
+    .success-box { padding: 32px 20px; }
+  }
 </style>
 </head>
 <body>
 
 <div class="top-bar">
-  <div class="logo">1<span>×</span>30</div>
+  <div class="logo">budget<span>website</span>.in</div>
   <p>Website Brief · Step 2 of 2</p>
 </div>
 
 <div class="wrapper">
   <div class="hero-label">Your Website Brief</div>
-  <h1 class="hero-title">Tell Me About<br><span>Your Business</span></h1>
+  <h1 class="hero-title">Tell Us About<br><span>Your Business</span></h1>
   <p class="hero-sub">
     10 quick questions. Takes about <strong>5 minutes</strong> to fill.<br>
-    This gives me everything I need to build your site in a single day.
+    This gives us everything we need to build your site in a single day.
   </p>
 
   <div class="form-section" id="brief-form">
@@ -160,7 +172,7 @@
     <div class="field">
       <div class="field-num">01</div>
       <label>Your name and WhatsApp number</label>
-      <p class="hint">So I know who sent this brief.</p>
+      <p class="hint">So we know who sent this brief.</p>
       <input type="text" id="q-name" placeholder="e.g. Ravi Sharma · 9876543210">
     </div>
 
@@ -227,7 +239,7 @@
     <div class="field">
       <div class="field-num">08</div>
       <label>Do you have a domain name? <span class="optional-tag">optional</span></label>
-      <p class="hint">e.g. ravisalon.com — if not, I can help you get one for ₹700/year.</p>
+      <p class="hint">e.g. ravisalon.com — if not, we can help you get one for ₹700/year.</p>
       <input type="text" id="q-domain" placeholder="yourwebsite.com — or leave blank if you need one">
     </div>
 
@@ -258,7 +270,7 @@
     <h2>Brief Received</h2>
     <p>
       Thanks! We have your brief.<br><br>
-      He'll message you on <strong>WhatsApp within 24 hours</strong> to confirm your build date and collect any files (logo, photos).<br><br>
+      We'll message you on <strong>WhatsApp within 24 hours</strong> to confirm your build date and collect any files (logo, photos).<br><br>
       Your website goes live the day we build it. That's the whole point.
     </p>
   </div>
@@ -305,7 +317,7 @@
     } catch (err) {
       btn.textContent = 'Submit My Brief →';
       btn.disabled = false;
-      alert('Something went wrong. Please WhatsApp us directly at +91 99606 51288.');
+      alert('Something went wrong. Please try again in a moment, or reach out to us via the contact link on the main site.');
     }
   }
 </script>
