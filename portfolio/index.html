@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work | Budget Website</title>
+<meta name="description" content="Real websites built for real small businesses across India — every one live, every one built by us.">
+<link rel="canonical" href="https://www.budgetwebsite.store/portfolio/">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:60px;">
+  <div class="section-label">The Work</div>
+  <h2 class="section-title">Websites We've <span class="accent">Built</span></h2>
+  <p class="section-sub">Each one a real local business, live today. Newest first.</p>
+  <div class="portfolio-grid" id="portfolio-full"></div>
+</section>
+
+<div class="cta-band" id="contact">
+  <div class="big-text">Is Your Business<br><span>Next?</span></div>
+  <p>10 minutes on a call. That's all we need to get started.</p>
+  <a href="https://wa.me/918976587269?text=Hi%2C%20I%20want%20my%20business%20website%20done%20through%20budgetwebsite.store." class="cta-contact">💬 &nbsp; Message on WhatsApp</a>
+</div>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="https://TODO-CONFIRM-GALLERY-URL.example" target="_blank" rel="noopener" class="gallery-link">See What's Possible</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../portfolio-data.js"></script>
+<script>
+  const FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    let idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+
+  document.getElementById('portfolio-full').innerHTML = renderPortfolioCards(PORTFOLIO_ENTRIES);
+</script>
+
+</body>
+</html>
