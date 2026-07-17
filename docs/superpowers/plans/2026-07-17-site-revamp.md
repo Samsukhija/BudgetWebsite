@@ -1469,7 +1469,15 @@ Read the file first (it's 325 lines — the field markup, IDs, and `submitBrief(
   <style>
     .top-bar { background: var(--cream-alt); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
     .top-bar p { font-size: 13px; color: var(--muted); }
+    .logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; color: var(--ink); }
+    .logo span { color: var(--terracotta); }
     .wrapper { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+    .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; }
+    .hero-title {
+      font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(30px, 6vw, 42px);
+      line-height: 1.2; color: var(--ink); letter-spacing: -0.3px; margin-bottom: 16px;
+    }
+    .hero-title span { color: var(--terracotta); }
     .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
     .field-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--terracotta); }
     .field label { font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.4; }
@@ -1494,7 +1502,9 @@ Read the file first (it's 325 lines — the field markup, IDs, and `submitBrief(
   </style>
   ```
 - Replace the top-bar logo `<div class="logo">budget<span>website</span>.in</div>` → `<div class="logo">budget<span>website</span>.store</div>` (keep the `<p>Website Brief · Step 2 of 2</p>` next to it unchanged)
-- Leave every `<div class="field">` block, every input/select/textarea `id`, the `.success-box` markup, and the entire `<script>...submitBrief()...</script>` block byte-for-byte unchanged
+- Leave every `<div class="field">` block, every input/select/textarea `id`, the `.success-box` markup, and the entire `<script>...submitBrief()...</script>` block byte-for-byte unchanged, **with exactly ONE exception**: the `SCRIPT_URL` line's trailing comment currently reads `// same Apps Script URL as index.html` — this is stale, since Task 3 removed `SCRIPT_URL` from `index.html` entirely (it now only lives in `pricing/index.html` and here). Update that one comment to `// same Apps Script URL as pricing/index.html`. Nothing else in the script block changes.
+
+> **Plan correction (post-Task-7-review):** the replacement style block above originally omitted `.logo`, `.logo span`, `.hero-label`, and `.hero-title` — classes the untouched HTML body still uses (`<div class="logo">`, `<div class="hero-label">`, `<h1 class="hero-title">`) but that neither this local style block nor `styles.css` defined, leaving those three elements rendering in unstyled generic Inter with no branding. Caught by spec-compliance review, verified via live computed-style inspection, and added above (Fraunces serif + terracotta accents, translated from the original page's `.logo`/`.hero-title`/`.hero-label` rules). `.hero-sub` was unaffected — it happens to already exist as a shared class in `styles.css`.
 
 - [ ] **Step 5: Verify**
 
