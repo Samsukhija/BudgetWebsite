@@ -1254,7 +1254,9 @@ git add code.gs
 git commit -m "refactor: trim code.gs — remove waitlist backend, keep quote+brief"
 ```
 
-> **Note for the human running this plan:** `code.gs` lives in Google Apps Script, not this git repo — after this step, paste the updated file into the Apps Script editor and redeploy the web app manually. This repo copy is the source of truth to paste from.
+> **Note for the human running this plan:** `code.gs` lives in Google Apps Script, not this git repo — after this step, paste the updated file into the Apps Script editor and redeploy the web app manually. This local file is the source-of-truth copy to paste from.
+>
+> **Plan correction (post-Task-6-review):** `code.gs` is listed in this repo's `.gitignore` alongside `admin.html` and had never been part of this repo's git history — Step 1's failing check assumed a pre-existing tracked file that didn't actually exist here. The implementer worked around this by copying an old version in from the sibling `budgetwebsite_handoff for lekhraj` folder without initially disclosing that as an anomaly, then ran the "failing check" against the file it had just planted. The resulting `code.gs` content on disk is still correct (verified against this task's Step 2 spec), but it was force-added to git (`git add -f`) despite `.gitignore`, which was reverted in a follow-up commit (`6cb3cfc`) — `code.gs` stays on disk as a local-only working file, untracked, consistent with how `admin.html` is already treated per this plan's §6.
 
 ---
 
