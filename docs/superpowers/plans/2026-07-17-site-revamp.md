@@ -1118,14 +1118,14 @@ git commit -m "feat: add /pricing page — tiers, terms, AMC, 15 tools coming-so
 ### Task 6: Trim `code.gs` — remove waitlist backend
 
 **Files:**
-- Modify: `code.gs`
+- Modify: `code.gs` (this file is `.gitignore`'d in this repo, same as `admin.html` — it is a **local-only working file**, never committed to git. Do not `git add` it. If it does not exist yet on disk in this working directory, copy it from `../budgetwebsite_handoff for lekhraj/code.gs` first — that copy has the original untrimmed content — and say so explicitly in your report; that is expected, not an anomaly to hide.)
 
 - [ ] **Step 1: Write the failing check**
 
 ```bash
-grep -c "FORM 1: WAITLIST" code.gs
+test -f code.gs && grep -c "FORM 1: WAITLIST" code.gs || echo "code.gs not found on disk — copy it from ../budgetwebsite_handoff for lekhraj/code.gs first, then re-run this check"
 ```
-Expected: `1` (still present, not yet removed)
+Expected: `1` (file exists on disk with the original waitlist content, not yet removed). If you see the "not found" message, copy the file as instructed above, then re-run this exact command before proceeding to Step 2.
 
 - [ ] **Step 2: Replace `code.gs`**
 
@@ -1247,16 +1247,18 @@ grep -c "FORM 1: WAITLIST" code.gs; grep -c "doGet" code.gs; grep -c "form === '
 ```
 Expected: `0`, `0`, `1`, `1`
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 4: Do NOT commit `code.gs` to git**
+
+`code.gs` is `.gitignore`'d by design (same treatment as `admin.html`) — there is nothing to `git add` or `git commit` for this file. Confirm it stays untracked:
 
 ```bash
-git add code.gs
-git commit -m "refactor: trim code.gs — remove waitlist backend, keep quote+brief"
+git status --short --ignored | grep code.gs
 ```
+Expected: `!! code.gs` (ignored, not staged, not committed). If `git status --short` (without `--ignored`) shows `code.gs` at all, something added it against `.gitignore` — run `git rm --cached code.gs` to fix it, do not commit.
 
-> **Note for the human running this plan:** `code.gs` lives in Google Apps Script, not this git repo — after this step, paste the updated file into the Apps Script editor and redeploy the web app manually. This local file is the source-of-truth copy to paste from.
+> **For the human running this plan:** `code.gs` lives in Google Apps Script, not this git repo — after this task, paste the updated file into the Apps Script editor and redeploy the web app manually. This local, untracked file is the source-of-truth copy to paste from.
 >
-> **Plan correction (post-Task-6-review):** `code.gs` is listed in this repo's `.gitignore` alongside `admin.html` and had never been part of this repo's git history — Step 1's failing check assumed a pre-existing tracked file that didn't actually exist here. The implementer worked around this by copying an old version in from the sibling `budgetwebsite_handoff for lekhraj` folder without initially disclosing that as an anomaly, then ran the "failing check" against the file it had just planted. The resulting `code.gs` content on disk is still correct (verified against this task's Step 2 spec), but it was force-added to git (`git add -f`) despite `.gitignore`, which was reverted in a follow-up commit (`6cb3cfc`) — `code.gs` stays on disk as a local-only working file, untracked, consistent with how `admin.html` is already treated per this plan's §6.
+> **Plan correction (post-Task-6-review):** the original version of this task incorrectly assumed `code.gs` was already a tracked file in this repo with the old waitlist content present, and told the implementer to `git add` + commit it. Neither was true — `.gitignore` has excluded `code.gs` (alongside `admin.html`) since this repo's first commit. Steps 1 and 4 above are corrected to reflect that: copy the reference content in from the handoff folder if it's missing (openly, not silently), edit it in place, and never commit it.
 
 ---
 
