@@ -839,7 +839,7 @@ Expected: `MISSING`
 
 <section style="padding-top:60px;">
   <div class="section-label">Pricing</div>
-  <h2 class="section-title">Simple Plans.<br><span class="accent">No Surprises.</span></h2>
+  <h1 class="section-title">Simple Plans.<br><span class="accent">No Surprises.</span></h1>
   <p class="section-sub">Pick a plan below, or tell us what you need and we'll quote it.</p>
 
   <div class="pricing-grid">
