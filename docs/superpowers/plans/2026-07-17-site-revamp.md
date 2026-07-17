@@ -456,15 +456,18 @@ function renderPortfolioCards(entries) {
 
 ```bash
 node -e "
-global.window = {};
 const fs = require('fs');
-eval(fs.readFileSync('portfolio-data.js', 'utf8'));
+const code = fs.readFileSync('portfolio-data.js', 'utf8');
+const fn = new Function(code + '; return { PORTFOLIO_ENTRIES, renderPortfolioCards };');
+const { PORTFOLIO_ENTRIES, renderPortfolioCards } = fn();
 console.log('count:', PORTFOLIO_ENTRIES.length);
 console.log('first:', PORTFOLIO_ENTRIES[0].name);
 console.log('html-sample:', renderPortfolioCards(PORTFOLIO_ENTRIES.slice(0,1)).includes('Budget Website'));
 "
 ```
 Expected: `count: 4`, `first: Budget Website`, `html-sample: true`
+
+> **Plan correction (post-Task-2-review):** the original verify command used `eval(fs.readFileSync(...))`, which does not work — `const`/`let` declared inside a direct `eval()` call never leak into the calling scope in JavaScript (unlike `var`), so `PORTFOLIO_ENTRIES` would be undefined afterward and the command would throw `ReferenceError`, not print the expected output. The corrected command above wraps the file's code and a `return` statement in the *same* `new Function(...)` body, so the `const` declarations and the return live in one shared function scope. Independently re-run against the committed `portfolio-data.js` and confirmed it produces exactly `count: 4`, `first: Budget Website`, `html-sample: true`.
 
 - [ ] **Step 4: Commit**
 
