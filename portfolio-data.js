@@ -5,25 +5,25 @@ const PORTFOLIO_ENTRIES = [
     name: 'Budget Website',
     category: 'This Very Site',
     url: 'https://www.budgetwebsite.store',
-    image: 'portfolio-img/budgetwebsite-laptop.png',
+    image: '/portfolio-img/budgetwebsite-laptop.png',
   },
   {
     name: 'Bhagyashree Car Rentals',
     category: 'Car Rental Service',
     url: 'https://bhagyashree-car-rentals.vercel.app/',
-    image: 'portfolio-img/bhagyashree-car.jpg',
+    image: '/portfolio-img/bhagyashree-car.jpg',
   },
   {
     name: 'Coco Palms',
     category: 'Resort / Hospitality · Nashik',
     url: 'https://cocopalmsnashik.in',
-    image: 'portfolio-img/coco-palms.jpeg',
+    image: '/portfolio-img/coco-palms.jpeg',
   },
   {
     name: 'G7 Gaming',
     category: 'Gaming Parlour · Andheri West',
     url: 'https://g7gaming.co.in',
-    image: 'portfolio-img/g7-gaming.jpg',
+    image: '/portfolio-img/g7-gaming.jpg',
   },
 ];
 
