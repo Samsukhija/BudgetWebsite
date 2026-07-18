@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GST Invoice Generator | Budget Website Tools</title>
+<meta name="description" content="Create GST-compliant invoices in seconds — auto CGST/SGST/IGST split, amount in words, print-ready PDF output. No accountant needed for routine billing.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · GST Invoice Generator</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Bill your customer.<br><span class="accent">Get it right the first time.</span></h1>
+  <p class="section-sub">Fill in your details once — they're saved on this device. Every invoice after that is line items and a click.</p>
+</section>
+
+<section class="invoice-app">
+  <div class="invoice-form">
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Your Business (saved on this device)</div>
+      <div class="inv-row">
+        <label>Business Name<input type="text" id="f-seller-name" placeholder="e.g. Sharma Traders"></label>
+        <label>GSTIN<input type="text" id="f-seller-gstin" placeholder="15-character GSTIN" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <label>Address<textarea id="f-seller-addr" rows="2" placeholder="Shop no., street, city, PIN"></textarea></label>
+      <div class="inv-row">
+        <label>State<select id="f-seller-state"></select></label>
+        <label>Phone / Email<input type="text" id="f-seller-contact" placeholder="For the invoice footer"></label>
+      </div>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Bill To</div>
+      <div class="inv-row">
+        <label>Customer Name<input type="text" id="f-buyer-name" placeholder="Customer or business name"></label>
+        <label>GSTIN (if registered)<input type="text" id="f-buyer-gstin" placeholder="Leave blank if unregistered" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <label>Address<textarea id="f-buyer-addr" rows="2" placeholder="Billing address"></textarea></label>
+      <label>State<select id="f-buyer-state"></select></label>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Invoice Details</div>
+      <div class="inv-row">
+        <label>Invoice No.<input type="text" id="f-inv-no"></label>
+        <label>Invoice Date<input type="date" id="f-inv-date"></label>
+      </div>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Line Items</div>
+      <div id="inv-items"></div>
+      <button type="button" class="btn-ghost inv-add-btn" id="btn-add-item">+ Add Item</button>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Bank Details &amp; Notes (optional, printed on invoice)</div>
+      <label>Bank Details<textarea id="f-bank" rows="2" placeholder="Account name, number, IFSC, bank / UPI ID"></textarea></label>
+      <label>Notes / Terms<textarea id="f-notes" rows="2" placeholder="e.g. Payment due within 7 days"></textarea></label>
+    </div>
+
+    <div class="inv-actions">
+      <button type="button" class="btn-primary" id="btn-print">🖨️ Print / Save as PDF</button>
+      <button type="button" class="btn-ghost" id="btn-new">New Invoice</button>
+    </div>
+    <p class="inv-savenote" id="inv-savenote">Draft saved on this device.</p>
+  </div>
+
+  <div class="invoice-preview-wrap">
+    <div class="invoice-sheet" id="invoice-sheet">
+      <div class="inv-head">
+        <div>
+          <div class="inv-seller-name" id="p-seller-name">Your Business Name</div>
+          <div class="inv-seller-meta" id="p-seller-addr">Address line</div>
+          <div class="inv-seller-meta" id="p-seller-gstin">GSTIN: —</div>
+          <div class="inv-seller-meta" id="p-seller-contact"></div>
+        </div>
+        <div class="inv-head-right">
+          <div class="inv-doctitle">TAX INVOICE</div>
+          <div class="inv-meta"><span>Invoice No.</span><strong id="p-inv-no">—</strong></div>
+          <div class="inv-meta"><span>Date</span><strong id="p-inv-date">—</strong></div>
+        </div>
+      </div>
+
+      <div class="inv-billto">
+        <div class="inv-panel-title" style="margin-bottom:6px;">Bill To</div>
+        <div class="inv-buyer-name" id="p-buyer-name">Customer Name</div>
+        <div class="inv-seller-meta" id="p-buyer-addr">Billing address</div>
+        <div class="inv-seller-meta" id="p-buyer-gstin">GSTIN: —</div>
+      </div>
+
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th class="inv-col-desc">Description</th>
+            <th>HSN/SAC</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Taxable Value</th>
+            <th>GST%</th>
+            <th id="p-tax-col-1">CGST</th>
+            <th id="p-tax-col-2">SGST</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="p-items"></tbody>
+      </table>
+
+      <div class="inv-totals">
+        <div class="inv-totals-row"><span>Taxable Total</span><strong id="p-sub-total">₹0.00</strong></div>
+        <div class="inv-totals-row" id="p-tax-total-1-row"><span id="p-tax-total-1-label">CGST</span><strong id="p-tax-total-1">₹0.00</strong></div>
+        <div class="inv-totals-row" id="p-tax-total-2-row"><span id="p-tax-total-2-label">SGST</span><strong id="p-tax-total-2">₹0.00</strong></div>
+        <div class="inv-totals-row inv-grand"><span>Grand Total</span><strong id="p-grand-total">₹0.00</strong></div>
+      </div>
+
+      <div class="inv-words">Amount in Words: <span id="p-words">Zero Rupees Only</span></div>
+
+      <div class="inv-foot">
+        <div>
+          <div class="inv-foot-label" id="p-bank-label" style="display:none;">Bank Details</div>
+          <div class="inv-seller-meta" id="p-bank"></div>
+          <div class="inv-foot-label" id="p-notes-label" style="display:none;">Notes</div>
+          <div class="inv-seller-meta" id="p-notes"></div>
+        </div>
+        <div class="inv-sign">
+          <div class="inv-sign-line">For <span id="p-sign-name">Your Business Name</span></div>
+          <div class="inv-sign-space"></div>
+          <div class="inv-sign-line">Authorised Signatory</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/gst-invoice.js"></script>
+
+</body>
+</html>
