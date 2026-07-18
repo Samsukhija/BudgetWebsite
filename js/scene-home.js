@@ -53,6 +53,19 @@ import * as THREE from '../vendor/three.module.min.js';
     document.documentElement.setAttribute('data-tier', 'static');
     canvas.style.display = 'none';
     document.querySelectorAll('.reveal').forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
+    // Same [data-stagger] gap as downgradeToStatic() below -- motion.js may
+    // already have applied gsap.fromTo()'s {opacity:0,y:24} "from" state to
+    // stagger children based on the perf-gate's initial (optimistic) tier
+    // reading, before this software-renderer check ran. Force them visible.
+    document.querySelectorAll('[data-stagger] > *').forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.getAll().forEach(function (st) {
+        var trig = st.trigger;
+        if (trig && (trig.classList.contains('reveal') || trig.hasAttribute('data-stagger'))) {
+          try { st.kill(); } catch (e) {}
+        }
+      });
+    }
     try { renderer.dispose(); } catch (e) {}
     return; // don't build the scene at all
   }
@@ -314,6 +327,23 @@ import * as THREE from '../vendor/three.module.min.js';
     document.querySelectorAll('.reveal').forEach(function (el) {
       el.style.opacity = 1; el.style.transform = 'none';
     });
+    // Same problem hits [data-stagger] children: motion.js's gsap.fromTo()
+    // applies its {opacity:0, y:24} "from" state synchronously the moment it's
+    // called, before the scroll trigger ever fires. If tier flips to static
+    // AFTER that (this downgrade), those children are stuck invisible until
+    // scrolled into view — which defeats "static tier = show everything
+    // immediately, no motion." Force them visible too.
+    document.querySelectorAll('[data-stagger] > *').forEach(function (el) {
+      el.style.opacity = 1; el.style.transform = 'none';
+    });
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.getAll().forEach(function (st) {
+        var trig = st.trigger;
+        if (trig && (trig.classList.contains('reveal') || trig.hasAttribute('data-stagger'))) {
+          try { st.kill(); } catch (e) {}
+        }
+      });
+    }
     scrollTriggers.forEach(function (st) { try { st.kill(); } catch (e) {} });
     // disconnect the event sources that call updateRunState() — belt-and-
     // braces alongside the `torn` guard so they can't even fire again.
