@@ -34,7 +34,7 @@
   <div class="section-label">The Work</div>
   <h1 class="section-title">Websites We've <span class="accent">Built</span></h1>
   <p class="section-sub">Each one a real local business, live today. Newest first.</p>
-  <div class="portfolio-grid" id="portfolio-full"></div>
+  <div class="portfolio-grid" id="portfolio-full" data-stagger></div>
 </section>
 
 <div class="cta-band" id="contact">
@@ -61,6 +61,7 @@
   applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
 
   document.getElementById('portfolio-full').innerHTML = renderPortfolioCards(PORTFOLIO_ENTRIES);
+  document.querySelectorAll('#portfolio-full .portfolio-card').forEach(c => c.classList.add('tilt-card'));
 </script>
 
 <script src="../vendor/gsap.min.js"></script>
