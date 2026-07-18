@@ -1,6 +1,6 @@
 // Shared motion utilities. Requires gsap + ScrollTrigger already loaded (classic scripts).
 (function () {
-  if (window.BW_TIER === 'static' || typeof gsap === 'undefined') {
+  if (window.BW_TIER === 'static' || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     document.querySelectorAll('.reveal').forEach(function (el) {
       el.style.opacity = 1; el.style.transform = 'none';
     });
