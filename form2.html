@@ -12,38 +12,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .top-bar { background: var(--cream-alt); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
-  .top-bar p { font-size: 13px; color: var(--muted); }
-  .logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; color: var(--ink); }
-  .logo span { color: var(--terracotta); }
+  .top-bar { background: var(--bg-raised); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+  .top-bar p { font-size: 13px; color: var(--text-dim); }
+  .logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; color: var(--text-hi); }
+  .logo span { color: var(--accent); }
   .wrapper { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
-  .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; }
+  .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
   .hero-title {
     font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(30px, 6vw, 42px);
-    line-height: 1.2; color: var(--ink); letter-spacing: -0.3px; margin-bottom: 16px;
+    line-height: 1.2; color: var(--text-hi); letter-spacing: -0.3px; margin-bottom: 16px;
   }
-  .hero-title span { color: var(--terracotta); }
+  .hero-title span { color: var(--accent); }
   .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
-  .field-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--terracotta); }
-  .field label { font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.4; }
-  .field .hint { font-size: 13px; color: var(--muted); margin-top: -4px; }
+  .field-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+  .field label { font-size: 16px; font-weight: 600; color: var(--text-hi); line-height: 1.4; }
+  .field .hint { font-size: 13px; color: var(--text-dim); margin-top: -4px; }
   .field input, .field select, .field textarea {
-    background: var(--card); border: 1px solid var(--border); color: var(--ink); border-radius: 8px;
+    background: var(--bg-raised); border: 1px solid var(--border); color: var(--text-hi); border-radius: 8px;
     padding: 14px 18px; font-size: 15px; font-family: 'Inter', sans-serif; outline: none; width: 100%; resize: vertical;
   }
-  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--terracotta); }
-  .optional-tag { display: inline-block; background: var(--cream-alt); color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-left: 8px; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+  .optional-tag { display: inline-block; background: var(--bg-raised); color: var(--text-dim); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-left: 8px; }
   .divider { border: none; border-top: 1px solid var(--border); margin: 4px 0 28px; }
   .btn-submit {
-    background: var(--terracotta); color: #fff; font-weight: 800; font-size: 16px; letter-spacing: 0.5px;
+    background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; letter-spacing: 0.5px;
     padding: 18px 40px; border-radius: 8px; border: none; cursor: pointer; width: 100%; font-family: 'Inter', sans-serif;
   }
-  .btn-submit:hover { background: var(--terracotta-deep); }
-  .submit-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
-  .success-box { display: none; background: var(--terracotta-dim); border: 1px solid var(--terracotta); border-radius: 12px; padding: 48px 32px; text-align: center; }
+  .btn-submit:hover { background: var(--accent-deep); }
+  .submit-note { font-size: 12px; color: var(--text-dim); text-align: center; margin-top: 12px; }
+  .success-box { display: none; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 12px; padding: 48px 32px; text-align: center; }
   .success-box .check { font-size: 48px; margin-bottom: 16px; }
-  .success-box h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(26px, 5vw, 34px); color: var(--ink); margin-bottom: 12px; }
-  .success-box p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; }
+  .success-box h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(26px, 5vw, 34px); color: var(--text-hi); margin-bottom: 12px; }
+  .success-box p { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
 </style>
 </head>
 <body>
