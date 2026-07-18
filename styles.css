@@ -374,6 +374,11 @@ footer a { color: var(--text-dim); }
 .act { position: relative; z-index: 1; }
 .act#act-contact { padding: 0; max-width: none; }
 
+/* full tier only: let the scene's final-act glow sprite bleed through the
+   CTA band instead of being fully hidden behind an opaque panel. Static
+   tier keeps the solid .cta-band background defined above (no canvas to see). */
+[data-tier="full"] .cta-band { background: rgba(18,18,42,0.72); }
+
 .reveal { opacity: 0; transform: translateY(28px); }
 [data-tier="static"] .reveal { opacity: 1; transform: none; }
 
