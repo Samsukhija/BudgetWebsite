@@ -403,6 +403,7 @@ footer a { color: var(--text-dim); }
    the tilt's faster 0.15s transform. */
 .price-card.tilt-card { transition: border-color 0.25s, transform 0.15s ease-out; }
 .portfolio-card.tilt-card { transition: border-color 0.25s, transform 0.15s ease-out, box-shadow 0.25s; }
+.why-card.tilt-card { transition: border-color 0.25s, transform 0.15s ease-out; }
 
 /* Act 3 device-wall (CSS 3D — keeps cards clickable/accessible) */
 .device-wall { perspective: 1200px; display: flex; gap: 28px; overflow-x: auto; padding: 24px 8px 40px; scroll-snap-type: x mandatory; }
