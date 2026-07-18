@@ -12,6 +12,10 @@ import * as THREE from '../vendor/three.module.min.js';
 
   var GRAD_A = 0x7C3AED, GRAD_B = 0x3B82F6, GRAD_C = 0xEC4899;
 
+  // true once the render loop has been permanently torn down (downgrade to
+  // static tier). Once set, nothing is allowed to resurrect the loop.
+  var torn = false;
+
   // ---- renderer -----------------------------------------------------
   var renderer;
   try {
@@ -42,6 +46,8 @@ import * as THREE from '../vendor/three.module.min.js';
   }
   var softwareRenderer = detectSoftwareRenderer();
   if (softwareRenderer) {
+    torn = true; // scene/observer/listener never get built past this point, but
+                 // set defensively in case that changes later
     if (typeof console !== 'undefined') console.warn('[scene-home] software renderer detected, staying on static tier:', softwareRenderer);
     window.BW_TIER = 'static';
     document.documentElement.setAttribute('data-tier', 'static');
@@ -220,22 +226,31 @@ import * as THREE from '../vendor/three.module.min.js';
   var tabVisible = !document.hidden;
   var scrollVisible = true;
   var intersectingActs = new Set();
+  var io = null; // IntersectionObserver, hoisted so downgradeToStatic() can disconnect it
 
   function updateRunState() {
+    // once torn down (permanent downgrade), never allow the loop to restart —
+    // a late-firing visibilitychange or IntersectionObserver callback must not
+    // resurrect requestAnimationFrame(tick) against a disposed renderer.
+    if (torn) {
+      if (running) stopLoop();
+      return;
+    }
     var shouldRun = tabVisible && scrollVisible;
     if (shouldRun && !running) startLoop();
     if (!shouldRun && running) stopLoop();
   }
 
-  document.addEventListener('visibilitychange', function () {
+  function onVisibilityChange() {
     tabVisible = !document.hidden;
     updateRunState();
-  });
+  }
+  document.addEventListener('visibilitychange', onVisibilityChange);
 
   function bindVisibilityObserver() {
     var acts = document.querySelectorAll('body > .act');
     if (!acts.length || typeof IntersectionObserver === 'undefined') return;
-    var io = new IntersectionObserver(function (entries) {
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) intersectingActs.add(entry.target);
         else intersectingActs.delete(entry.target);
@@ -269,7 +284,25 @@ import * as THREE from '../vendor/three.module.min.js';
     }
   }
 
+  // frees GPU-side geometry/material/texture buffers for everything left in
+  // the scene graph — renderer.dispose() alone only clears the renderer's
+  // own internal caches, not the objects still parented under `scene`.
+  function disposeSceneResources() {
+    scene.traverse(function (obj) {
+      if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) {
+        if (Array.isArray(obj.material)) {
+          obj.material.forEach(function (m) { if (m.map) m.map.dispose(); m.dispose(); });
+        } else {
+          if (obj.material.map) obj.material.map.dispose();
+          obj.material.dispose();
+        }
+      }
+    });
+  }
+
   function downgradeToStatic(reason) {
+    torn = true; // permanently forbid the loop from restarting, before anything else
     if (typeof console !== 'undefined') console.warn('[scene-home] downgrading to static tier:', reason);
     stopLoop();
     window.BW_TIER = 'static';
@@ -282,11 +315,19 @@ import * as THREE from '../vendor/three.module.min.js';
       el.style.opacity = 1; el.style.transform = 'none';
     });
     scrollTriggers.forEach(function (st) { try { st.kill(); } catch (e) {} });
+    // disconnect the event sources that call updateRunState() — belt-and-
+    // braces alongside the `torn` guard so they can't even fire again.
+    if (io) { try { io.disconnect(); } catch (e) {} }
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    disposeSceneResources();
     try { renderer.dispose(); } catch (e) {}
   }
 
   // ---- render loop -----------------------------------------------------
   var clock = new THREE.Clock();
+  var clockStarted = false; // clock.start() resets elapsedTime to 0 — only do it once,
+                             // so pause/resume (tab refocus, scroll in/out) doesn't snap
+                             // the camera dolly / particle rotation phase back to the start
 
   function tick(now) {
     rafId = requestAnimationFrame(tick);
@@ -338,7 +379,7 @@ import * as THREE from '../vendor/three.module.min.js';
   function startLoop() {
     if (running) return;
     running = true;
-    clock.start();
+    if (!clockStarted) { clock.start(); clockStarted = true; }
     rafId = requestAnimationFrame(tick);
   }
   function stopLoop() {
