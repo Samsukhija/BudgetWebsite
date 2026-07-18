@@ -2,6 +2,12 @@
 // To add a new site: add a new object to the TOP of this array. Do not reorder existing entries.
 const PORTFOLIO_ENTRIES = [
   {
+    name: 'NJ Mart',
+    category: 'Ayurveda & Wellness E-Commerce',
+    url: 'https://njmarrt.com',
+    image: '/portfolio-img/njmart.png',
+  },
+  {
     name: 'NutriCart',
     category: 'AI Meal Planning & Grocery Platform',
     url: 'https://nutricart.dev',
