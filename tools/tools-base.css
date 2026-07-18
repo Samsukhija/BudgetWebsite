@@ -1,0 +1,132 @@
+/* ─────────────────────────────────────────────
+   TOOLS — shared base for CRUD-style /tools/* pages
+   (GST Invoice's tools.css stays separate — it's a
+   print-document layout, not a CRUD app layout.)
+───────────────────────────────────────────── */
+
+.tool-app {
+  padding: 30px 48px 90px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.tool-app-wide { max-width: 1400px; }
+
+.tool-panel {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+.tool-panel-title {
+  font-weight: 700; font-size: calc(12px * var(--font-scale));
+  letter-spacing: 0.5px; text-transform: uppercase;
+  color: var(--accent-text); margin-bottom: 14px;
+}
+
+/* form controls */
+.tool-panel label, .tool-field label {
+  display: block; font-size: calc(12.5px * var(--font-scale));
+  color: var(--text-mid); margin-bottom: 12px;
+}
+.tool-panel label:last-child, .tool-field label:last-child { margin-bottom: 0; }
+.tool-row { display: grid; gap: 12px; }
+.tool-row-2 { grid-template-columns: 1fr 1fr; }
+.tool-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+.tool-row-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.tool-panel input, .tool-panel textarea, .tool-panel select,
+.tool-field input, .tool-field textarea, .tool-field select {
+  display: block; width: 100%; margin-top: 6px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif; font-size: calc(13.5px * var(--font-scale));
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tool-panel input:focus, .tool-panel textarea:focus, .tool-panel select:focus,
+.tool-field input:focus, .tool-field textarea:focus, .tool-field select:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.tool-panel textarea, .tool-field textarea { resize: vertical; font-family: inherit; }
+.tool-panel select, .tool-field select { appearance: none; cursor: pointer; }
+
+/* buttons reuse .btn-primary / .btn-ghost from styles.css; add cursor + small variant */
+.btn-primary, .btn-ghost { cursor: pointer; }
+.btn-sm { padding: 7px 14px !important; font-size: calc(12px * var(--font-scale)) !important; }
+.btn-danger {
+  background: transparent; color: #F87171; border: 1px solid rgba(248,113,113,0.4);
+  font-weight: 600; font-size: calc(12px * var(--font-scale));
+  padding: 7px 14px; border-radius: 4px; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-danger:hover { background: rgba(248,113,113,0.1); border-color: #F87171; }
+
+/* data table */
+.tool-table-wrap { overflow-x: auto; }
+.tool-table { width: 100%; border-collapse: collapse; font-size: calc(13px * var(--font-scale)); }
+.tool-table th {
+  text-align: left; padding: 10px 12px; color: var(--text-dim);
+  font-size: calc(11px * var(--font-scale)); text-transform: uppercase; letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.tool-table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.tool-table tr:last-child td { border-bottom: none; }
+.tool-table tr:hover td { background: rgba(255,255,255,0.02); }
+.tool-empty { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: calc(13.5px * var(--font-scale)); }
+
+/* badges / status pills */
+.tool-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 100px;
+  font-size: calc(11px * var(--font-scale)); font-weight: 700; letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.tool-badge-neutral { background: rgba(255,255,255,0.08); color: var(--text-mid); }
+.tool-badge-accent  { background: var(--accent-dim); color: var(--accent-text); }
+.tool-badge-good    { background: rgba(74,222,128,0.14); color: #4ADE80; }
+.tool-badge-warn    { background: rgba(251,191,36,0.14); color: #FBBF24; }
+.tool-badge-bad     { background: rgba(248,113,113,0.14); color: #F87171; }
+
+/* toolbar above tables: search + filters + add button */
+.tool-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; align-items: center; }
+.tool-toolbar input, .tool-toolbar select {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 12px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif; font-size: calc(13px * var(--font-scale));
+}
+.tool-toolbar input:focus, .tool-toolbar select:focus { outline: none; border-color: var(--accent); }
+.tool-toolbar .tool-search { flex: 1; min-width: 180px; }
+.tool-toolbar-spacer { flex: 1; }
+
+/* kanban board (Deal/Pipeline tracker) */
+.tool-kanban { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+.tool-kanban-col { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-height: 120px; }
+.tool-kanban-col-title { font-size: calc(12px * var(--font-scale)); font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-mid); margin-bottom: 10px; display: flex; justify-content: space-between; }
+.tool-kanban-card {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px; margin-bottom: 10px; cursor: grab; font-size: calc(12.5px * var(--font-scale));
+}
+.tool-kanban-card:active { cursor: grabbing; }
+.tool-kanban-card.dragging { opacity: 0.4; }
+.tool-kanban-col.drag-over { background: var(--accent-dim); border-color: var(--accent); }
+.tool-kanban-card-title { font-weight: 700; color: var(--text-hi); margin-bottom: 4px; }
+.tool-kanban-card-meta { color: var(--text-dim); font-size: calc(11.5px * var(--font-scale)); }
+
+/* month grid (Staff Attendance) */
+.tool-grid-scroll { overflow-x: auto; }
+.tool-month-grid { border-collapse: collapse; font-size: calc(12px * var(--font-scale)); }
+.tool-month-grid th, .tool-month-grid td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.tool-month-grid th { color: var(--text-dim); font-weight: 600; }
+.tool-month-grid td.name-col, .tool-month-grid th.name-col { text-align: left; position: sticky; left: 0; background: var(--bg-deep); white-space: nowrap; }
+.tool-attend-cell { width: 30px; height: 30px; cursor: pointer; border-radius: 4px; font-weight: 700; user-select: none; }
+
+/* stat cards row */
+.tool-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 22px; }
+.tool-stat-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 10px; padding: 16px 18px; }
+.tool-stat-label { font-size: calc(11px * var(--font-scale)); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+.tool-stat-value { font-family: 'Fraunces', serif; font-weight: 700; font-size: calc(22px * var(--font-scale)); color: var(--text-hi); }
+
+@media (max-width: 800px) {
+  .tool-app { padding: 24px 20px 70px; }
+  .tool-row-2, .tool-row-3, .tool-row-4 { grid-template-columns: 1fr; }
+}
