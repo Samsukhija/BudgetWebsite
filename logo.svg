@@ -6,8 +6,12 @@
       <stop offset="100%" stop-color="#EC4899"/>
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="512" height="512" rx="113" fill="url(#g)"/>
-  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="central"
+  <!-- Solid --bg-raised tile + gradient-filled "b": chosen over the gradient-tile/white-"b"
+       direction because the white letter loses contrast against the gradient's lighter
+       mid-tones at 16px (illegible blob). This solid-tile/gradient-glyph composition reads
+       clearly at 16px through 512px, so it's used across the whole asset set for consistency. -->
+  <rect x="0" y="0" width="512" height="512" rx="113" fill="#12122A"/>
+  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="central"
         font-family="Fraunces, Georgia, 'Times New Roman', serif" font-weight="900"
-        font-size="360" letter-spacing="-6" fill="#FFFFFF">b</text>
+        font-size="420" letter-spacing="-10" fill="url(#g)">b</text>
 </svg>
