@@ -43,6 +43,9 @@
 </head>
 <body>
 
+<div class="grad-bg"></div>
+<canvas id="scene-canvas"></canvas>
+
 <nav>
   <a href="/" class="nav-logo">budget<span>website</span>.store</a>
   <div class="nav-tools">
@@ -52,28 +55,55 @@
   </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-grid">
-    <div>
-      <div class="hero-eyebrow"><span></span><p>Real Websites · Real Fast</p></div>
-      <h1 class="hero-headline">Websites that look expensive.<br><span class="accent">Priced fair.</span></h1>
-      <p class="hero-sub">One local business. One full website. Built and live — <strong>in a single day.</strong> No agency timelines, no agency pricing.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Get Your Website →</a>
-        <a href="#how" class="btn-ghost">See How It Works</a>
+<section class="act" id="act-hero">
+  <div class="hero">
+    <div class="hero-grid" style="grid-template-columns:1fr;max-width:640px;margin:0 auto;">
+      <div>
+        <div class="hero-eyebrow"><span></span><p>Real Websites · Real Fast</p></div>
+        <h1 class="hero-headline reveal">Websites that look expensive.<br><span class="accent">Priced fair.</span></h1>
+        <p class="hero-sub">One local business. One full website. Built and live — <strong>in a single day.</strong> No agency timelines, no agency pricing.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get Your Website →</a>
+          <a href="#how" class="btn-ghost">See How It Works</a>
+        </div>
       </div>
     </div>
-    <div class="hero-photo">
-      <img src="portfolio-img/budgetwebsite-laptop.png" alt="A real budget website build shown on a laptop">
+    <div class="scroll-hint" aria-hidden="true">↓</div>
+  </div>
+</section>
+
+<section class="act" id="act-capabilities">
+  <div id="how"></div>
+  <div class="section-label">Why Us</div>
+  <h2 class="section-title reveal">Small Studio.<br><span class="accent">Zero Bloat.</span></h2>
+  <p class="section-sub">No agency overhead. No account managers. No 6-week timelines. Just a finished website, fast.</p>
+  <div class="why-grid" data-stagger>
+    <div class="why-card tilt-card">
+      <div class="why-icon">🛒</div>
+      <div class="why-title">E-commerce & Payments</div>
+      <div class="why-desc">Full online stores with payment gateways, carts, and order management — built to sell from day one.</div>
+    </div>
+    <div class="why-card tilt-card">
+      <div class="why-icon">📅</div>
+      <div class="why-title">Booking & Lead Systems</div>
+      <div class="why-desc">Appointment booking, enquiry funnels, and WhatsApp-first lead capture that turn visitors into customers.</div>
+    </div>
+    <a href="/pricing/#tools" class="why-card tilt-card" style="text-decoration:none;display:block;color:inherit;">
+      <div class="why-icon">🤖</div>
+      <div class="why-title">AI-Powered Tools</div>
+      <div class="why-desc">GST invoicing, review replies, content writers — business tools that remove daily busywork.</div>
+    </a>
+    <div class="why-card tilt-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">One-Day Delivery</div>
+      <div class="why-desc">Design, build, content, and hosting in a single session. You watch it happen live.</div>
     </div>
   </div>
-</div>
 
-<section id="how">
-  <div class="section-label">The Process</div>
-  <h2 class="section-title">How It <span class="accent">Works</span></h2>
+  <div class="section-label" style="margin-top:70px;">The Process</div>
+  <h2 class="section-title reveal">How It <span class="accent">Works</span></h2>
   <p class="section-sub">No long timelines. No agency pricing. No waiting weeks for a draft.</p>
-  <div class="how-grid">
+  <div class="how-grid" data-stagger>
     <div class="how-card">
       <div class="how-icon">📞</div>
       <div class="how-title">You Reach Out</div>
@@ -92,63 +122,40 @@
   </div>
 </section>
 
-<section id="why" style="padding-top:0;">
-  <div class="section-label">Why Us</div>
-  <h2 class="section-title">Small Studio.<br><span class="accent">Zero Bloat.</span></h2>
-  <p class="section-sub">No agency overhead. No account managers. No 6-week timelines. Just a finished website, fast.</p>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">⚡</div>
-      <div class="why-title">Built In A Day</div>
-      <div class="why-desc">What normally takes weeks, we finish in a single session — because we've stripped every unnecessary step out of the process.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💸</div>
-      <div class="why-title">Fair, Transparent Pricing</div>
-      <div class="why-desc">No hidden fees, no surprise invoices. You know the price before we start, and it works around your budget.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🎯</div>
-      <div class="why-title">Real Portfolio, Real Proof</div>
-      <div class="why-desc">Every site below is live, real, and built by us. Not templates, not mockups — actual businesses running on what we built.</div>
-    </div>
-  </div>
-</section>
-
-<section id="work" style="padding-top:0;">
+<section class="act" id="act-proof">
   <div class="section-label">The Work</div>
-  <h2 class="section-title">Recent <span class="accent">Builds</span></h2>
+  <h2 class="section-title reveal">Recent <span class="accent">Builds</span></h2>
   <p class="section-sub">Each one a real local business. <a href="/portfolio/" style="color:var(--accent-text);font-weight:600;">See all our work →</a></p>
-  <div class="portfolio-grid" id="portfolio-teaser"></div>
+  <div class="device-wall" id="portfolio-teaser"></div>
 </section>
 
-<section id="pricing" style="padding-top:0;">
+<section class="act" id="act-pricing">
   <div class="section-label">Pricing</div>
-  <h2 class="section-title">Simple Plans.<br><span class="accent">No Surprises.</span></h2>
+  <h2 class="section-title reveal">Simple Plans.<br><span class="accent">No Surprises.</span></h2>
   <p class="section-sub">Four tiers, transparent terms. <a href="/pricing/" style="color:var(--accent-text);font-weight:600;">See full pricing & terms →</a></p>
-  <div class="pricing-grid">
-    <div class="price-card">
+  <div class="pricing-grid" data-stagger>
+    <div class="price-card tilt-card">
       <div class="price-tier">Starter</div>
       <div class="price-amt">₹15,000</div>
       <div class="price-delivery">Delivered in 1–2 days</div>
       <ul class="price-list"><li>Up to 5 pages</li><li>Mobile responsive</li><li>Maps + WhatsApp buttons</li><li>Enquiry form + basic SEO</li></ul>
       <a href="/pricing/" class="price-cta">See Details</a>
     </div>
-    <div class="price-card featured">
+    <div class="price-card featured tilt-card">
       <div class="price-tier">Standard</div>
       <div class="price-amt">₹30,000</div>
       <div class="price-delivery">Delivered in 2–3 days</div>
       <ul class="price-list"><li>Everything in Starter</li><li>Custom domain setup</li><li>Gallery + testimonials</li><li>On-page SEO + 1mo edits</li></ul>
       <a href="/pricing/" class="price-cta">See Details</a>
     </div>
-    <div class="price-card">
+    <div class="price-card tilt-card">
       <div class="price-tier">Premium</div>
       <div class="price-amt">₹50,000</div>
       <div class="price-delivery">Delivered in 4–6 days</div>
       <ul class="price-list"><li>Everything in Standard</li><li>8+ pages, full build</li><li>Booking + lead forms</li><li>Blog + analytics, 2mo edits</li></ul>
       <a href="/pricing/" class="price-cta">See Details</a>
     </div>
-    <div class="price-card custom">
+    <div class="price-card custom tilt-card">
       <div class="price-tier">Custom</div>
       <div class="price-amt">₹75,000<span>+</span></div>
       <div class="price-delivery">Scoped to your project</div>
@@ -158,17 +165,19 @@
   </div>
 </section>
 
-<div class="cta-band" id="contact">
-  <p class="section-label" style="justify-content:center;margin-bottom:20px;">Get Started</p>
-  <div class="big-text">Is Your Business<br><span>Next?</span></div>
-  <p>10 minutes on a call. That's all we need to get started.<br>Price works around your budget.</p>
-  <a href="https://wa.me/918976587269?text=Hi%2C%20I%20want%20my%20business%20website%20done%20through%20budgetwebsite.store." class="cta-contact" id="wa-link">💬 &nbsp; Message on WhatsApp</a>
-</div>
+<section class="act" id="act-contact">
+  <div class="cta-band" id="contact">
+    <p class="section-label" style="justify-content:center;margin-bottom:20px;">Get Started</p>
+    <div class="big-text reveal">Is Your Business<br><span>Next?</span></div>
+    <p>10 minutes on a call. That's all we need to get started.<br>Price works around your budget.</p>
+    <a href="https://wa.me/918976587269?text=Hi%2C%20I%20want%20my%20business%20website%20done%20through%20budgetwebsite.store." class="cta-contact" id="wa-link">💬 &nbsp; Message on WhatsApp</a>
+  </div>
 
-<footer>
-  <div class="footer-logo">budget<span>website</span>.store</div>
-  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="https://website-project-liart.vercel.app" target="_blank" rel="noopener" class="gallery-link">See What's Possible</a> · © 2026 · Built in a day, just like yours will be.</p>
-</footer>
+  <footer>
+    <div class="footer-logo">budget<span>website</span>.store</div>
+    <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="https://website-project-liart.vercel.app" target="_blank" rel="noopener" class="gallery-link">See What's Possible</a> · © 2026 · Built in a day, just like yours will be.</p>
+  </footer>
+</section>
 
 <script src="portfolio-data.js"></script>
 <script>
@@ -182,7 +191,7 @@
   }
   applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
 
-  document.getElementById('portfolio-teaser').innerHTML = renderPortfolioCards(PORTFOLIO_ENTRIES.slice(0, 3));
+  document.getElementById('portfolio-teaser').innerHTML = renderPortfolioCards(PORTFOLIO_ENTRIES);
 </script>
 
 <script src="vendor/gsap.min.js"></script>
