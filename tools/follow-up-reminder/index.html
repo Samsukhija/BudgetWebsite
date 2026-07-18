@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow-Up Reminder Tool | Budget Website Tools</title>
+<meta name="description" content="Never forget to call a lead back. Add follow-ups with a due date and note, get browser notifications when they're due, snooze or mark done in one click.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Follow-Up Reminder</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Never lose a lead<br><span class="accent">to a forgotten follow-up.</span></h1>
+  <p class="section-sub">Add who to call, when, and why — get a nudge when it's due. Everything stays on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Add Reminder</div>
+    <div class="tool-row tool-row-4">
+      <label>Contact Name<input type="text" id="f-name" placeholder="e.g. Rakesh from Sharma Traders"></label>
+      <label>Phone<input type="text" id="f-phone" placeholder="10-digit number"></label>
+      <label>Due Date<input type="date" id="f-date"></label>
+      <label>Due Time (optional)<input type="time" id="f-time"></label>
+    </div>
+    <label>Note / Reason<textarea id="f-note" rows="2" placeholder="e.g. Quoted ₹15,000, said he'd confirm by Friday"></textarea></label>
+    <div class="tool-row" style="grid-template-columns:auto auto 1fr; align-items:center; margin-top:6px;">
+      <button type="button" class="btn-primary" id="btn-add">+ Add Reminder</button>
+      <button type="button" class="btn-ghost" id="btn-notify" style="display:none;">🔔 Enable Reminders</button>
+      <span id="notify-status" style="font-size:calc(12px * var(--font-scale)); color:var(--text-dim);"></span>
+    </div>
+  </div>
+
+  <div class="tool-stats" id="tool-stats"></div>
+
+  <div class="tool-panel">
+    <div class="tool-toolbar">
+      <div class="tool-panel-title" style="margin-bottom:0;">Reminders</div>
+      <div class="tool-toolbar-spacer"></div>
+      <label style="display:flex; align-items:center; gap:6px; font-size:calc(12.5px * var(--font-scale)); color:var(--text-mid); cursor:pointer;">
+        <input type="checkbox" id="f-show-done" style="width:auto; margin:0;"> Show completed
+      </label>
+    </div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="tool-table">
+        <thead>
+          <tr>
+            <th>Contact</th>
+            <th>Due</th>
+            <th>Note</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="tool-empty" style="display:none;">No follow-ups yet. Add one above — reminders that are due get a badge and, if you enable notifications, a nudge.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/follow-up-reminder.js"></script>
+
+</body>
+</html>

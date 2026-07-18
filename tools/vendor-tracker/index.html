@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor / Supplier Tracker | Budget Website Tools</title>
+<meta name="description" content="Track every vendor and supplier in one place — contact details, payment terms, and how much you owe each one. Never lose a supplier's number again.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Vendor / Supplier Tracker</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Know every supplier.<br><span class="accent">Know what you owe them.</span></h1>
+  <p class="section-sub">One place for every vendor's contact details, terms, and outstanding balance — saved on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-stats">
+    <div class="tool-stat-card">
+      <div class="tool-stat-label">Total Vendors</div>
+      <div class="tool-stat-value" id="stat-count">0</div>
+    </div>
+    <div class="tool-stat-card">
+      <div class="tool-stat-label">Total Outstanding</div>
+      <div class="tool-stat-value" id="stat-outstanding">₹0.00</div>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title" id="form-title">+ Add Vendor</div>
+    <input type="hidden" id="f-id">
+    <div class="tool-row tool-row-2">
+      <label>Vendor / Business Name<input type="text" id="f-name" placeholder="e.g. Sharma Traders"></label>
+      <label>Contact Person<input type="text" id="f-contact-person" placeholder="Who to call"></label>
+    </div>
+    <div class="tool-row tool-row-2">
+      <label>Phone<input type="tel" id="f-phone" placeholder="10-digit mobile"></label>
+      <label>Email<input type="email" id="f-email" placeholder="vendor@example.com"></label>
+    </div>
+    <label>Address<textarea id="f-address" rows="2" placeholder="Shop no., street, city, PIN"></textarea></label>
+    <div class="tool-row tool-row-2">
+      <label>Category / What They Supply<input type="text" id="f-category" placeholder="e.g. Packaging, Raw Materials"></label>
+      <label>Payment Terms<input type="text" id="f-terms" placeholder="e.g. Net 30, Cash on delivery"></label>
+    </div>
+    <div class="tool-row tool-row-2">
+      <label>Outstanding Amount (₹)<input type="number" id="f-outstanding" min="0" step="0.01" value="0"></label>
+      <label>Notes<input type="text" id="f-notes" placeholder="Anything worth remembering"></label>
+    </div>
+    <div class="tool-row" style="grid-template-columns:auto auto; margin-top:8px;">
+      <button type="button" class="btn-primary" id="btn-save">+ Add Vendor</button>
+      <button type="button" class="btn-ghost" id="btn-cancel" style="display:none;">Cancel Edit</button>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Vendors</div>
+    <div class="tool-toolbar">
+      <input type="text" id="f-search" class="tool-search" placeholder="Search name, contact, or category…">
+      <select id="f-sort">
+        <option value="name">Sort: Name A-Z</option>
+        <option value="outstanding">Sort: Outstanding High to Low</option>
+      </select>
+      <div class="tool-toolbar-spacer"></div>
+      <button type="button" class="btn-ghost btn-sm" id="btn-export">⬇ Export CSV</button>
+    </div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="vendor-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact Person</th>
+            <th>Phone</th>
+            <th>Category</th>
+            <th>Payment Terms</th>
+            <th>Outstanding</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="vendor-rows"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="vendor-empty" style="display:none;">No vendors yet. Add your first one above.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/vendor-tracker.js"></script>
+
+</body>
+</html>

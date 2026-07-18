@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recurring Payment &amp; Renewal Reminder | Budget Website Tools</title>
+<meta name="description" content="Track domain renewals, insurance premiums, loan EMIs and other recurring payments — see what's overdue, what's due soon, and mark items paid to roll them to the next cycle.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Renewal Reminder</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Never miss a renewal.<br><span class="accent">See what's due, before it's overdue.</span></h1>
+  <p class="section-sub">Domain renewals, insurance premiums, loan EMIs, licenses, subscriptions — track them all in one list. Everything's saved on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-stats" id="stats-row"></div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">+ Add Renewal</div>
+    <div class="tool-row tool-row-3">
+      <label>Name
+        <input type="text" id="f-name" placeholder="e.g. Domain renewal">
+      </label>
+      <label>Amount (₹)
+        <input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01">
+      </label>
+      <label>Category
+        <input type="text" id="f-category" placeholder="e.g. Subscriptions" list="category-suggestions">
+        <datalist id="category-suggestions">
+          <option value="Subscriptions">
+          <option value="Insurance">
+          <option value="Loans">
+          <option value="Licenses">
+          <option value="Utilities">
+        </datalist>
+      </label>
+    </div>
+    <div class="tool-row tool-row-3" style="margin-top:12px;">
+      <label>Frequency
+        <select id="f-frequency">
+          <option value="monthly">Monthly</option>
+          <option value="quarterly">Quarterly</option>
+          <option value="yearly" selected>Yearly</option>
+          <option value="custom">Custom</option>
+        </select>
+      </label>
+      <label id="f-customdays-wrap" style="display:none;">Every N days
+        <input type="number" id="f-customdays" placeholder="e.g. 45" min="1" step="1">
+      </label>
+      <label>Next Due Date
+        <input type="date" id="f-nextdue">
+      </label>
+    </div>
+    <div class="tool-row" style="margin-top:12px;">
+      <label>Notes
+        <textarea id="f-notes" rows="2" placeholder="Optional — account details, reminders, links, etc."></textarea>
+      </label>
+    </div>
+    <div style="margin-top:16px;">
+      <button type="button" class="btn-primary" id="btn-add">+ Add Renewal</button>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Renewals</div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="renewals-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Frequency</th>
+            <th>Next Due</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="renewals-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="renewals-empty" style="display:none;">No renewals yet. Add your first recurring payment above — domain, insurance, EMI, whatever needs remembering.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/renewal-reminder.js"></script>
+
+</body>
+</html>

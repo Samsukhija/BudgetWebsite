@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quotation / Estimate Builder | Budget Website Tools</title>
+<meta name="description" content="Build a professional quotation or estimate in seconds — auto CGST/SGST/IGST split, amount in words, status tracking, print-ready PDF output.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Quotation / Estimate Builder</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Quote the job.<br><span class="accent">Win it before you start it.</span></h1>
+  <p class="section-sub">Fill in your details once — they're saved on this device. Every quotation after that is line items, a status, and a click.</p>
+</section>
+
+<section class="qb-app">
+  <div class="qb-form">
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Your Business (saved on this device)</div>
+      <div class="tool-row tool-row-2">
+        <label>Business Name<input type="text" id="f-seller-name" placeholder="e.g. Sharma Traders"></label>
+        <label>GSTIN<input type="text" id="f-seller-gstin" placeholder="15-character GSTIN" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <label>Address<textarea id="f-seller-addr" rows="2" placeholder="Shop no., street, city, PIN"></textarea></label>
+      <div class="tool-row tool-row-2">
+        <label>State<select id="f-seller-state"></select></label>
+        <label>Phone / Email<input type="text" id="f-seller-contact" placeholder="For the quotation footer"></label>
+      </div>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Quote To</div>
+      <div class="tool-row tool-row-2">
+        <label>Customer Name<input type="text" id="f-buyer-name" placeholder="Customer or business name"></label>
+        <label>GSTIN (if registered)<input type="text" id="f-buyer-gstin" placeholder="Leave blank if unregistered" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <label>Address<textarea id="f-buyer-addr" rows="2" placeholder="Customer address"></textarea></label>
+      <label>State<select id="f-buyer-state"></select></label>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Quotation Details</div>
+      <div class="tool-row tool-row-2">
+        <label>Quotation No.<input type="text" id="f-quote-no"></label>
+        <label>Status
+          <select id="f-status">
+            <option value="Draft">Draft</option>
+            <option value="Sent">Sent</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Expired">Expired</option>
+          </select>
+        </label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Quotation Date<input type="date" id="f-quote-date"></label>
+        <label>Valid Until<input type="date" id="f-valid-until"></label>
+      </div>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Line Items</div>
+      <div id="qb-items"></div>
+      <button type="button" class="btn-ghost qb-add-btn" id="btn-add-item">+ Add Item</button>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Terms &amp; Notes (optional, printed on quotation)</div>
+      <label>Terms / Notes<textarea id="f-notes" rows="2" placeholder="e.g. 50% advance, balance on delivery. Prices subject to change after validity."></textarea></label>
+    </div>
+
+    <div class="qb-actions">
+      <button type="button" class="btn-primary" id="btn-print">🖨️ Print / Save as PDF</button>
+      <button type="button" class="btn-ghost" id="btn-new">New Quotation</button>
+    </div>
+    <p class="qb-savenote" id="qb-savenote">Draft saved on this device.</p>
+  </div>
+
+  <div class="qb-preview-wrap">
+    <div class="qb-sheet" id="qb-sheet">
+      <div class="qb-head">
+        <div>
+          <div class="qb-seller-name" id="p-seller-name">Your Business Name</div>
+          <div class="qb-seller-meta" id="p-seller-addr">Address line</div>
+          <div class="qb-seller-meta" id="p-seller-gstin">GSTIN: —</div>
+          <div class="qb-seller-meta" id="p-seller-contact"></div>
+        </div>
+        <div class="qb-head-right">
+          <div class="qb-doctitle">QUOTATION</div>
+          <div class="qb-meta"><span>Quotation No.</span><strong id="p-quote-no">—</strong></div>
+          <div class="qb-meta"><span>Date</span><strong id="p-quote-date">—</strong></div>
+          <div class="qb-meta"><span>Valid Until</span><strong id="p-valid-until">—</strong></div>
+          <div class="qb-status-row"><span class="tool-badge tool-badge-neutral" id="p-status-badge">Draft</span></div>
+        </div>
+      </div>
+
+      <div class="qb-billto">
+        <div class="tool-panel-title" style="margin-bottom:6px;">Quote To</div>
+        <div class="qb-buyer-name" id="p-buyer-name">Customer Name</div>
+        <div class="qb-seller-meta" id="p-buyer-addr">Customer address</div>
+        <div class="qb-seller-meta" id="p-buyer-gstin">GSTIN: —</div>
+      </div>
+
+      <table class="qb-table">
+        <thead>
+          <tr>
+            <th class="qb-col-desc">Description</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Taxable Value</th>
+            <th>GST%</th>
+            <th id="p-tax-col-1">CGST</th>
+            <th id="p-tax-col-2">SGST</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="p-items"></tbody>
+      </table>
+
+      <div class="qb-totals">
+        <div class="qb-totals-row"><span>Taxable Total</span><strong id="p-sub-total">₹0.00</strong></div>
+        <div class="qb-totals-row" id="p-tax-total-1-row"><span id="p-tax-total-1-label">CGST</span><strong id="p-tax-total-1">₹0.00</strong></div>
+        <div class="qb-totals-row" id="p-tax-total-2-row"><span id="p-tax-total-2-label">SGST</span><strong id="p-tax-total-2">₹0.00</strong></div>
+        <div class="qb-totals-row qb-grand"><span>Estimated Total</span><strong id="p-grand-total">₹0.00</strong></div>
+      </div>
+
+      <div class="qb-words">Amount in Words: <span id="p-words">Zero Rupees Only</span></div>
+
+      <div class="qb-foot">
+        <div>
+          <div class="qb-foot-label" id="p-notes-label" style="display:none;">Terms &amp; Notes</div>
+          <div class="qb-seller-meta" id="p-notes"></div>
+        </div>
+        <div class="qb-sign">
+          <div class="qb-sign-line">For <span id="p-sign-name">Your Business Name</span></div>
+          <div class="qb-sign-space"></div>
+          <div class="qb-sign-line">Authorised Signatory</div>
+        </div>
+      </div>
+
+      <p class="qb-disclaimer">This is an estimate, not a tax invoice. Valid until <span id="p-valid-note">—</span>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/quotation-builder.js"></script>
+
+</body>
+</html>

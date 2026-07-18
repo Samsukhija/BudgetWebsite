@@ -1,0 +1,119 @@
+/* ─────────────────────────────────────────────
+   Quotation / Estimate Builder — tool-specific styles.
+   Dark app chrome (tool-base.css handles the panels)
+   + a light "paper" quotation preview, same visual
+   pattern as the GST Invoice tool's print sheet.
+───────────────────────────────────────────── */
+
+.qb-app {
+  display: grid;
+  grid-template-columns: minmax(340px, 440px) 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 30px 48px 90px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── form column ── */
+.qb-form { display: flex; flex-direction: column; gap: 18px; }
+
+.qb-item-row {
+  display: grid;
+  grid-template-columns: 1fr 26px;
+  grid-template-areas: "desc remove" "fields fields";
+  gap: 6px 8px; align-items: center; margin-bottom: 14px;
+}
+.qb-item-row .it-desc { grid-area: desc; }
+.qb-item-row .it-fields {
+  grid-area: fields;
+  display: grid; grid-template-columns: 80px 1fr 74px; gap: 6px;
+}
+.qb-item-row input, .qb-item-row select {
+  margin-top: 0; padding: 8px 8px; font-size: calc(12.5px * var(--font-scale));
+  display: block; width: 100%;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.qb-item-row input:focus, .qb-item-row select:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.qb-item-row select { appearance: none; cursor: pointer; }
+.qb-item-remove {
+  background: transparent; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text-dim); width: 26px; height: 26px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.qb-item-remove:hover { border-color: #F87171; color: #F87171; }
+.qb-add-btn { width: 100%; margin-top: 4px; padding: 10px 22px; font-size: calc(13px * var(--font-scale)); text-align: center; cursor: pointer; }
+
+.qb-actions { display: flex; gap: 12px; }
+.qb-actions .btn-primary, .qb-actions .btn-ghost { flex: 1; text-align: center; cursor: pointer; }
+.qb-savenote { font-size: calc(11.5px * var(--font-scale)); color: var(--text-dim); text-align: center; }
+
+/* ── quotation preview: a light "paper" sheet inside the dark app ── */
+.qb-preview-wrap { position: sticky; top: 90px; }
+.qb-sheet {
+  background: #FFFFFF; color: #1A1A2E;
+  border-radius: 6px; padding: 40px 44px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+.qb-head { display: flex; justify-content: space-between; gap: 20px; border-bottom: 2px solid #1A1A2E; padding-bottom: 18px; margin-bottom: 18px; }
+.qb-seller-name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; }
+.qb-seller-meta { font-size: 12.5px; color: #555; line-height: 1.6; }
+.qb-head-right { text-align: right; }
+.qb-doctitle { font-weight: 700; letter-spacing: 1px; font-size: 14px; color: #6D28D9; margin-bottom: 10px; }
+.qb-meta { font-size: 12.5px; color: #555; display: flex; justify-content: flex-end; gap: 8px; }
+.qb-meta strong { color: #1A1A2E; }
+.qb-status-row { margin-top: 8px; display: flex; justify-content: flex-end; }
+.qb-billto { margin-bottom: 20px; }
+.qb-billto .tool-panel-title { color: #6D28D9; }
+.qb-buyer-name { font-weight: 700; font-size: 14.5px; }
+
+.qb-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
+.qb-table th {
+  background: #F3F1FA; color: #1A1A2E; font-weight: 700;
+  text-align: right; padding: 8px 10px; border: 1px solid #E4E0F5;
+}
+.qb-table th.qb-col-desc, .qb-table td.qb-col-desc { text-align: left; }
+.qb-table td { padding: 8px 10px; border: 1px solid #E4E0F5; text-align: right; }
+.qb-table tbody tr:nth-child(even) { background: #FAFAFD; }
+
+.qb-totals { max-width: 300px; margin-left: auto; margin-bottom: 18px; }
+.qb-totals-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; color: #555; }
+.qb-totals-row.qb-grand { border-top: 2px solid #1A1A2E; margin-top: 6px; padding-top: 10px; font-size: 15px; font-weight: 700; color: #1A1A2E; }
+
+.qb-words { font-size: 12.5px; font-style: italic; color: #555; margin-bottom: 24px; }
+
+.qb-foot { display: flex; justify-content: space-between; gap: 30px; border-top: 1px solid #E4E0F5; padding-top: 18px; margin-bottom: 14px; }
+.qb-foot-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #6D28D9; margin: 0 0 2px; }
+.qb-sign { text-align: right; min-width: 200px; }
+.qb-sign-line { font-size: 12.5px; color: #555; }
+.qb-sign-space { height: 46px; }
+
+.qb-disclaimer { font-size: 11px; color: #999; text-align: center; margin: 0; }
+
+@media (max-width: 900px) {
+  .qb-app { grid-template-columns: 1fr; padding: 24px 20px 70px; }
+  .qb-preview-wrap { position: static; }
+  .qb-sheet { padding: 26px 22px; }
+  .qb-item-row { grid-template-columns: 1fr 1fr; }
+  .qb-head { flex-direction: column; }
+  .qb-head-right { text-align: left; }
+  .qb-meta { justify-content: flex-start; }
+  .qb-status-row { justify-content: flex-start; }
+}
+
+/* ── print: only the quotation sheet, full page, nothing else ── */
+@media print {
+  nav, .qb-form, footer, section > .section-label, section > .section-title, section > .section-sub,
+  .grad-bg, #scene-canvas { display: none !important; }
+  body { background: #fff !important; }
+  .qb-app { display: block; padding: 0; max-width: none; }
+  .qb-preview-wrap { position: static; }
+  .qb-sheet { box-shadow: none; border-radius: 0; padding: 0; }
+}

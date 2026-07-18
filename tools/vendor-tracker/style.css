@@ -1,0 +1,24 @@
+/* Vendor / Supplier Tracker — tweaks on top of tools-base.css */
+
+#vendor-table td:nth-child(6),
+#vendor-table th:nth-child(6) {
+  text-align: right;
+}
+
+.vt-row-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+.vt-cell-truncate {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+  .vt-cell-truncate { max-width: 140px; }
+}

@@ -1,0 +1,36 @@
+/* CRM Deal / Pipeline Tracker — tool-specific styles */
+
+.tool-kanban-col-sum { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-dim); }
+
+.tool-kanban-card { display: flex; flex-direction: column; gap: 6px; }
+.tool-kanban-card-value { color: var(--accent-text); font-weight: 700; }
+.tool-kanban-card-select {
+  margin-top: 4px; width: 100%;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 8px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif; font-size: calc(11.5px * var(--font-scale));
+  cursor: pointer;
+}
+.tool-kanban-card-select:focus { outline: none; border-color: var(--accent); }
+
+.crm-modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(6,6,16,0.72);
+  align-items: flex-start; justify-content: center;
+  overflow-y: auto; padding: 40px 16px;
+}
+.crm-modal-overlay.open { display: flex; }
+.crm-modal { width: 100%; max-width: 520px; margin-bottom: 40px; }
+
+.crm-hint { color: var(--text-dim); font-size: calc(12px * var(--font-scale)); margin: -6px 0 12px; }
+
+.crm-modal-actions {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-top: 8px; flex-wrap: wrap;
+}
+.crm-modal-actions-right { display: flex; gap: 10px; margin-left: auto; }
+
+@media (max-width: 800px) {
+  .crm-modal { max-width: 100%; }
+}

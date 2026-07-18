@@ -1,0 +1,28 @@
+/* Inventory / Stock Tracker — tool-specific extras on top of tools-base.css */
+
+.tool-stat-value-warn { color: #FBBF24; }
+
+.tool-actions-cell { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.tool-adjust-row td { background: rgba(255,255,255,0.03); padding: 16px 12px; }
+
+.tool-adjust-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.tool-adjust-form label {
+  display: block; font-size: calc(12.5px * var(--font-scale));
+  color: var(--text-mid); margin-bottom: 0; flex: 1; min-width: 130px;
+}
+.tool-adjust-form label.note-field { flex: 2; min-width: 200px; }
+.tool-adjust-form input, .tool-adjust-form select {
+  display: block; width: 100%; margin-top: 6px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif; font-size: calc(13.5px * var(--font-scale));
+}
+.tool-adjust-form input:focus, .tool-adjust-form select:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+@media (max-width: 800px) {
+  .tool-adjust-form { flex-direction: column; align-items: stretch; }
+  .tool-adjust-form label, .tool-adjust-form label.note-field { min-width: 0; }
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary Slip Generator | Budget Website Tools</title>
+<meta name="description" content="Generate printable salary slips for your employees in seconds — earnings, deductions, net pay in words, and a saved history you can reprint any month.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Salary Slip Generator</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Pay your team.<br><span class="accent">Give them paper to show for it.</span></h1>
+  <p class="section-sub">Add your employees once, generate a slip every payday, and reprint any past month whenever someone needs proof of income.</p>
+</section>
+
+<section class="tool-app">
+
+  <!-- Employer details, reused for the slip header -->
+  <div class="tool-panel">
+    <div class="tool-panel-title">Employer Details (printed on every slip)</div>
+    <div class="tool-row tool-row-2">
+      <label>Business / Employer Name
+        <input type="text" id="er-name" placeholder="e.g. Sharma Traders">
+      </label>
+      <label>Address
+        <input type="text" id="er-addr" placeholder="Shop no., street, city, PIN">
+      </label>
+    </div>
+  </div>
+
+  <!-- Employee roster -->
+  <div class="tool-panel">
+    <div class="tool-panel-title">Employees</div>
+
+    <div class="tool-row tool-row-4" style="margin-bottom:14px;">
+      <label>Name
+        <input type="text" id="emp-name" placeholder="Employee full name">
+      </label>
+      <label>Designation
+        <input type="text" id="emp-designation" placeholder="e.g. Sales Executive">
+      </label>
+      <label>Employee ID
+        <input type="text" id="emp-empid" placeholder="e.g. EMP-001">
+      </label>
+      <label>PAN (optional)
+        <input type="text" id="emp-pan" placeholder="10-character PAN" maxlength="10" style="text-transform:uppercase;">
+      </label>
+    </div>
+    <div class="tool-toolbar" style="margin-bottom:0;">
+      <button type="button" class="btn-primary btn-sm" id="btn-emp-save">+ Add Employee</button>
+      <button type="button" class="btn-ghost btn-sm" id="btn-emp-cancel" style="display:none;">Cancel Edit</button>
+    </div>
+
+    <div class="tool-table-wrap" style="margin-top:18px;">
+      <table class="tool-table" id="emp-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Employee ID</th>
+            <th>PAN</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="emp-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="emp-empty" style="display:none;">No employees yet — add one above to start generating slips.</div>
+  </div>
+
+  <!-- Slip generation form -->
+  <div class="tool-panel">
+    <div class="tool-panel-title">Generate Slip</div>
+
+    <div class="tool-row tool-row-3" style="margin-bottom:16px;">
+      <label>Employee
+        <select id="slip-employee"></select>
+      </label>
+      <label>Month
+        <select id="slip-month"></select>
+      </label>
+      <label>Year
+        <input type="number" id="slip-year" step="1">
+      </label>
+    </div>
+
+    <div class="tool-row tool-row-2">
+      <div>
+        <div class="tool-panel-title" style="margin-bottom:10px;">Earnings</div>
+        <div class="tool-row tool-row-2">
+          <label>Basic<input type="number" id="earn-basic" min="0" step="0.01" value="0"></label>
+          <label>HRA<input type="number" id="earn-hra" min="0" step="0.01" value="0"></label>
+          <label>Conveyance<input type="number" id="earn-conveyance" min="0" step="0.01" value="0"></label>
+          <label>Other Allowance<input type="number" id="earn-other" min="0" step="0.01" value="0"></label>
+        </div>
+      </div>
+      <div>
+        <div class="tool-panel-title" style="margin-bottom:10px;">Deductions</div>
+        <div class="tool-row tool-row-2">
+          <label>PF<input type="number" id="ded-pf" min="0" step="0.01" value="0"></label>
+          <label>Professional Tax<input type="number" id="ded-pt" min="0" step="0.01" value="0"></label>
+          <label>TDS<input type="number" id="ded-tds" min="0" step="0.01" value="0"></label>
+          <label>Other Deduction<input type="number" id="ded-other" min="0" step="0.01" value="0"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-stats" style="margin-top:18px; margin-bottom:0;">
+      <div class="tool-stat-card">
+        <div class="tool-stat-label">Gross Earnings</div>
+        <div class="tool-stat-value" id="stat-gross">₹0.00</div>
+      </div>
+      <div class="tool-stat-card">
+        <div class="tool-stat-label">Total Deductions</div>
+        <div class="tool-stat-value" id="stat-deductions">₹0.00</div>
+      </div>
+      <div class="tool-stat-card">
+        <div class="tool-stat-label">Net Pay</div>
+        <div class="tool-stat-value" id="stat-net">₹0.00</div>
+      </div>
+    </div>
+
+    <div class="tool-toolbar" style="margin-top:18px; margin-bottom:0;">
+      <button type="button" class="btn-primary" id="btn-save-preview">Save &amp; Preview Slip</button>
+      <button type="button" class="btn-ghost" id="btn-print">🖨️ Print / Save as PDF</button>
+    </div>
+    <p class="slip-note" id="slip-note"></p>
+  </div>
+
+  <!-- Printable slip preview -->
+  <div class="slip-preview-wrap">
+    <div class="slip-sheet" id="slip-sheet">
+      <div class="slip-head">
+        <div>
+          <div class="slip-employer-name" id="p-employer-name">Your Business Name</div>
+          <div class="slip-meta-line" id="p-employer-addr">Address line</div>
+        </div>
+        <div class="slip-head-right">
+          <div class="slip-doctitle">SALARY SLIP</div>
+          <div class="slip-meta"><span>Pay Period</span><strong id="p-period">—</strong></div>
+          <div class="slip-meta"><span>Generated</span><strong id="p-generated">—</strong></div>
+        </div>
+      </div>
+
+      <div class="slip-empbox">
+        <div class="slip-row"><span>Employee Name</span><strong id="p-emp-name">—</strong></div>
+        <div class="slip-row"><span>Designation</span><strong id="p-emp-designation">—</strong></div>
+        <div class="slip-row"><span>Employee ID</span><strong id="p-emp-empid">—</strong></div>
+        <div class="slip-row"><span>PAN</span><strong id="p-emp-pan">—</strong></div>
+      </div>
+
+      <table class="slip-table">
+        <thead>
+          <tr><th>Earnings</th><th>Amount</th><th>Deductions</th><th>Amount</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Basic</td><td id="p-earn-basic">₹0.00</td><td>PF</td><td id="p-ded-pf">₹0.00</td></tr>
+          <tr><td>HRA</td><td id="p-earn-hra">₹0.00</td><td>Professional Tax</td><td id="p-ded-pt">₹0.00</td></tr>
+          <tr><td>Conveyance</td><td id="p-earn-conveyance">₹0.00</td><td>TDS</td><td id="p-ded-tds">₹0.00</td></tr>
+          <tr><td>Other Allowance</td><td id="p-earn-other">₹0.00</td><td>Other Deduction</td><td id="p-ded-other">₹0.00</td></tr>
+        </tbody>
+        <tfoot>
+          <tr class="slip-total-row"><td>Gross Earnings</td><td id="p-gross">₹0.00</td><td>Total Deductions</td><td id="p-total-ded">₹0.00</td></tr>
+        </tfoot>
+      </table>
+
+      <div class="slip-netpay">
+        <span>Net Pay</span>
+        <strong id="p-netpay">₹0.00</strong>
+      </div>
+      <div class="slip-words">Amount in Words: <span id="p-words">Zero Rupees Only</span></div>
+
+      <div class="slip-foot">
+        <div class="slip-sign">
+          <div class="slip-sign-space"></div>
+          <div class="slip-sign-line">Employee Signature</div>
+        </div>
+        <div class="slip-sign">
+          <div class="slip-sign-space"></div>
+          <div class="slip-sign-line">Authorised Signatory</div>
+        </div>
+      </div>
+      <p class="slip-disclaimer">This is a computer-generated salary slip and does not require a physical stamp.</p>
+    </div>
+  </div>
+
+  <!-- Slip history -->
+  <div class="tool-panel">
+    <div class="tool-panel-title">Slip History</div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="history-table">
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Month / Year</th>
+            <th>Net Pay</th>
+            <th>Generated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="history-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="history-empty" style="display:none;">No slips generated yet — save one above and it'll show up here for reprinting anytime.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/salary-slip.js"></script>
+
+</body>
+</html>

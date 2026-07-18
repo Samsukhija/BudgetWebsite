@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Attendance Tracker | Budget Website Tools</title>
+<meta name="description" content="Track daily staff attendance on a monthly grid — click to mark Present, Absent, Half-day, or Leave. Auto-calculated attendance % and CSV export. No spreadsheet needed.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Staff Attendance Tracker</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Mark it once.<br><span class="accent">Never chase a register again.</span></h1>
+  <p class="section-sub">Add your team, click through the month, and the attendance % works itself out. Everything stays saved on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Staff Roster</div>
+    <div class="tool-row-3">
+      <label>Name<input type="text" id="f-staff-name" placeholder="e.g. Ramesh Yadav"></label>
+      <label>Employee ID (optional)<input type="text" id="f-staff-empid" placeholder="e.g. EMP-01"></label>
+      <label>&nbsp;<button type="button" class="btn-primary" id="btn-add-staff" style="width:100%;">+ Add Staff</button></label>
+    </div>
+    <div class="tool-table-wrap" style="margin-top:16px;">
+      <table class="tool-table" id="staff-table">
+        <thead><tr><th>Name</th><th>Employee ID</th><th></th></tr></thead>
+        <tbody id="staff-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="staff-empty">No staff added yet. Add your first team member above.</div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Mark Attendance</div>
+    <div class="tool-row-2" style="margin-bottom:6px;">
+      <label>Month<input type="month" id="f-month"></label>
+    </div>
+    <p class="tool-attend-legend">Click a cell to cycle: blank → <span class="attend-P">P</span> Present → <span class="attend-A">A</span> Absent → <span class="attend-H">H</span> Half-day → <span class="attend-L">L</span> Leave → blank.</p>
+    <div class="tool-grid-scroll">
+      <table class="tool-month-grid" id="attend-grid"></table>
+    </div>
+    <div class="tool-empty" id="grid-empty">Add at least one staff member above to start marking attendance.</div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Monthly Summary</div>
+    <div class="tool-stats" id="summary-stats"></div>
+    <div class="tool-toolbar">
+      <div class="tool-toolbar-spacer"></div>
+      <button type="button" class="btn-ghost" id="btn-export-csv">⬇ Export CSV</button>
+    </div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="summary-table">
+        <thead><tr><th>Name</th><th>Present</th><th>Absent</th><th>Half-day</th><th>Leave</th><th>Attendance %</th></tr></thead>
+        <tbody id="summary-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="summary-empty">No staff to summarize yet.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/staff-attendance.js"></script>
+
+</body>
+</html>

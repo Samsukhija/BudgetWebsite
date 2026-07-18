@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory / Stock Tracker | Budget Website Tools</title>
+<meta name="description" content="Track item quantities, reorder levels, and every stock movement — purchases, sales, returns, damage — with a running audit log. No spreadsheet needed.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Inventory / Stock Tracker</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Know your stock.<br><span class="accent">Before it runs out.</span></h1>
+  <p class="section-sub">Track items, watch reorder levels, and log every purchase, sale, return, damage or correction — all saved on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-stats">
+    <div class="tool-stat-card">
+      <div class="tool-stat-label">Total SKUs</div>
+      <div class="tool-stat-value" id="stat-skus">0</div>
+    </div>
+    <div class="tool-stat-card">
+      <div class="tool-stat-label">Total Inventory Value</div>
+      <div class="tool-stat-value" id="stat-value">₹0.00</div>
+    </div>
+    <div class="tool-stat-card">
+      <div class="tool-stat-label">Low Stock Items</div>
+      <div class="tool-stat-value tool-stat-value-warn" id="stat-lowstock">0</div>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">+ Add Item</div>
+    <div class="tool-row tool-row-4">
+      <label>Item Name<input type="text" id="ai-name" placeholder="e.g. Basmati Rice 5kg"></label>
+      <label>SKU<input type="text" id="ai-sku" placeholder="e.g. RICE-5KG"></label>
+      <label>Category<input type="text" id="ai-category" placeholder="e.g. Grocery"></label>
+      <label>Unit<input type="text" id="ai-unit" placeholder="pcs / kg / box" value="pcs"></label>
+    </div>
+    <div class="tool-row tool-row-4" style="margin-top:12px;">
+      <label>Starting Qty<input type="number" id="ai-qty" min="0" step="0.01" value="0"></label>
+      <label>Reorder Level<input type="number" id="ai-reorder" min="0" step="0.01" value="0"></label>
+      <label>Cost Price (₹)<input type="number" id="ai-cost" min="0" step="0.01" value="0"></label>
+      <label>Sell Price (₹)<input type="number" id="ai-sell" min="0" step="0.01" value="0"></label>
+    </div>
+    <button type="button" class="btn-primary btn-sm" id="btn-add-item" style="margin-top:16px;">+ Add Item</button>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-toolbar">
+      <div class="tool-panel-title" style="margin-bottom:0;">Items (<span id="items-count">0</span>)</div>
+      <div class="tool-toolbar-spacer"></div>
+      <button type="button" class="btn-ghost btn-sm" id="btn-export-csv">⬇ Export CSV</button>
+    </div>
+    <div class="tool-table-wrap">
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Name</th><th>SKU</th><th>Category</th><th>Qty on Hand</th><th>Unit</th><th>Cost Price</th><th>Sell Price</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="items-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="items-empty" style="display:none;">No items yet — add your first item above.</div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Movement History (last 20)</div>
+    <div class="tool-table-wrap">
+      <table class="tool-table">
+        <thead>
+          <tr><th>Item</th><th>Date</th><th>Qty Change</th><th>Reason</th><th>Note</th></tr>
+        </thead>
+        <tbody id="moves-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="moves-empty" style="display:none;">No stock movements recorded yet.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/inventory-tracker.js"></script>
+
+</body>
+</html>

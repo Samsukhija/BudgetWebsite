@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointment / Booking Scheduler | Budget Website Tools</title>
+<meta name="description" content="Book and manage appointments with automatic conflict detection — see today's schedule at a glance and never double-book a client again.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Appointment / Booking Scheduler</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Book it in.<br><span class="accent">Never double-book again.</span></h1>
+  <p class="section-sub">Add appointments, catch time clashes before they happen, and see today's schedule at a glance. Everything's saved on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">New Appointment</div>
+    <div class="tool-row tool-row-2">
+      <label>Client Name<input type="text" id="f-client-name" placeholder="e.g. Rahul Verma"></label>
+      <label>Phone<input type="tel" id="f-phone" placeholder="10-digit mobile"></label>
+    </div>
+    <label>Service / Reason<input type="text" id="f-service" placeholder="e.g. Haircut, Consultation, Repair"></label>
+    <div class="tool-row tool-row-3">
+      <label>Date<input type="date" id="f-date"></label>
+      <label>Time<input type="time" id="f-time"></label>
+      <label>Duration (mins)<input type="number" id="f-duration" min="5" step="5" value="30"></label>
+    </div>
+    <label>Notes<textarea id="f-notes" rows="2" placeholder="Optional notes"></textarea></label>
+
+    <p class="appt-error" id="form-error" style="display:none;"></p>
+
+    <div class="appt-conflict-box" id="conflict-box" style="display:none;">
+      <div class="appt-conflict-title">⚠️ Scheduling conflict</div>
+      <div id="conflict-messages"></div>
+      <div class="appt-conflict-actions">
+        <button type="button" class="btn-primary btn-sm" id="btn-save-anyway">Save Anyway</button>
+        <button type="button" class="btn-ghost btn-sm" id="btn-cancel-conflict">Cancel</button>
+      </div>
+    </div>
+
+    <div class="appt-form-actions">
+      <button type="button" class="btn-primary" id="btn-add-appt">+ Add Appointment</button>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Schedule</div>
+    <div class="tool-row tool-row-2" style="margin-bottom:16px;max-width:320px;">
+      <label>Date<input type="date" id="sched-date"></label>
+    </div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="day-table">
+        <thead>
+          <tr><th>Time</th><th>Client</th><th>Service</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="day-list-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="day-empty" style="display:none;">No appointments scheduled for this date.</div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Upcoming — Next 5 Confirmed</div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="upcoming-table">
+        <thead>
+          <tr><th>Date</th><th>Time</th><th>Client</th><th>Service</th></tr>
+        </thead>
+        <tbody id="upcoming-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="upcoming-empty" style="display:none;">No upcoming confirmed appointments.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/appointment-scheduler.js"></script>
+
+</body>
+</html>

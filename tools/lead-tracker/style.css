@@ -1,0 +1,38 @@
+/* Lead Tracker — tool-specific styles (tools-base.css covers the shared CRUD chrome) */
+
+.lt-status-select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: var(--text-hi);
+  font-family: 'Inter', sans-serif;
+  font-size: calc(12.5px * var(--font-scale));
+  cursor: pointer;
+  min-width: 110px;
+}
+.lt-status-select:focus { outline: none; border-color: var(--accent); }
+
+.lt-status-New       { border-color: var(--accent); color: var(--accent-text); }
+.lt-status-Contacted { color: var(--text-mid); }
+.lt-status-Quoted    { border-color: rgba(251,191,36,0.4); color: #FBBF24; }
+.lt-status-Won       { border-color: rgba(74,222,128,0.4); color: #4ADE80; }
+.lt-status-Lost      { border-color: rgba(248,113,113,0.4); color: #F87171; }
+
+.lt-overdue {
+  color: #F87171;
+  font-weight: 700;
+}
+
+.lt-notes-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lt-phone-cell { white-space: nowrap; }
+
+@media (max-width: 800px) {
+  .lt-notes-cell { max-width: 140px; }
+}

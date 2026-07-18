@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Tracker | Budget Website Tools</title>
+<meta name="description" content="Log every inbound inquiry the moment it comes in — track status from New to Won/Lost, flag overdue follow-ups, export to CSV. No sign-up, nothing leaves your device.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Lead Tracker</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Every inquiry.<br><span class="accent">Never dropped.</span></h1>
+  <p class="section-sub">Quick capture for new inquiries — for full customer records and a sales pipeline, see the CRM tools.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-stats" id="lt-stats"></div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Add Lead</div>
+    <div class="tool-row tool-row-2">
+      <label>Name<input type="text" id="lt-name" placeholder="Customer name"></label>
+      <label>Phone<input type="tel" id="lt-phone" placeholder="10-digit mobile number"></label>
+    </div>
+    <div class="tool-row tool-row-2">
+      <label>Source<select id="lt-source">
+        <option value="Referral">Referral</option>
+        <option value="Walk-in">Walk-in</option>
+        <option value="Website">Website</option>
+        <option value="Social Media">Social Media</option>
+        <option value="Phone Call">Phone Call</option>
+        <option value="Other">Other</option>
+      </select></label>
+      <label>Next Follow-up (optional)<input type="date" id="lt-next"></label>
+    </div>
+    <label>Notes<textarea id="lt-notes" rows="2" placeholder="What do they need? Any context worth remembering."></textarea></label>
+    <div style="margin-top:16px;">
+      <button type="button" class="btn-primary" id="lt-add-btn">+ Add Lead</button>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">All Leads</div>
+    <div class="tool-toolbar">
+      <select id="lt-filter-status">
+        <option value="">All Statuses</option>
+        <option value="New">New</option>
+        <option value="Contacted">Contacted</option>
+        <option value="Quoted">Quoted</option>
+        <option value="Won">Won</option>
+        <option value="Lost">Lost</option>
+      </select>
+      <input type="text" class="tool-search" id="lt-search" placeholder="Search name, phone or notes…">
+      <div class="tool-toolbar-spacer"></div>
+      <button type="button" class="btn-ghost btn-sm" id="lt-export-btn">⬇ Export CSV</button>
+    </div>
+
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="lt-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Next Follow-up</th>
+            <th>Notes</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="lt-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="lt-empty" style="display:none;"></div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/lead-tracker.js"></script>
+
+</body>
+</html>

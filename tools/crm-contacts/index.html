@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM — Contact Database | Budget Website Tools</title>
+<meta name="description" content="A simple contact and customer database that runs in your browser — search, tags, notes, and a full interaction history per contact. No sign-up, nothing leaves your device.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · CRM — Contact Database</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Every customer.<br><span class="accent">Every conversation, in one place.</span></h1>
+  <p class="section-sub">Add contacts, tag them, and log every call, meeting, email or WhatsApp against their record. Everything is saved on this device.</p>
+</section>
+
+<section class="tool-app">
+
+  <div class="tool-toolbar">
+    <input type="text" class="tool-search" id="search" placeholder="Search name, phone, company or tag…">
+    <div class="tool-toolbar-spacer"></div>
+    <button type="button" class="btn-ghost btn-sm" id="btn-export">Export CSV</button>
+    <button type="button" class="btn-primary btn-sm" id="btn-add-toggle">+ Add Contact</button>
+  </div>
+
+  <div class="tool-panel" id="add-panel" style="display:none;">
+    <div class="tool-panel-title">New Contact</div>
+    <div class="tool-row tool-row-2">
+      <label>Name*<input type="text" id="new-name" placeholder="Full name"></label>
+      <label>Company<input type="text" id="new-company" placeholder="Company / business"></label>
+    </div>
+    <div class="tool-row tool-row-2">
+      <label>Phone<input type="tel" id="new-phone" placeholder="10-digit mobile"></label>
+      <label>Email<input type="email" id="new-email" placeholder="name@example.com"></label>
+    </div>
+    <label>Tags <span style="font-weight:400;">(comma-separated)</span><input type="text" id="new-tags" placeholder="e.g. lead, vip, referral"></label>
+    <label>Address<textarea id="new-address" rows="2" placeholder="Billing / visiting address"></textarea></label>
+    <label>Notes<textarea id="new-notes" rows="2" placeholder="Anything worth remembering"></textarea></label>
+    <div class="tool-row tool-row-2" style="margin-top:14px;">
+      <button type="button" class="btn-primary btn-sm" id="btn-save-new">Save Contact</button>
+      <button type="button" class="btn-ghost btn-sm" id="btn-cancel-new">Cancel</button>
+    </div>
+  </div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Contacts (<span id="contact-count">0</span>)</div>
+    <div class="tool-table-wrap">
+      <table class="tool-table" id="contacts-table">
+        <thead>
+          <tr><th>Name</th><th>Company</th><th>Phone</th><th>Tags</th><th></th></tr>
+        </thead>
+        <tbody id="contacts-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="contacts-empty" style="display:none;">No contacts yet. Click "+ Add Contact" to create your first one.</div>
+  </div>
+
+  <div class="tool-panel" id="detail-panel" style="display:none;">
+    <div class="tool-panel-title" style="display:flex; justify-content:space-between; align-items:center;">
+      <span>Contact Details</span>
+      <button type="button" class="btn-ghost btn-sm" id="btn-close-detail">Close ✕</button>
+    </div>
+
+    <div class="tool-row tool-row-2">
+      <label>Name*<input type="text" id="d-name"></label>
+      <label>Company<input type="text" id="d-company"></label>
+    </div>
+    <div class="tool-row tool-row-2">
+      <label>Phone<input type="tel" id="d-phone"></label>
+      <label>Email<input type="email" id="d-email"></label>
+    </div>
+    <label>Tags <span style="font-weight:400;">(comma-separated)</span><input type="text" id="d-tags"></label>
+    <label>Address<textarea id="d-address" rows="2"></textarea></label>
+    <label>Notes<textarea id="d-notes" rows="2"></textarea></label>
+
+    <div class="crm-detail-actions">
+      <button type="button" class="btn-primary btn-sm" id="btn-save-detail">Save Changes</button>
+      <span class="crm-save-note" id="detail-save-note"></span>
+      <button type="button" class="btn-danger" id="btn-delete-contact">Delete Contact</button>
+    </div>
+
+    <div class="crm-divider"></div>
+
+    <div class="tool-panel-title">Interactions</div>
+
+    <div class="crm-add-interaction">
+      <div class="tool-row tool-row-3">
+        <label>Date<input type="date" id="int-date"></label>
+        <label>Type
+          <select id="int-type">
+            <option value="Call">Call</option>
+            <option value="Meeting">Meeting</option>
+            <option value="Email">Email</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Note">Note</option>
+          </select>
+        </label>
+        <label>Note<input type="text" id="int-note" placeholder="What happened?"></label>
+      </div>
+      <button type="button" class="btn-primary btn-sm" id="btn-add-interaction" style="margin-top:12px;">+ Add Interaction</button>
+    </div>
+
+    <div id="interactions-list" class="crm-interaction-list"></div>
+    <div class="tool-empty" id="interactions-empty" style="display:none;">No interactions logged yet for this contact.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/crm-contacts.js"></script>
+
+</body>
+</html>
