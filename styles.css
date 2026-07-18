@@ -378,7 +378,20 @@ footer a { color: var(--text-dim); }
 .act { position: relative; z-index: 1; }
 
 .reveal { opacity: 0; transform: translateY(28px); }
-[data-tier="static"] .reveal, .no-js .reveal { opacity: 1; transform: none; }
+[data-tier="static"] .reveal { opacity: 1; transform: none; }
+
+[data-tier="static"] nav,
+[data-tier="static"] .how-card,
+[data-tier="static"] .why-card,
+[data-tier="static"] .portfolio-card,
+[data-tier="static"] .price-card,
+[data-tier="static"] .terms-box,
+[data-tier="static"] .tool-card,
+[data-tier="static"] .quote-form-wrap {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: var(--bg-raised);
+}
 
 .tilt-card { transform-style: preserve-3d; will-change: transform; transition: transform 0.15s ease-out; }
 
