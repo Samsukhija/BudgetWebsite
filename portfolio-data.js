@@ -2,6 +2,18 @@
 // To add a new site: add a new object to the TOP of this array. Do not reorder existing entries.
 const PORTFOLIO_ENTRIES = [
   {
+    name: 'NutriCart',
+    category: 'AI Meal Planning & Grocery Platform',
+    url: 'https://nutricart.dev',
+    image: '/portfolio-img/nutricart.png',
+  },
+  {
+    name: 'India Import Atlas',
+    category: 'Data & Research Platform',
+    url: 'https://indiaimport.org',
+    image: '/portfolio-img/india-import-atlas.png',
+  },
+  {
     name: 'Budget Website',
     category: 'This Very Site',
     url: 'https://www.budgetwebsite.store',
