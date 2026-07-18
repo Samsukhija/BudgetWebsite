@@ -1,11 +1,6 @@
 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="bg" cx="35%" cy="30%" r="80%">
-      <stop offset="0%" stop-color="#a6e04f"/>
-      <stop offset="100%" stop-color="#8DC63F"/>
-    </radialGradient>
-  </defs>
-  <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="256" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="2"/>
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="central" font-size="260">⚡</text>
+  <rect x="0" y="0" width="512" height="512" rx="113" fill="#C1522E"/>
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="central"
+        font-family="Fraunces, Georgia, 'Times New Roman', serif" font-weight="900"
+        font-size="360" letter-spacing="-6" fill="#FAF5EE">b</text>
 </svg>
