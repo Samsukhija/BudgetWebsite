@@ -297,6 +297,22 @@
   });
   els['btn-add-item'].addEventListener('click', function () { addItemRow({}); scheduleUpdate(); });
   els['btn-print'].addEventListener('click', function () { window.print(); });
+  var btnWa = document.getElementById('btn-wa');
+  if (btnWa) {
+    btnWa.addEventListener('click', function () {
+      function t(id) { var e = document.getElementById(id); return e ? e.textContent.trim() : ''; }
+      var lines = [
+        'Invoice ' + t('p-inv-no'),
+        'From: ' + t('p-seller-name'),
+        'To: ' + t('p-buyer-name'),
+        'Total: ' + t('p-grand-total'),
+        t('p-words'),
+        '',
+        'Thank you for your business.'
+      ].filter(function (l) { return l !== null; });
+      window.open('https://wa.me/?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+    });
+  }
   els['btn-new'].addEventListener('click', function () {
     if (confirm('Start a new invoice? Your business details stay saved, but the current buyer/items will be cleared.')) {
       resetForNewInvoice();

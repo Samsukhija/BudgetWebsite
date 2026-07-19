@@ -248,6 +248,22 @@
   });
   els['btn-add-item'].addEventListener('click', function () { addItemRow({}); scheduleUpdate(); });
   els['btn-print'].addEventListener('click', function () { window.print(); });
+  var btnWa = document.getElementById('btn-wa');
+  if (btnWa) {
+    btnWa.addEventListener('click', function () {
+      function t(id) { var e = document.getElementById(id); return e ? e.textContent.trim() : ''; }
+      var lines = [
+        'Quotation ' + t('p-quote-no'),
+        'From: ' + t('p-seller-name'),
+        'To: ' + t('p-buyer-name'),
+        'Total: ' + t('p-grand-total'),
+        'Valid until: ' + t('p-valid-until'),
+        '',
+        'This is an estimate. Reply to confirm and we will proceed.'
+      ];
+      window.open('https://wa.me/?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+    });
+  }
   els['btn-new'].addEventListener('click', function () {
     if (confirm('Start a new quotation? Your business details stay saved, but the current customer/items will be cleared.')) {
       resetForNewQuotation();
