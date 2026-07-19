@@ -28,6 +28,18 @@
     'printing-press': 'printer', 'event-management': 'sparkles', 'wedding-planner': 'heart',
     'vaastu-astrology': 'moonStar', 'artist-art-studio': 'palette'
   };
+  var CATS = {
+    1: 'Wellness & Fitness', 2: 'Wellness & Fitness', 7: 'Wellness & Fitness',
+    4: 'Food & Hospitality', 5: 'Food & Hospitality', 15: 'Food & Hospitality', 16: 'Food & Hospitality', 20: 'Food & Hospitality',
+    8: 'Healthcare', 11: 'Healthcare', 18: 'Healthcare', 22: 'Healthcare',
+    6: 'Retail & Boutique', 9: 'Retail & Boutique', 10: 'Retail & Boutique', 14: 'Retail & Boutique',
+    3: 'Auto & Travel', 17: 'Auto & Travel', 26: 'Auto & Travel',
+    19: 'Construction & Home', 25: 'Construction & Home', 28: 'Construction & Home', 29: 'Construction & Home',
+    12: 'Professional', 13: 'Professional', 21: 'Professional', 24: 'Professional', 27: 'Professional',
+    23: 'Industrial', 30: 'Industrial',
+    31: 'Creative & Events', 32: 'Creative & Events', 33: 'Creative & Events', 34: 'Creative & Events'
+  };
+
   function tradeIcon(slug) {
     var key = slug.replace(/^\d+-/, '');
     var name = TRADE_ICONS[key];
@@ -96,8 +108,14 @@
           '<div class="tpl-acc-panel" hidden>' + tierPanelHTML(t, k, tierData) + '</div>' +
         '</div>';
     }
-    var searchText = (t.name + ' ' + t.blurb).toLowerCase();
-    return '<div class="tpl-card" data-name="' + esc(searchText) + '">' +
+    var searchText = (t.name + ' ' + t.blurb + ' ' + (CATS[t.n] || '')).toLowerCase();
+    var thumb = t.deployed
+      ? '<a class="tpl-card-thumb" href="' + DEMO_BASE + '/' + t.slug + '/tier-1/" target="_blank" rel="noopener" aria-label="Open the ' + esc(t.name) + ' Tier 1 live demo">' +
+          '<img src="glimpses/' + t.slug + '-tier-1.jpg" alt="' + esc(t.name) + ' template preview" loading="lazy" width="640" height="400">' +
+        '</a>'
+      : '';
+    return '<div class="tpl-card" data-name="' + esc(searchText) + '" data-cat="' + esc(CATS[t.n] || '') + '">' +
+      thumb +
       '<div class="tpl-card-head">' +
         '<span class="tpl-card-icon icon-chip">' + tradeIcon(t.slug) + '</span>' +
         '<span class="tpl-card-num">' + pad2(t.n) + '</span>' +
@@ -144,15 +162,41 @@
   }
   updateCount(LEDGER.length);
 
+  /* category chips + search, combined */
+  var activeCat = 'All';
   var search = document.getElementById('tpl-search');
-  search.addEventListener('input', function () {
+  var chipWrap = document.getElementById('tpl-chips');
+
+  var catOrder = ['All'];
+  LEDGER.forEach(function (t) {
+    var c = CATS[t.n];
+    if (c && catOrder.indexOf(c) === -1) catOrder.push(c);
+  });
+  chipWrap.innerHTML = catOrder.map(function (c) {
+    return '<button type="button" class="tpl-fchip' + (c === 'All' ? ' active' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+  }).join('');
+
+  function applyFilter() {
     var q = search.value.trim().toLowerCase();
     var visible = 0;
     Array.prototype.forEach.call(grid.querySelectorAll('.tpl-card'), function (card) {
-      var hit = !q || card.getAttribute('data-name').indexOf(q) !== -1;
+      var okCat = activeCat === 'All' || card.getAttribute('data-cat') === activeCat;
+      var okQ = !q || card.getAttribute('data-name').indexOf(q) !== -1;
+      var hit = okCat && okQ;
       card.style.display = hit ? '' : 'none';
       if (hit) visible++;
     });
     updateCount(visible);
+  }
+
+  chipWrap.addEventListener('click', function (e) {
+    var chip = e.target.closest('.tpl-fchip');
+    if (!chip) return;
+    activeCat = chip.getAttribute('data-cat');
+    Array.prototype.forEach.call(chipWrap.querySelectorAll('.tpl-fchip'), function (c) {
+      c.classList.toggle('active', c === chip);
+    });
+    applyFilter();
   });
+  search.addEventListener('input', applyFilter);
 })();

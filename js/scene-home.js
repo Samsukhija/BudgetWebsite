@@ -209,7 +209,7 @@ import * as THREE from '../vendor/three.module.min.js';
     gsap.registerPlugin(ScrollTrigger);
 
     scrollTriggers.push(ScrollTrigger.create({
-      trigger: '#act-capabilities',
+      trigger: '#act-value',
       start: 'top bottom',
       end: 'bottom top',
       scrub: 1,
@@ -367,7 +367,7 @@ import * as THREE from '../vendor/three.module.min.js';
 
     // camera dolly: sinusoidal 9 -> 7 -> 9 over a 12s loop
     var dollyZ = 8 - Math.cos((t / 12) * Math.PI * 2);
-    // scroll pullback: camera eases further back through act-capabilities,
+    // scroll pullback: camera eases further back through act-value,
     // and stays back for the rest of the page
     var pullback = scrollState.spread * 3 + scrollState.contact * 1.5;
     camera.position.z = dollyZ + pullback;

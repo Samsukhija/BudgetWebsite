@@ -72,7 +72,7 @@
 
   var html = GROUPS.map(function (g) {
     var cards = g.tools.map(function (t) {
-      return '<a class="tool-tile tilt-card" href="/tools/' + t.slug + '/">' +
+      return '<a class="tool-tile tilt-card" href="/tools/' + t.slug + '/" data-name="' + esc((t.name + ' ' + t.blurb).toLowerCase()) + '">' +
         '<div class="tool-tile-icon icon-chip">' + ((window.BW_ICONS && BW_ICONS[t.icon]) || '') + '</div>' +
         (t.ai ? '<span class="tool-tile-ai" title="Uses your own AI key">AI</span>' : '') +
         '<div class="tool-tile-name">' + esc(t.name) + '</div>' +
@@ -83,7 +83,7 @@
     // No scroll-reveal / data-stagger here on purpose: a tools directory is
     // meant to be scanned top-to-bottom instantly, so every tile stays
     // visible from load instead of waiting for a scroll trigger.
-    return '<section class="tool-group">' +
+    return '<section class="tool-group" data-label="' + esc(g.label) + '">' +
       '<div class="tool-group-head">' +
         '<h2>' + esc(g.label) + '</h2>' +
         '<p>' + esc(g.desc) + '</p>' +
@@ -100,4 +100,40 @@
   aiNote.className = 'tools-ai-note';
   aiNote.innerHTML = '<strong>AI</strong> tools run on your own free OpenRouter key (added inside the tool, stored only on your device). Everything else needs nothing at all.';
   if (mount) mount.appendChild(aiNote);
+
+  /* search + group filter */
+  var searchEl = document.getElementById('tools-search');
+  var chipsEl = document.getElementById('tools-chips');
+  if (searchEl && chipsEl && mount) {
+    var labels = ['All'].concat(GROUPS.map(function (g) { return g.label; }));
+    var activeLabel = 'All';
+    chipsEl.innerHTML = labels.map(function (l) {
+      return '<button type="button" class="tools-fchip' + (l === 'All' ? ' active' : '') + '" data-label="' + esc(l) + '">' + esc(l) + '</button>';
+    }).join('');
+
+    var applyFilter = function () {
+      var q = searchEl.value.trim().toLowerCase();
+      Array.prototype.forEach.call(mount.querySelectorAll('.tool-group'), function (sec) {
+        var okLabel = activeLabel === 'All' || sec.getAttribute('data-label') === activeLabel;
+        var anyTile = false;
+        Array.prototype.forEach.call(sec.querySelectorAll('.tool-tile'), function (tile) {
+          var hit = okLabel && (!q || tile.getAttribute('data-name').indexOf(q) !== -1);
+          tile.style.display = hit ? '' : 'none';
+          if (hit) anyTile = true;
+        });
+        sec.style.display = anyTile ? '' : 'none';
+      });
+    };
+
+    chipsEl.addEventListener('click', function (e) {
+      var chip = e.target.closest('.tools-fchip');
+      if (!chip) return;
+      activeLabel = chip.getAttribute('data-label');
+      Array.prototype.forEach.call(chipsEl.querySelectorAll('.tools-fchip'), function (c) {
+        c.classList.toggle('active', c === chip);
+      });
+      applyFilter();
+    });
+    searchEl.addEventListener('input', applyFilter);
+  }
 })();

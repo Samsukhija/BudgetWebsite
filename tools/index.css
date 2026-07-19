@@ -96,3 +96,26 @@
   .tools-directory { padding: 10px 20px 30px; }
   .tools-cta-band { padding: 40px 20px 70px; }
 }
+
+/* search + group filter toolbar */
+.tools-toolbar { max-width: 1200px; margin: 6px auto 0; padding: 0 48px; }
+.tools-search {
+  width: 100%; max-width: 460px; display: block;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif; font-size: calc(14px * var(--font-scale));
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tools-search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+.tools-search::placeholder { color: var(--text-dim); }
+.tools-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tools-fchip {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px;
+  color: var(--text-mid); font-family: 'Inter', sans-serif;
+  font-size: calc(12px * var(--font-scale)); font-weight: 600;
+  padding: 7px 15px; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.tools-fchip:hover { border-color: var(--accent); color: var(--text-hi); }
+.tools-fchip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+@media (max-width: 700px) { .tools-toolbar { padding: 0 20px; } }

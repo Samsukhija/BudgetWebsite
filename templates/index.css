@@ -203,3 +203,27 @@
   .tpl-toolbar-wrap, .tpl-grid { padding-left: 20px; padding-right: 20px; }
   .tpl-cta-band { padding: 40px 20px 70px; }
 }
+
+/* category filter chips */
+.tpl-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tpl-fchip {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px;
+  color: var(--text-mid); font-family: 'Inter', sans-serif;
+  font-size: calc(12px * var(--font-scale)); font-weight: 600;
+  padding: 7px 15px; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.tpl-fchip:hover { border-color: var(--accent); color: var(--text-hi); }
+.tpl-fchip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* card-top glimpse thumbnail (deployed trades) */
+.tpl-card-thumb {
+  display: block; border-radius: 9px; overflow: hidden;
+  border: 1px solid var(--border); margin-bottom: 14px;
+  aspect-ratio: 640 / 400; background: var(--bg-raised);
+}
+.tpl-card-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.45s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.tpl-card-thumb:hover img { transform: scale(1.05); }
