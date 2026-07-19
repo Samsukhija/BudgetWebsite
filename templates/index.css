@@ -227,3 +227,12 @@
   transition: transform 0.45s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 .tpl-card-thumb:hover img { transform: scale(1.05); }
+
+/* per-trade accent dot (from the catalog's designSystem.primaryColor) */
+.tpl-card-num { display: inline-flex; align-items: center; gap: 6px; }
+.tpl-card-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--tacc, var(--accent));
+  box-shadow: 0 0 8px var(--tacc, var(--accent));
+  display: inline-block;
+}

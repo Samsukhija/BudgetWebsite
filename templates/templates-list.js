@@ -1,15 +1,15 @@
-/* Renders the 34-template grid from LEDGER (templates-data.js).
-   Each card: icon, name, blurb, then a four-row TIER ACCORDION. Every tier
-   opens on its own (siblings in the card close) and shows a visual glimpse
-   of that tier's demo, the ledger pitch, the inclusions, and the demo link.
-   Glimpses are real screenshots of the live demos, stored in ./glimpses/
-   for the 18 deployed trades (tiers 1-3). Non-deployed trades and Tier 4
-   show a styled placeholder until their links exist: when Lekhraj supplies
-   the new demo URLs, flip `deployed` in templates-data.js (or extend
-   DEMO_BASE handling) and the glimpses + links light up. Images load only
-   when a tier is first opened (data-src swap), so the grid stays fast. */
+/* Renders the 34-template grid from LEDGER (templates-data.js, generated
+   from the Website Factory catalog dataset by gen-data.py).
+   Each card: tier-1 glimpse thumbnail, icon, per-trade accent, name, blurb,
+   then a tier accordion built from the trade's ACTUAL built tiers (18 trades
+   have four, 16 have three; no greyed-out rows). Every tier 1-3 panel shows
+   a real screenshot of the local build. Nothing links out yet: the new
+   generation is not publicly deployed, so panels say "Demo link coming
+   soon" with a WhatsApp fallback. When hosting is decided, set DEMO_BASE
+   and flip `linkable` in templates-data.js and the demo links + clickable
+   glimpses come back on their existing code path. */
 (function () {
-  var DEMO_BASE = 'https://website-project-liart.vercel.app';
+  var DEMO_BASE = '';   // set when the new builds are deployed
   var WA_NUM = '918976587269';
 
   var TRADE_ICONS = {
@@ -48,77 +48,63 @@
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
-
-  var PRICES = ['₹8,000', '₹15,000', '₹25,000', '₹50,000+'];
-
   function waLink(text) {
     return 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(text);
   }
 
-  /* One tier panel's inner content. */
-  function tierPanelHTML(t, tierNo, tierData) {
-    var demoUrl = DEMO_BASE + '/' + t.slug + '/tier-' + tierNo + '/';
-    var glimpseSrc = 'glimpses/' + t.slug + '-tier-' + tierNo + '.jpg';
-    var hasDemo = t.deployed && tierNo <= 3;
+  function glimpseHTML(t, tierNo) {
+    var src = 'glimpses/' + t.slug + '-tier-' + tierNo + '.jpg';
+    var img = '<img data-src="' + src + '" alt="Tier ' + tierNo + ' preview for ' + esc(t.name) + '" width="640" height="400">';
+    if (t.linkable && DEMO_BASE) {
+      var url = DEMO_BASE + '/' + t.slug + '/tier-' + tierNo + '/';
+      return '<a class="tpl-glimpse" href="' + url + '" target="_blank" rel="noopener" aria-label="Open the Tier ' + tierNo + ' live demo">' +
+        img + '<span class="tpl-glimpse-open">Open live demo</span></a>';
+    }
+    return '<div class="tpl-glimpse">' + img + '</div>';
+  }
+
+  function tierPanelHTML(t, tier) {
     var html = '';
-
-    // Glimpse: real screenshot for live demos, placeholder otherwise.
-    if (hasDemo) {
-      html += '<a class="tpl-glimpse" href="' + demoUrl + '" target="_blank" rel="noopener" aria-label="Open the Tier ' + tierNo + ' live demo">' +
-        '<img data-src="' + glimpseSrc + '" alt="Tier ' + tierNo + ' demo preview for ' + esc(t.name) + '" width="640" height="400">' +
-        '<span class="tpl-glimpse-open">Open live demo</span>' +
-      '</a>';
-    } else if (tierNo === 4) {
-      html += '<div class="tpl-glimpse-ph"><span>Custom build</span>Scoped around your exact workflow on a call, so there is no generic demo for this tier.</div>';
+    if (tier.no <= 3) {
+      html += glimpseHTML(t, tier.no);
     } else {
-      html += '<div class="tpl-glimpse-ph"><span>Preview on its way</span>This demo is built and being put online. The link lands here soon.</div>';
+      html += '<div class="tpl-glimpse-ph"><span>Full app tier</span>Built as a real application (logins, bookings, payments) and always tailored on a call, so there is no one generic demo.</div>';
     }
-
-    // Ledger pitch + bullets (when this trade has tier detail).
-    if (tierData) {
-      html += '<p class="tpl-acc-pitch">' + esc(tierData.pitch) + '</p>';
-      html += '<ul class="tpl-acc-bullets">' + tierData.bullets.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>';
-    } else {
-      html += '<p class="tpl-acc-pitch">Full inclusions for this trade are being written up. The ladder matches every other template. Ask us for specifics.</p>';
+    html += '<p class="tpl-acc-pitch">' + esc(tier.pitch) + '</p>';
+    if (tier.bullets.length) {
+      html += '<ul class="tpl-acc-bullets">' + tier.bullets.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>';
     }
-
-    // Action row.
-    if (hasDemo) {
-      html += '<div class="tpl-acc-actions"><a class="tpl-chip" href="' + demoUrl + '" target="_blank" rel="noopener">Open Tier ' + tierNo + ' demo →</a></div>';
-    } else if (tierNo === 4) {
-      html += '<div class="tpl-acc-actions"><a class="tpl-chip tpl-chip-wa" href="' + waLink('Hi, I want to discuss a Tier 4 custom build for my ' + t.name + ' business.') + '" target="_blank" rel="noopener">Discuss on WhatsApp</a></div>';
+    if (t.linkable && DEMO_BASE && tier.no <= 3) {
+      var url = DEMO_BASE + '/' + t.slug + '/tier-' + tier.no + '/';
+      html += '<div class="tpl-acc-actions"><a class="tpl-chip" href="' + url + '" target="_blank" rel="noopener">Open Tier ' + tier.no + ' demo →</a></div>';
+    } else if (tier.no === 4) {
+      html += '<div class="tpl-acc-actions"><a class="tpl-chip tpl-chip-wa" href="' + waLink('Hi, I want to discuss a Tier 4 build for my ' + t.name + ' business.') + '" target="_blank" rel="noopener">Discuss on WhatsApp</a></div>';
     } else {
       html += '<div class="tpl-acc-actions"><span class="tpl-chip tpl-chip-soon">Demo link coming soon</span>' +
-        '<a class="tpl-chip tpl-chip-wa" href="' + waLink('Hi, I want to see the ' + t.name + ' Tier ' + tierNo + ' website demo from budgetwebsite.store.') + '" target="_blank" rel="noopener">See it on WhatsApp</a></div>';
+        '<a class="tpl-chip tpl-chip-wa" href="' + waLink('Hi, I want to see the ' + t.name + ' Tier ' + tier.no + ' website demo from budgetwebsite.store.') + '" target="_blank" rel="noopener">See it on WhatsApp</a></div>';
     }
     return html;
   }
 
   function cardHTML(t) {
-    var rows = '';
-    for (var k = 1; k <= 4; k++) {
-      var tierData = t.tiers.length ? t.tiers[k - 1] : null;
-      rows +=
-        '<div class="tpl-acc-item">' +
-          '<button type="button" class="tpl-acc-head" aria-expanded="false">' +
-            '<span class="tpl-acc-tier">Tier ' + k + '</span>' +
-            '<span class="tpl-acc-price">' + (tierData ? esc(tierData.price) : PRICES[k - 1]) + '</span>' +
-            '<span class="tpl-acc-chev" aria-hidden="true">▾</span>' +
-          '</button>' +
-          '<div class="tpl-acc-panel" hidden>' + tierPanelHTML(t, k, tierData) + '</div>' +
-        '</div>';
-    }
+    var rows = t.tiers.map(function (tier) {
+      return '<div class="tpl-acc-item">' +
+        '<button type="button" class="tpl-acc-head" aria-expanded="false">' +
+          '<span class="tpl-acc-tier">Tier ' + tier.no + '</span>' +
+          '<span class="tpl-acc-price">' + esc(tier.price) + '</span>' +
+          '<span class="tpl-acc-chev" aria-hidden="true">▾</span>' +
+        '</button>' +
+        '<div class="tpl-acc-panel" hidden>' + tierPanelHTML(t, tier) + '</div>' +
+      '</div>';
+    }).join('');
     var searchText = (t.name + ' ' + t.blurb + ' ' + (CATS[t.n] || '')).toLowerCase();
-    var thumb = t.deployed
-      ? '<a class="tpl-card-thumb" href="' + DEMO_BASE + '/' + t.slug + '/tier-1/" target="_blank" rel="noopener" aria-label="Open the ' + esc(t.name) + ' Tier 1 live demo">' +
-          '<img src="glimpses/' + t.slug + '-tier-1.jpg" alt="' + esc(t.name) + ' template preview" loading="lazy" width="640" height="400">' +
-        '</a>'
-      : '';
-    return '<div class="tpl-card" data-name="' + esc(searchText) + '" data-cat="' + esc(CATS[t.n] || '') + '">' +
-      thumb +
+    return '<div class="tpl-card" data-name="' + esc(searchText) + '" data-cat="' + esc(CATS[t.n] || '') + '" style="--tacc:' + esc(t.accent) + ';">' +
+      '<div class="tpl-card-thumb">' +
+        '<img src="glimpses/' + t.slug + '-tier-1.jpg" alt="' + esc(t.name) + ' template preview" loading="lazy" width="640" height="400">' +
+      '</div>' +
       '<div class="tpl-card-head">' +
         '<span class="tpl-card-icon icon-chip">' + tradeIcon(t.slug) + '</span>' +
-        '<span class="tpl-card-num">' + pad2(t.n) + '</span>' +
+        '<span class="tpl-card-num"><i class="tpl-card-dot"></i>' + pad2(t.n) + '</span>' +
       '</div>' +
       '<div class="tpl-card-name">' + esc(t.name) + '</div>' +
       '<p class="tpl-card-blurb">' + esc(t.blurb) + '</p>' +
@@ -138,7 +124,6 @@
     var panel = item.querySelector('.tpl-acc-panel');
     var willOpen = panel.hidden;
 
-    // close siblings within this card
     var card = head.closest('.tpl-card');
     Array.prototype.forEach.call(card.querySelectorAll('.tpl-acc-item'), function (it) {
       it.querySelector('.tpl-acc-panel').hidden = true;
@@ -157,7 +142,7 @@
 
   function updateCount(visible) {
     count.textContent = visible === LEDGER.length
-      ? LEDGER.length + ' business types, 4 tiers each, ₹8,000 to ₹50,000+'
+      ? LEDGER.length + ' business types, built and ready, ₹8,000 to ₹50,000+'
       : visible + ' of ' + LEDGER.length + ' business types';
   }
   updateCount(LEDGER.length);
