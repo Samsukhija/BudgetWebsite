@@ -119,3 +119,13 @@
 .tools-fchip:hover { border-color: var(--accent); color: var(--text-hi); }
 .tools-fchip.active { background: var(--accent); border-color: var(--accent); color: #171207; }
 @media (max-width: 700px) { .tools-toolbar { padding: 0 20px; } }
+
+/* business-profile / backup link under the hero badges */
+.tools-hero-profile { margin-top: 18px; }
+.tools-hero-profile a {
+  font-size: calc(13.5px * var(--font-scale)); font-weight: 700;
+  color: var(--accent-text); text-decoration: none;
+  border-bottom: 1px solid rgba(201,164,69,0.35); padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tools-hero-profile a:hover { color: var(--accent); border-color: var(--accent); }

@@ -9,6 +9,31 @@ window.AIShared = (function () {
   'use strict';
 
   var SETTINGS_KEY = 'bw_ai_settings_v1';
+  var PROFILE_KEY = 'bw_business_profile_v1';
+
+  // Read the shared Business Profile (set once on /tools/business-profile/)
+  // and turn it into a context block prepended to every AI system prompt,
+  // so all the writers know the business without the user retyping it.
+  function getBusinessProfile() {
+    try {
+      var p = JSON.parse(localStorage.getItem(PROFILE_KEY));
+      return (p && typeof p === 'object') ? p : null;
+    } catch (e) { return null; }
+  }
+  function businessBlock() {
+    var p = getBusinessProfile();
+    if (!p || !p.name) return '';
+    var bits = ['The business is "' + p.name + '"'];
+    if (p.does) bits.push('which ' + p.does);
+    if (p.city) bits.push('based in ' + p.city);
+    var line = bits.join(', ') + '.';
+    var extra = [];
+    if (p.phone) extra.push('Contact: ' + p.phone + '.');
+    if (p.website) extra.push('Website: ' + p.website + '.');
+    if (p.tone) extra.push('Preferred voice: ' + p.tone + '.');
+    return 'BUSINESS CONTEXT (use it naturally, never restate it verbatim): ' +
+      line + ' ' + extra.join(' ') + ' Tailor everything you write to this business.\n\n';
+  }
   var ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
 
   // Curated cheap-but-capable defaults. Users can type any OpenRouter model id.
@@ -72,6 +97,13 @@ window.AIShared = (function () {
             '<a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="ai-settings-link">Get a free key →</a>' +
           '</div>' +
           '<p class="ai-settings-note">Stored only in this browser and sent straight to OpenRouter, never to us. You pay OpenRouter directly for usage (typically a fraction of a rupee per generation).</p>' +
+          '<p class="ai-settings-note" style="border-top:1px solid var(--border);padding-top:12px;">' +
+            (getBusinessProfile() && getBusinessProfile().name
+              ? 'Business profile is set, so every tool already knows your business. '
+              : 'Set your business profile once and every AI tool will know your business, no retyping. ') +
+            '<a href="/tools/business-profile/" class="ai-settings-link">' +
+              (getBusinessProfile() && getBusinessProfile().name ? 'Edit it →' : 'Set it up →') +
+            '</a></p>' +
         '</div>' +
       '</div>';
 
@@ -135,7 +167,8 @@ window.AIShared = (function () {
     if (!s.apiKey) return Promise.reject(new Error('Add your OpenRouter API key in AI settings first.'));
 
     var messages = [];
-    if (opts.system) messages.push({ role: 'system', content: opts.system });
+    var sys = businessBlock() + (opts.system || '');
+    if (sys) messages.push({ role: 'system', content: sys });
     // Multimodal: if images (array of data: URIs) are passed, build a content
     // array so vision models (Business Card Scanner) can read them. Otherwise
     // a plain string keeps text-only requests simple.
@@ -207,6 +240,7 @@ window.AIShared = (function () {
 
   return {
     getSettings: getSettings, saveSettings: saveSettings, hasKey: hasKey,
-    mountSettings: mountSettings, generate: generate, MODELS: MODELS, esc: esc
+    mountSettings: mountSettings, generate: generate, MODELS: MODELS, esc: esc,
+    getBusinessProfile: getBusinessProfile, businessBlock: businessBlock
   };
 })();

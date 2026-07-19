@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Profile &amp; Backup | Budget Website Tools</title>
+<meta name="description" content="Set your business profile once so every AI tool knows who you are, and back up all your tools' data so a browser reset never wipes it.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<script src="../../js/perf-gate.js"></script>
+<style>
+  .bp-saved { font-size: calc(13px * var(--font-scale)); color: #4ADE80; font-weight: 600; }
+  .bp-wrap { max-width: 760px; }
+</style>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/tools/" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Your Business &amp; Data</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Set it once.<br><span class="accent">Never retype, never lose it.</span></h1>
+  <p class="section-sub">Two things that make every other tool better: a business profile the AI writers all read, and a backup so a browser reset never wipes your work.</p>
+</section>
+
+<main class="tool-app bp-wrap">
+  <div id="profile-mount"></div>
+  <div id="backup-mount" style="margin-top:8px;"></div>
+</main>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/tools/" class="gallery-link">All Tools</a> · <a href="/blog/" class="gallery-link">Blog</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/business-profile.js"></script>
+<script>
+  window.BizProfilePage.mountProfile(document.getElementById('profile-mount'));
+  window.BizProfilePage.mountBackup(document.getElementById('backup-mount'));
+</script>
+
+</body>
+</html>
