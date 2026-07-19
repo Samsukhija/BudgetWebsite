@@ -53,7 +53,7 @@
     if (leads.length === 0) {
       els['lt-table'].style.display = 'none';
       els['lt-empty'].style.display = '';
-      els['lt-empty'].textContent = 'No leads yet — add your first inquiry above.';
+      els['lt-empty'].textContent = 'No leads yet, add your first inquiry above.';
       return;
     }
     if (filtered.length === 0) {
@@ -67,18 +67,18 @@
 
     els['lt-tbody'].innerHTML = filtered.map(function (l) {
       var overdue = isOverdue(l);
-      var nextDisplay = l.nextFollowUp ? TS.formatDateDisplay(l.nextFollowUp) : '—';
+      var nextDisplay = l.nextFollowUp ? TS.formatDateDisplay(l.nextFollowUp) : '-';
       var statusOptions = STATUSES.map(function (s) {
         return '<option value="' + s + '"' + (s === l.status ? ' selected' : '') + '>' + s + '</option>';
       }).join('');
 
       return '<tr data-id="' + l.id + '">' +
-        '<td>' + TS.escapeHtml(l.name || '—') + '</td>' +
-        '<td class="lt-phone-cell">' + TS.escapeHtml(l.phone || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(l.source || '—') + '</td>' +
+        '<td>' + TS.escapeHtml(l.name || '-') + '</td>' +
+        '<td class="lt-phone-cell">' + TS.escapeHtml(l.phone || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(l.source || '-') + '</td>' +
         '<td><select class="lt-status-select lt-status-' + l.status + '" data-action="status">' + statusOptions + '</select></td>' +
         '<td class="' + (overdue ? 'lt-overdue' : '') + '">' + nextDisplay + (overdue ? ' ⚠' : '') + '</td>' +
-        '<td class="lt-notes-cell" title="' + TS.escapeHtml(l.notes || '') + '">' + TS.escapeHtml(l.notes || '—') + '</td>' +
+        '<td class="lt-notes-cell" title="' + TS.escapeHtml(l.notes || '') + '">' + TS.escapeHtml(l.notes || '-') + '</td>' +
         '<td><button type="button" class="btn-danger btn-sm" data-action="delete">Delete</button></td>' +
         '</tr>';
     }).join('');

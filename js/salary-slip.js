@@ -82,9 +82,9 @@
       var tr = document.createElement('tr');
       tr.innerHTML =
         '<td>' + TS.escapeHtml(emp.name) + '</td>' +
-        '<td>' + TS.escapeHtml(emp.designation || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(emp.empId || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(emp.pan || '—') + '</td>' +
+        '<td>' + TS.escapeHtml(emp.designation || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(emp.empId || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(emp.pan || '-') + '</td>' +
         '<td style="white-space:nowrap;">' +
           '<button type="button" class="btn-primary btn-sm" data-act="slip" data-id="' + emp.id + '">Generate Slip</button> ' +
           '<button type="button" class="btn-ghost btn-sm" data-act="edit" data-id="' + emp.id + '">Edit</button> ' +
@@ -225,10 +225,10 @@
   function renderPreview(record) {
     renderPreviewHeader();
     var emp = findEmployee(record.employeeId);
-    document.getElementById('p-emp-name').textContent = record.employeeName || '—';
-    document.getElementById('p-emp-designation').textContent = (emp && emp.designation) || '—';
-    document.getElementById('p-emp-empid').textContent = (emp && emp.empId) || '—';
-    document.getElementById('p-emp-pan').textContent = (emp && emp.pan) || '—';
+    document.getElementById('p-emp-name').textContent = record.employeeName || '-';
+    document.getElementById('p-emp-designation').textContent = (emp && emp.designation) || '-';
+    document.getElementById('p-emp-empid').textContent = (emp && emp.empId) || '-';
+    document.getElementById('p-emp-pan').textContent = (emp && emp.pan) || '-';
 
     document.getElementById('p-period').textContent = MONTHS[record.month - 1] + ' ' + record.year;
     document.getElementById('p-generated').textContent = TS.formatDateDisplay(record.generatedAt.slice(0, 10));
@@ -281,7 +281,7 @@
 
     renderPreview(record);
     renderHistoryTable();
-    els['slip-note'].textContent = 'Slip saved for ' + emp.name + ' — ' + MONTHS[record.month - 1] + ' ' + record.year + '.';
+    els['slip-note'].textContent = 'Slip saved for ' + emp.name + '-' + MONTHS[record.month - 1] + ' ' + record.year + '.';
     els['slip-note'].style.color = '';
     document.getElementById('slip-sheet').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
@@ -330,7 +330,7 @@
 
   // show a blank/zeroed preview on load so the sheet never looks broken
   renderPreview({
-    employeeId: '', employeeName: '—',
+    employeeId: '', employeeName: '-',
     month: now.getMonth() + 1, year: now.getFullYear(),
     earnings: { basic: 0, hra: 0, conveyance: 0, otherAllowance: 0 },
     deductions: { pf: 0, professionalTax: 0, tds: 0, otherDeduction: 0 },

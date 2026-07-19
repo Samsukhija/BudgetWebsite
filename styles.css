@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   BUDGET WEBSITE — SHARED DESIGN SYSTEM
+   BUDGET WEBSITE, SHARED DESIGN SYSTEM
    "Deep Space"
    One theme. No dark/light toggle.
 ───────────────────────────────────────────── */
@@ -16,7 +16,7 @@
   --accent: #8B5CF6;          /* solid fallback where a single color is needed */
   --accent-deep: #6D28D9;
   --accent-dim: rgba(139,92,246,0.14);
-  --accent-text: #A78BFA;     /* checked: 7.20:1 on --bg-deep, 6.74:1 on --bg-raised — use for accent-colored TEXT only */
+  --accent-text: #A78BFA;     /* checked: 7.20:1 on --bg-deep, 6.74:1 on --bg-raised, use for accent-colored TEXT only */
   --text-hi: #F8FAFC;
   --text-mid: #B4B8C5;
   --text-dim: #8A8FA3;        /* checked: 6.10:1 on --bg-deep, 5.71:1 on --bg-raised */
@@ -247,7 +247,7 @@ section { padding: 90px 48px; max-width: 1200px; margin: 0 auto; }
 .terms-box ul { list-style: none; margin-bottom: 22px; }
 .terms-box ul:last-child { margin-bottom: 0; }
 .terms-box li { font-size: calc(13.5px * var(--font-scale)); color: var(--text-mid); line-height: 1.8; padding-left: 18px; position: relative; margin-bottom: 6px; }
-.terms-box li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+.terms-box li::before { content: '-'; position: absolute; left: 0; color: var(--accent); }
 .terms-box li strong { color: var(--text-hi); font-weight: 600; }
 
 /* ── TOOLS (Coming Soon) ── */
@@ -405,7 +405,7 @@ footer a { color: var(--text-dim); }
 .portfolio-card.tilt-card { transition: border-color 0.25s, transform 0.15s ease-out, box-shadow 0.25s; }
 .why-card.tilt-card { transition: border-color 0.25s, transform 0.15s ease-out; }
 
-/* Act 3 device-wall (CSS 3D — keeps cards clickable/accessible) */
+/* Act 3 device-wall (CSS 3D, keeps cards clickable/accessible) */
 .device-wall { perspective: 1200px; display: flex; gap: 28px; overflow-x: auto; padding: 24px 8px 40px; scroll-snap-type: x mandatory; }
 .device-wall .portfolio-card { flex: 0 0 320px; scroll-snap-align: center; transform: rotateY(-14deg); transition: transform 0.35s; }
 .device-wall .portfolio-card:hover { transform: rotateY(0deg) translateZ(30px); }

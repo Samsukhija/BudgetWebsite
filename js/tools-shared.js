@@ -1,4 +1,4 @@
-/* Shared helpers for /tools/* pages. No AI, no backend — pure JS utilities
+/* Shared helpers for /tools/* pages. No AI, no backend, pure JS utilities
    so every tool formats money/dates/CSV the same way. */
 window.ToolsShared = (function () {
   'use strict';
@@ -22,7 +22,7 @@ window.ToolsShared = (function () {
   }
 
   function formatDateDisplay(iso) {
-    if (!iso) return '—';
+    if (!iso) return '-';
     var parts = iso.split('-');
     if (parts.length !== 3) return iso;
     var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

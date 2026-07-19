@@ -1,4 +1,4 @@
-/* Expense Tracker — tool-specific extras on top of tools-base.css */
+/* Expense Tracker, tool-specific extras on top of tools-base.css */
 
 .tool-filtered-total {
   font-size: calc(13px * var(--font-scale));

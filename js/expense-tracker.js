@@ -133,7 +133,7 @@
     els['expenses-empty'].style.display = filtered.length ? 'none' : '';
     els['expenses-empty'].textContent = expenses.length
       ? 'No expenses match the current filters.'
-      : 'No expenses yet — add your first expense above.';
+      : 'No expenses yet, add your first expense above.';
 
     filtered.forEach(function (e) {
       var tr = document.createElement('tr');

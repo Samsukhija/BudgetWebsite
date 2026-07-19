@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GST Invoice Generator | Budget Website Tools</title>
-<meta name="description" content="Create GST-compliant invoices in seconds — auto CGST/SGST/IGST split, amount in words, print-ready PDF output. No accountant needed for routine billing.">
+<meta name="description" content="Create GST-compliant invoices in seconds, auto CGST/SGST/IGST split, amount in words, print-ready PDF output. No accountant needed for routine billing.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
@@ -27,7 +27,7 @@
 <section style="padding-top:50px;">
   <div class="section-label">Tools · GST Invoice Generator</div>
   <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Bill your customer.<br><span class="accent">Get it right the first time.</span></h1>
-  <p class="section-sub">Fill in your details once — they're saved on this device. Every invoice after that is line items and a click.</p>
+  <p class="section-sub">Fill in your details once, they're saved on this device. Every invoice after that is line items and a click.</p>
 </section>
 
 <section class="invoice-app">
@@ -89,13 +89,13 @@
         <div>
           <div class="inv-seller-name" id="p-seller-name">Your Business Name</div>
           <div class="inv-seller-meta" id="p-seller-addr">Address line</div>
-          <div class="inv-seller-meta" id="p-seller-gstin">GSTIN: —</div>
+          <div class="inv-seller-meta" id="p-seller-gstin">GSTIN:-</div>
           <div class="inv-seller-meta" id="p-seller-contact"></div>
         </div>
         <div class="inv-head-right">
           <div class="inv-doctitle">TAX INVOICE</div>
-          <div class="inv-meta"><span>Invoice No.</span><strong id="p-inv-no">—</strong></div>
-          <div class="inv-meta"><span>Date</span><strong id="p-inv-date">—</strong></div>
+          <div class="inv-meta"><span>Invoice No.</span><strong id="p-inv-no">-</strong></div>
+          <div class="inv-meta"><span>Date</span><strong id="p-inv-date">-</strong></div>
         </div>
       </div>
 
@@ -103,7 +103,7 @@
         <div class="inv-panel-title" style="margin-bottom:6px;">Bill To</div>
         <div class="inv-buyer-name" id="p-buyer-name">Customer Name</div>
         <div class="inv-seller-meta" id="p-buyer-addr">Billing address</div>
-        <div class="inv-seller-meta" id="p-buyer-gstin">GSTIN: —</div>
+        <div class="inv-seller-meta" id="p-buyer-gstin">GSTIN:-</div>
       </div>
 
       <table class="inv-table">
@@ -156,5 +156,6 @@
 
 <script src="../../js/gst-invoice.js"></script>
 
+  <script src="../../js/tool-info.js"></script>
 </body>
 </html>

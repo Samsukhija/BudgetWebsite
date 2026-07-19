@@ -12,7 +12,7 @@
     Expired: 'tool-badge-warn'
   };
 
-  // Reuses the same seller key as the GST Invoice tool — one business profile across tools.
+  // Reuses the same seller key as the GST Invoice tool, one business profile across tools.
   var SELLER_KEY = 'bw_gst_seller_v1';
   var DRAFT_KEY = 'bw_quote_draft_v1';
   var COUNTER_KEY = 'bw_quote_counter_v1';
@@ -99,7 +99,7 @@
 
     document.getElementById('p-seller-name').textContent = els['f-seller-name'].value || 'Your Business Name';
     document.getElementById('p-seller-addr').textContent = [els['f-seller-addr'].value, sellerState].filter(Boolean).join(', ') || 'Address line';
-    document.getElementById('p-seller-gstin').textContent = 'GSTIN: ' + (els['f-seller-gstin'].value || '—');
+    document.getElementById('p-seller-gstin').textContent = 'GSTIN: ' + (els['f-seller-gstin'].value || '-');
     document.getElementById('p-seller-contact').textContent = els['f-seller-contact'].value || '';
     document.getElementById('p-sign-name').textContent = els['f-seller-name'].value || 'Your Business Name';
 
@@ -107,7 +107,7 @@
     document.getElementById('p-buyer-addr').textContent = [els['f-buyer-addr'].value, buyerState].filter(Boolean).join(', ') || 'Customer address';
     document.getElementById('p-buyer-gstin').textContent = 'GSTIN: ' + (els['f-buyer-gstin'].value || 'Unregistered');
 
-    document.getElementById('p-quote-no').textContent = els['f-quote-no'].value || '—';
+    document.getElementById('p-quote-no').textContent = els['f-quote-no'].value || '-';
     document.getElementById('p-quote-date').textContent = TS.formatDateDisplay(els['f-quote-date'].value);
     document.getElementById('p-valid-until').textContent = TS.formatDateDisplay(els['f-valid-until'].value);
     document.getElementById('p-valid-note').textContent = TS.formatDateDisplay(els['f-valid-until'].value);
@@ -139,7 +139,7 @@
 
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td class="qb-col-desc">' + TS.escapeHtml(it.desc || '—') + '</td>' +
+        '<td class="qb-col-desc">' + TS.escapeHtml(it.desc || '-') + '</td>' +
         '<td>' + it.qty + '</td>' +
         '<td>' + TS.formatMoney(it.rate) + '</td>' +
         '<td>' + TS.formatMoney(it.taxable) + '</td>' +
@@ -188,7 +188,7 @@
     };
     TS.saveJSON(DRAFT_KEY, draft);
 
-    els['qb-savenote'].textContent = 'Draft saved on this device — ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+    els['qb-savenote'].textContent = 'Draft saved on this device-' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
   }
 
   function loadSeller() {
@@ -238,7 +238,7 @@
   });
   els['f-quote-date'].addEventListener('change', function () {
     // Keep "Valid Until" 15 days ahead of the quote date unless the user has already
-    // customised it away from that default — cheap heuristic: only auto-shift if it's
+    // customised it away from that default, cheap heuristic: only auto-shift if it's
     // currently exactly 15 days after the (old) quote date is impossible to know here,
     // so we only auto-fill when Valid Until is empty.
     if (!els['f-valid-until'].value) {

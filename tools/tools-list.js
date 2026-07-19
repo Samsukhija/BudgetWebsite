@@ -1,5 +1,5 @@
 /* The public tools directory. One source of truth for every tool card.
-   ai:true tools use the visitor's own OpenRouter key (BYOK) — flagged so
+   ai:true tools use the visitor's own OpenRouter key (BYOK), flagged so
    people know before they click. Rendered synchronously (before motion.js
    loads) so the .tilt-card hover binding picks the cards up. */
 (function () {
@@ -11,7 +11,7 @@
         { slug: 'gst-invoice', icon: '🧾', name: 'GST Invoice Generator', blurb: 'GST-compliant invoices with auto CGST/SGST/IGST and amount-in-words.' },
         { slug: 'quotation-builder', icon: '📄', name: 'Quotation Builder', blurb: 'Turn a conversation into a professional quote in under a minute.' },
         { slug: 'expense-tracker', icon: '💸', name: 'Expense Tracker', blurb: 'Log daily spends and see where the money actually goes.' },
-        { slug: 'salary-slip', icon: '📑', name: 'Salary Slip Generator', blurb: 'Monthly salary slips for staff — no spreadsheet template needed.' }
+        { slug: 'salary-slip', icon: '📑', name: 'Salary Slip Generator', blurb: 'Monthly salary slips for staff, no spreadsheet template needed.' }
       ]
     },
     {
@@ -20,8 +20,8 @@
       tools: [
         { slug: 'lead-tracker', icon: '🎯', name: 'Lead Tracker', blurb: 'Every enquiry in one place instead of scattered across WhatsApp.' },
         { slug: 'follow-up-reminder', icon: '⏰', name: 'Follow-Up Reminder', blurb: 'Timely nudges so a warm lead never goes cold.' },
-        { slug: 'crm-contacts', icon: '📇', name: 'CRM — Contacts', blurb: 'Every customer and every conversation, in one place.' },
-        { slug: 'crm-pipeline', icon: '📊', name: 'CRM — Deal Pipeline', blurb: 'Drag deals across stages on a simple kanban board.' }
+        { slug: 'crm-contacts', icon: '📇', name: 'CRM, Contacts', blurb: 'Every customer and every conversation, in one place.' },
+        { slug: 'crm-pipeline', icon: '📊', name: 'CRM, Deal Pipeline', blurb: 'Drag deals across stages on a simple kanban board.' }
       ]
     },
     {
@@ -43,7 +43,7 @@
         { slug: 'cold-message-writer', icon: '✉️', name: 'Cold Message Writer', ai: true, blurb: 'Outreach that reads personal, not like a template.' },
         { slug: 'whatsapp-broadcast-writer', icon: '💬', name: 'WhatsApp Broadcast Writer', ai: true, blurb: 'Broadcast-ready promos the way your customers actually read.' },
         { slug: 'instagram-caption-generator', icon: '📸', name: 'Instagram Caption Generator', ai: true, blurb: 'On-brand captions and hashtags on demand.' },
-        { slug: 'review-reply-generator', icon: '⭐', name: 'Review Reply Generator', ai: true, blurb: 'Professional replies to every Google review — good or bad.' },
+        { slug: 'review-reply-generator', icon: '⭐', name: 'Review Reply Generator', ai: true, blurb: 'Professional replies to every Google review, good or bad.' },
         { slug: 'festival-offer-generator', icon: '🪔', name: 'Festival Offer Generator', ai: true, blurb: 'Diwali, Holi, Eid promos written and ready before the day.' },
         { slug: 'gmb-post-writer', icon: '📍', name: 'Google Business Post Writer', ai: true, blurb: 'Keep your Google profile active with posts written for you.' }
       ]
@@ -60,7 +60,7 @@
       label: 'Utilities',
       desc: 'Handy extras.',
       tools: [
-        { slug: 'business-card', icon: '🪪', name: 'Digital Business Card', blurb: 'A shareable vCard + QR code — hand out a card without printing one.' },
+        { slug: 'business-card', icon: '🪪', name: 'Digital Business Card', blurb: 'A shareable vCard + QR code, hand out a card without printing one.' },
         { slug: 'business-card-scanner', icon: '📷', name: 'Business Card Scanner', ai: true, blurb: 'Snap a card and save the contact instantly.' }
       ]
     }

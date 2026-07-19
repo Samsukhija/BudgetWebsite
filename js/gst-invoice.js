@@ -140,7 +140,7 @@
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
   function formatDateDisplay(iso) {
-    if (!iso) return '—';
+    if (!iso) return '-';
     var parts = iso.split('-');
     if (parts.length !== 3) return iso;
     var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -155,7 +155,7 @@
 
     document.getElementById('p-seller-name').textContent = els['f-seller-name'].value || 'Your Business Name';
     document.getElementById('p-seller-addr').textContent = [els['f-seller-addr'].value, sellerState].filter(Boolean).join(', ') || 'Address line';
-    document.getElementById('p-seller-gstin').textContent = 'GSTIN: ' + (els['f-seller-gstin'].value || '—');
+    document.getElementById('p-seller-gstin').textContent = 'GSTIN: ' + (els['f-seller-gstin'].value || '-');
     document.getElementById('p-seller-contact').textContent = els['f-seller-contact'].value || '';
     document.getElementById('p-sign-name').textContent = els['f-seller-name'].value || 'Your Business Name';
 
@@ -163,7 +163,7 @@
     document.getElementById('p-buyer-addr').textContent = [els['f-buyer-addr'].value, buyerState].filter(Boolean).join(', ') || 'Billing address';
     document.getElementById('p-buyer-gstin').textContent = 'GSTIN: ' + (els['f-buyer-gstin'].value || 'Unregistered');
 
-    document.getElementById('p-inv-no').textContent = els['f-inv-no'].value || '—';
+    document.getElementById('p-inv-no').textContent = els['f-inv-no'].value || '-';
     document.getElementById('p-inv-date').textContent = formatDateDisplay(els['f-inv-date'].value);
 
     var taxCol1 = document.getElementById('p-tax-col-1');
@@ -188,8 +188,8 @@
 
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td class="inv-col-desc">' + escapeHtml(it.desc || '—') + '</td>' +
-        '<td>' + escapeHtml(it.hsn || '—') + '</td>' +
+        '<td class="inv-col-desc">' + escapeHtml(it.desc || '-') + '</td>' +
+        '<td>' + escapeHtml(it.hsn || '-') + '</td>' +
         '<td>' + it.qty + '</td>' +
         '<td>' + formatMoney(it.rate) + '</td>' +
         '<td>' + formatMoney(it.taxable) + '</td>' +
@@ -245,7 +245,7 @@
     };
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
 
-    els['inv-savenote'].textContent = 'Draft saved on this device — ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+    els['inv-savenote'].textContent = 'Draft saved on this device-' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
   }
 
   function loadSeller() {

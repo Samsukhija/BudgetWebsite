@@ -55,7 +55,7 @@
       var tr = document.createElement('tr');
       tr.innerHTML =
         '<td>' + TS.escapeHtml(s.name) + '</td>' +
-        '<td>' + TS.escapeHtml(s.empId || '—') + '</td>' +
+        '<td>' + TS.escapeHtml(s.empId || '-') + '</td>' +
         '<td><button type="button" class="btn-danger" data-remove="' + s.id + '">Remove</button></td>';
       els['staff-tbody'].appendChild(tr);
     });
@@ -137,7 +137,7 @@
         td.textContent = mark;
         td.setAttribute('data-staff', s.id);
         td.setAttribute('data-date', iso);
-        td.title = mark ? MARK_LABELS[mark] : 'Not marked — click to set';
+        td.title = mark ? MARK_LABELS[mark] : 'Not marked, click to set';
         tr.appendChild(td);
       }
       tbody.appendChild(tr);
@@ -157,7 +157,7 @@
 
         cell.className = 'tool-attend-cell ' + markClass(next);
         cell.textContent = next;
-        cell.title = next ? MARK_LABELS[next] : 'Not marked — click to set';
+        cell.title = next ? MARK_LABELS[next] : 'Not marked, click to set';
 
         renderSummary();
       });
@@ -205,7 +205,7 @@
         '<td>' + r.absent + '</td>' +
         '<td>' + r.half + '</td>' +
         '<td>' + r.leave + '</td>' +
-        '<td>' + (r.pct == null ? '—' : r.pct.toFixed(1) + '%') + '</td>';
+        '<td>' + (r.pct == null ? '-' : r.pct.toFixed(1) + '%') + '</td>';
       els['summary-tbody'].appendChild(tr);
     });
 
@@ -217,7 +217,7 @@
 
     var stats = [
       { label: 'Staff Tracked', value: String(totalStaff) },
-      { label: 'Avg Attendance', value: avgPct == null ? '—' : avgPct.toFixed(1) + '%' },
+      { label: 'Avg Attendance', value: avgPct == null ? '-' : avgPct.toFixed(1) + '%' },
       { label: 'Total Present Days', value: String(totalPresent) },
       { label: 'Total Absent Days', value: String(totalAbsent) }
     ];

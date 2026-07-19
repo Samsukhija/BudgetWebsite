@@ -1,7 +1,7 @@
 /* Business Card Scanner + Contact Saver
    Vision AI tool: reads a business-card photo via AIShared.generate({images}),
    extracts structured contact fields, lets the user correct them, saves to
-   localStorage, and exports .vcf / CSV. No backend — BYOK, on-device storage. */
+   localStorage, and exports .vcf / CSV. No backend, BYOK, on-device storage. */
 (function () {
   'use strict';
 
@@ -37,7 +37,7 @@
     "traders and the like) at networking meetings such as BNI Mumbai.\n\n" +
     "Read the card in the image and extract the contact details. Cards may be in " +
     "English or Hindi/Marathi; phone numbers are usually Indian (10 digits, often " +
-    "with +91, 0, or a landline STD code) — keep them exactly as printed, do not " +
+    "with +91, 0, or a landline STD code), keep them exactly as printed, do not " +
     "invent country codes. If several phone numbers are printed, pick the primary " +
     "mobile and separate additional ones with a comma. Preserve the company name " +
     "exactly, including suffixes like Pvt Ltd, LLP, & Sons or Enterprises.\n\n" +
@@ -102,7 +102,7 @@
         canvas.getContext('2d').drawImage(img, 0, 0, cw, ch);
         cb(canvas.toDataURL('image/jpeg', 0.85));
       } catch (e) {
-        cb(dataUri); // canvas may taint on odd inputs — fall back to original
+        cb(dataUri); // canvas may taint on odd inputs, fall back to original
       }
     };
     img.onerror = function () { cb(dataUri); };
@@ -237,7 +237,7 @@
   saveBtn.addEventListener('click', function () {
     var c = readForm();
     if (!c.name && !c.company && !c.phone && !c.email) {
-      showError('Nothing to save yet — the card needs at least a name, company, phone or email.');
+      showError('Nothing to save yet, the card needs at least a name, company, phone or email.');
       return;
     }
     clearError();
@@ -264,11 +264,11 @@
     arr.forEach(function (c) {
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td>' + (AIShared.esc(c.name) || '<span style="color:var(--text-dim)">—</span>') +
+        '<td>' + (AIShared.esc(c.name) || '<span style="color:var(--text-dim)">-</span>') +
           (c.title ? '<div style="color:var(--text-dim);font-size:calc(11.5px * var(--font-scale));">' + AIShared.esc(c.title) + '</div>' : '') + '</td>' +
-        '<td>' + (AIShared.esc(c.company) || '—') + '</td>' +
-        '<td>' + (AIShared.esc(c.phone) || '—') + '</td>' +
-        '<td>' + (AIShared.esc(c.email) || '—') + '</td>' +
+        '<td>' + (AIShared.esc(c.company) || '-') + '</td>' +
+        '<td>' + (AIShared.esc(c.phone) || '-') + '</td>' +
+        '<td>' + (AIShared.esc(c.email) || '-') + '</td>' +
         '<td style="text-align:right;white-space:nowrap;">' +
           '<button type="button" class="btn-primary btn-sm" data-vcf="' + c.id + '">.vcf</button> ' +
           '<button type="button" class="btn-danger btn-sm" data-del="' + c.id + '">Delete</button>' +
@@ -306,7 +306,7 @@
     var lines = ['BEGIN:VCARD', 'VERSION:3.0'];
     var name = c.name || c.company || 'Contact';
     lines.push('FN:' + vesc(name));
-    // N: Family;Given;Additional;Prefix;Suffix — split simply on last space.
+    // N: Family;Given;Additional;Prefix;Suffix, split simply on last space.
     var parts = (c.name || '').trim().split(/\s+/);
     var given = parts.length ? parts[0] : '';
     var family = parts.length > 1 ? parts.slice(1).join(' ') : '';
@@ -327,7 +327,7 @@
       lines.push('URL:' + vesc(url));
     }
     if (c.address) {
-      // ADR: PObox;Ext;Street;Locality;Region;Postcode;Country — pack into street.
+      // ADR: PObox;Ext;Street;Locality;Region;Postcode;Country, pack into street.
       lines.push('ADR;TYPE=WORK:;;' + vesc(c.address.replace(/\n/g, ', ')) + ';;;;');
     }
     lines.push('END:VCARD');

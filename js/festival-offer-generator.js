@@ -1,4 +1,4 @@
-/* Festival Offer Message Generator — BYOK AI tool.
+/* Festival Offer Message Generator, BYOK AI tool.
    Generates three festive promo messages (greeting + offer + urgency + CTA)
    formatted for the chosen channel. All AI runs through window.AIShared. */
 (function () {
@@ -61,10 +61,10 @@
       'the offer clearly stated, urgency, then a call to action like "DM to book" or "Link in bio". ' +
       'Finish each message with 3 to 5 relevant hashtags (mix the festival, the city/India, and the business type).',
     'SMS':
-      'Format as a plain SMS. Very short — aim for roughly 160 to 300 characters, one or two lines. ' +
+      'Format as a plain SMS. Very short, aim for roughly 160 to 300 characters, one or two lines. ' +
       'No hashtags, no *bold*, no line-break art. State the greeting, offer and a short call to action ' +
       '(e.g. "Call/WhatsApp <number or business> to book"). Do NOT use emoji in SMS even if emoji were ' +
-      'requested — keep it lean so it fits and reads cleanly.'
+      'requested, keep it lean so it fits and reads cleanly.'
   };
 
   function buildSystemPrompt(channel, useEmoji) {
@@ -76,16 +76,16 @@
       'You are an expert Indian small-business copywriter who writes festival promotional messages ',
       'that local shops, clinics, salons, restaurants and service businesses actually send to their ',
       'customers. You write in warm, natural Indian English (the everyday register a Mumbai or ',
-      'small-town business owner would use with customers) — friendly and respectful, never corporate ',
+      'small-town business owner would use with customers), friendly and respectful, never corporate ',
       'or robotic, never over-hyped. You understand Indian festivals and use the culturally correct ',
       'greeting for each one (for example: "Shubh Deepavali" / "Happy Diwali" for Diwali, ',
       '"Eid Mubarak" for Eid, "Happy Holi" for Holi, "Ganpati Bappa Morya" for Ganesh Chaturthi, ',
       '"Happy Navratri" for Navratri, "Happy Onam" for Onam, "Happy Makar Sankranti" / "Happy Pongal", ',
       '"Happy Raksha Bandhan", "Merry Christmas", "Happy New Year", and patriotic wishes for ',
-      'Independence Day / Republic Day). Match the mood of the festival — devotional and warm for ',
+      'Independence Day / Republic Day). Match the mood of the festival, devotional and warm for ',
       'religious festivals, celebratory for New Year, proud and tasteful for national days. ',
       'All prices are in Indian Rupees (use the ₹ symbol). Never invent an offer, price, date or ',
-      'discount that the owner did not give you — use exactly what they provide. If they gave no ',
+      'discount that the owner did not give you, use exactly what they provide. If they gave no ',
       'validity date, imply gentle urgency ("this festive season", "limited period", "while stocks last") ',
       'without fabricating a specific date. Keep every message concrete and self-contained. ',
       '\n\n',
@@ -96,10 +96,10 @@
       'Each of the three messages MUST contain, woven together naturally (not as labelled bullet points): ',
       '(1) a warm festival greeting, (2) the business name, (3) the offer stated clearly, ',
       '(4) a sense of urgency / limited validity, and (5) a clear call to action. ',
-      'Make the three genuinely different from each other in angle and wording — e.g. one warm and ',
-      'relationship-led, one offer-and-savings-led, one short and urgent — not three rewordings of the same lines. ',
+      'Make the three genuinely different from each other in angle and wording, e.g. one warm and ',
+      'relationship-led, one offer-and-savings-led, one short and urgent, not three rewordings of the same lines. ',
       '\n\n',
-      'OUTPUT FORMAT (strict): return ONLY the three messages, nothing else — no preamble, no titles, ',
+      'OUTPUT FORMAT (strict): return ONLY the three messages, nothing else, no preamble, no titles, ',
       'no "Message 1", no commentary. Separate the three messages from each other with a line ',
       'containing exactly three hash characters (###) on its own line and nothing else.'
     ].join('');
@@ -205,7 +205,7 @@
       document.execCommand('copy');
       document.body.removeChild(ta);
       done();
-    } catch (e) { /* clipboard unavailable — silently ignore */ }
+    } catch (e) { /* clipboard unavailable, silently ignore */ }
   }
 
   // ── generate flow ──────────────────────────────────────────────────────
@@ -278,7 +278,7 @@
 
   copyAllBtn.addEventListener('click', function () {
     if (!lastMessages.length) return;
-    var joined = lastMessages.join('\n\n———\n\n');
+    var joined = lastMessages.join('\n\n---\n\n');
     copyText(joined, copyAllBtn, 'Copy all');
   });
 

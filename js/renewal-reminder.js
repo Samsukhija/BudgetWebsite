@@ -95,12 +95,12 @@
       var badge = dueBadge(r.nextDue, today);
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td>' + TS.escapeHtml(r.name || '—') + '</td>' +
-        '<td>' + (r.category ? '<span class="tool-badge tool-badge-accent">' + TS.escapeHtml(r.category) + '</span>' : '—') + '</td>' +
+        '<td>' + TS.escapeHtml(r.name || '-') + '</td>' +
+        '<td>' + (r.category ? '<span class="tool-badge tool-badge-accent">' + TS.escapeHtml(r.category) + '</span>' : '-') + '</td>' +
         '<td>' + TS.formatMoney(parseFloat(r.amount) || 0) + '</td>' +
         '<td>' + TS.escapeHtml(frequencyLabel(r)) + '</td>' +
         '<td><span class="tool-badge ' + badge.cls + '">' + badge.text + '</span></td>' +
-        '<td>' + (r.notes ? TS.escapeHtml(r.notes) : '—') + '</td>' +
+        '<td>' + (r.notes ? TS.escapeHtml(r.notes) : '-') + '</td>' +
         '<td style="white-space:nowrap;">' +
           '<button type="button" class="btn-sm btn-primary" data-action="paid" data-id="' + r.id + '">Mark Paid</button> ' +
           '<button type="button" class="btn-danger" data-action="delete" data-id="' + r.id + '">Delete</button>' +

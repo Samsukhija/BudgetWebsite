@@ -26,7 +26,7 @@
 
   function formatTime12(hhmm) {
     var mins = timeToMinutes(hhmm);
-    if (mins == null) return '—';
+    if (mins == null) return '-';
     var h = Math.floor(mins / 60) % 24;
     var m = mins % 60;
     var ampm = h >= 12 ? 'PM' : 'AM';
@@ -159,16 +159,16 @@
       var tr = document.createElement('tr');
 
       var tdTime = document.createElement('td');
-      tdTime.innerHTML = '<span class="appt-time-range">' + formatTime12(a.time) + ' – ' + formatTime12(endTime) + '</span>';
+      tdTime.innerHTML = '<span class="appt-time-range">' + formatTime12(a.time) + '-' + formatTime12(endTime) + '</span>';
       tr.appendChild(tdTime);
 
       var tdClient = document.createElement('td');
-      tdClient.innerHTML = '<div class="appt-client-name">' + TS.escapeHtml(a.clientName || '—') + '</div>' +
+      tdClient.innerHTML = '<div class="appt-client-name">' + TS.escapeHtml(a.clientName || '-') + '</div>' +
         (a.phone ? '<div class="appt-client-phone">' + TS.escapeHtml(a.phone) + '</div>' : '');
       tr.appendChild(tdClient);
 
       var tdService = document.createElement('td');
-      tdService.textContent = a.service || '—';
+      tdService.textContent = a.service || '-';
       if (a.notes) {
         var notesDiv = document.createElement('div');
         notesDiv.className = 'appt-notes';
@@ -245,8 +245,8 @@
       tr.innerHTML =
         '<td>' + TS.escapeHtml(TS.formatDateDisplay(a.date)) + '</td>' +
         '<td class="appt-time-range">' + formatTime12(a.time) + '</td>' +
-        '<td>' + TS.escapeHtml(a.clientName || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(a.service || '—') + '</td>';
+        '<td>' + TS.escapeHtml(a.clientName || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(a.service || '-') + '</td>';
       tbody.appendChild(tr);
     });
   }

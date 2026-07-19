@@ -1,4 +1,4 @@
-/* Appointment / Booking Scheduler — tool-specific styles.
+/* Appointment / Booking Scheduler, tool-specific styles.
    Everything reusable lives in tools-base.css; this file only adds
    what's unique to this tool (conflict warning box, inline status select,
    time-range/meta cells). */

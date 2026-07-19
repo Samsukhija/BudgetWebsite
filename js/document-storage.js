@@ -85,7 +85,7 @@
   }
 
   function formatDateTimeDisplay(iso) {
-    if (!iso) return '—';
+    if (!iso) return '-';
     var d = new Date(iso);
     if (isNaN(d.getTime())) return iso;
     var datePart = TS.formatDateDisplay(
@@ -194,7 +194,7 @@
 
     if (!filtered.length) {
       els['ds-grid'].innerHTML = '<div class="tool-empty">' +
-        (allFiles.length ? 'No documents match your search.' : 'No documents yet — upload your first file above.') +
+        (allFiles.length ? 'No documents match your search.' : 'No documents yet, upload your first file above.') +
         '</div>';
       return;
     }

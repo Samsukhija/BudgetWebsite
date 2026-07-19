@@ -20,7 +20,7 @@
     els['key-hint'].hidden = ready;
   }
 
-  // ── tone auto-suggestion: 1–2 stars => apologetic, unless user overrode ──
+  // ── tone auto-suggestion: 1-2 stars => apologetic, unless user overrode ──
   function autoSuggestTone() {
     if (toneTouched) return;
     var rating = parseInt(els['f-rating'].value, 10);
@@ -33,7 +33,7 @@
     }
   }
 
-  // ── prompt construction — the actual product ──
+  // ── prompt construction, the actual product ──
   function buildSystemPrompt() {
     return [
       'You are an expert Indian small-business copywriter who writes owner-voice replies to Google reviews for local businesses (dentists, retailers, salons, manufacturers, consultants, restaurants, clinics and the like across India).',
@@ -41,19 +41,19 @@
       'You write the way a warm, switched-on owner in India actually talks: natural Indian English, courteous but never stiff or corporate, first person ("we"/"our team"). You sound like a real person who was genuinely there, not a call-centre script.',
       '',
       'Hard rules for every reply:',
-      '- Keep it short — 2 to 4 sentences, the length a busy owner would really type. Never write an essay.',
+      '- Keep it short-2 to 4 sentences, the length a busy owner would really type. Never write an essay.',
       '- Reference something SPECIFIC the reviewer actually said (a name, a service, a detail). Never generic filler that could be pasted under any review.',
       '- No emojis. No hashtags. No marketing slogans. No "Dear Customer". No exclamation-mark spam (one is plenty).',
       '- Do not invent facts, discounts, or promises the business did not state. Do not quote a fake staff name unless the reviewer named them.',
-      '- Sign off naturally in the owner\'s voice — you may end with "— Team [Business]" or the owner\'s warm thanks, but keep it light.',
+      '- Sign off naturally in the owner\'s voice, you may end with "-Team [Business]" or the owner\'s warm thanks, but keep it light.',
       '',
-      'For POSITIVE reviews (4–5 stars): thank them genuinely, echo the specific thing they praised, and warmly invite them back. Do not oversell.',
-      'For NEGATIVE reviews (1–2 stars): open by acknowledging their experience without being defensive, apologise sincerely, take ownership, offer to make it right, and move it offline — invite them to contact the business directly (a call/WhatsApp/message to the team) so it can be sorted. Never argue, never make excuses, never blame the customer.',
+      'For POSITIVE reviews (4-5 stars): thank them genuinely, echo the specific thing they praised, and warmly invite them back. Do not oversell.',
+      'For NEGATIVE reviews (1-2 stars): open by acknowledging their experience without being defensive, apologise sincerely, take ownership, offer to make it right, and move it offline, invite them to contact the business directly (a call/WhatsApp/message to the team) so it can be sorted. Never argue, never make excuses, never blame the customer.',
       'For MIXED reviews (3 stars): thank them for the honest feedback, acknowledge both the good and the gap they mentioned, and show you are acting on it.',
       '',
-      'Match the requested tone. If the tone is "Apologetic", lead with the apology and the fix. If "Warm", be friendly and personal. If "Professional", be polished and measured — still human.',
+      'Match the requested tone. If the tone is "Apologetic", lead with the apology and the fix. If "Warm", be friendly and personal. If "Professional", be polished and measured, still human.',
       '',
-      'OUTPUT FORMAT — follow exactly:',
+      'OUTPUT FORMAT, follow exactly:',
       'Write TWO distinct reply options that a real owner could post as-is. They must differ meaningfully in wording and angle, not just swap a word.',
       'Output ONLY the two replies. Put a line containing exactly ' + DELIM + ' (three pipe characters) on its own line between them.',
       'No "Option 1" labels, no preamble, no explanation, no surrounding quotation marks. Just: reply one, then the ' + DELIM + ' line, then reply two.'
@@ -142,8 +142,8 @@
     }).then(function (full) {
       renderStream(full);
       if (!els['out-2'].textContent) {
-        // Model didn't use the delimiter — keep option 1, note it.
-        els['out-2'].textContent = '(Only one reply came back — hit Regenerate for a second option.)';
+        // Model didn't use the delimiter, keep option 1, note it.
+        els['out-2'].textContent = '(Only one reply came back, hit Regenerate for a second option.)';
       }
       setLoading(false);
     }).catch(function (err) {

@@ -1,4 +1,4 @@
-/* Instagram Caption Generator — BYOK AI tool.
+/* Instagram Caption Generator, BYOK AI tool.
    Generates three distinct Instagram captions (hook → body → CTA → optional
    hashtags) tuned for small Indian businesses. All AI goes through AIShared;
    no key or API call is ever handled here directly. */
@@ -38,20 +38,20 @@
   // ── Prompt construction ──────────────────────────────────────────────────
   function buildSystemPrompt() {
     return [
-      "You are an expert Instagram copywriter for Indian small businesses — the kind of local dentists, boutiques, cafes, manufacturers, jewellers and consultants you find in a Mumbai BNI chapter.",
+      "You are an expert Instagram copywriter for Indian small businesses, the kind of local dentists, boutiques, cafes, manufacturers, jewellers and consultants you find in a Mumbai BNI chapter.",
       "You write in warm, natural Indian English. You understand Indian festivals (Diwali, Holi, Ganesh Chaturthi, Raksha Bandhan, Eid, Christmas, Navratri), the monsoon, the wedding and exam seasons, and how Indian customers actually talk and buy.",
       "You write captions that make a busy shop owner look professional and get people to DM, call or visit. You never sound like a generic global brand, never use corporate jargon, and never over-promise.",
       "",
       "Every caption you write follows this shape:",
-      "1. A strong scroll-stopping HOOK as the first line (a question, a bold statement, or a relatable moment — never 'We are happy to announce').",
+      "1. A strong scroll-stopping HOOK as the first line (a question, a bold statement, or a relatable moment, never 'We are happy to announce').",
       "2. ONE to THREE short body lines that give the value or story. Keep sentences tight and skimmable. Use line breaks, not long paragraphs.",
-      "3. A clear call-to-action last line (e.g. 'DM us to book', 'Call now — link in bio', 'Visit us this weekend', 'WhatsApp us on the number in bio'). WhatsApp / DM / call / visit are the natural CTAs for Indian small businesses.",
+      "3. A clear call-to-action last line (e.g. 'DM us to book', 'Call now, link in bio', 'Visit us this weekend', 'WhatsApp us on the number in bio'). WhatsApp / DM / call / visit are the natural CTAs for Indian small businesses.",
       "",
       "Rules:",
       "- Prices in rupees (₹) only, and only if the user gave a price. Never invent prices, offers, discounts, phone numbers or facts the user did not provide.",
-      "- Keep each caption Instagram-appropriate in length — roughly 3 to 6 short lines of copy, easy to read on a phone. Do not write essays.",
+      "- Keep each caption Instagram-appropriate in length, roughly 3 to 6 short lines of copy, easy to read on a phone. Do not write essays.",
       "- Match the requested vibe exactly.",
-      "- Write three GENUINELY DIFFERENT captions — different hooks and different angles, not three rewordings of the same sentence.",
+      "- Write three GENUINELY DIFFERENT captions, different hooks and different angles, not three rewordings of the same sentence.",
       "- No hashtags inside the body copy. If hashtags are requested they go only in the dedicated hashtag block."
     ].join('\n');
   }
@@ -70,15 +70,15 @@
     if (business) lines.push('THE BUSINESS: ' + business);
     lines.push('VIBE: ' + vibe);
     lines.push('EMOJI: ' + (wantEmoji
-      ? 'Yes — use a few tasteful, relevant emoji (not on every line, no emoji spam).'
-      : 'No — do NOT use any emoji at all.'));
+      ? 'Yes, use a few tasteful, relevant emoji (not on every line, no emoji spam).'
+      : 'No, do NOT use any emoji at all.'));
     if (wantTags) {
-      lines.push('HASHTAGS: Yes — after the caption copy, add a block of 8 to 15 relevant hashtags on their own line. Mix broad and India/city/niche-specific tags that this business would actually rank for locally. All lowercase, space-separated, no commas.');
+      lines.push('HASHTAGS: Yes, after the caption copy, add a block of 8 to 15 relevant hashtags on their own line. Mix broad and India/city/niche-specific tags that this business would actually rank for locally. All lowercase, space-separated, no commas.');
     } else {
-      lines.push('HASHTAGS: No — do not add any hashtags.');
+      lines.push('HASHTAGS: No, do not add any hashtags.');
     }
     lines.push('');
-    lines.push('FORMAT: Output exactly three captions. Separate each caption with a line containing only ' + DELIM + ' and nothing else. Do not number them, do not add headings, labels, titles or any commentary before, between or after the captions — output only the caption text and the separators.');
+    lines.push('FORMAT: Output exactly three captions. Separate each caption with a line containing only ' + DELIM + ' and nothing else. Do not number them, do not add headings, labels, titles or any commentary before, between or after the captions, output only the caption text and the separators.');
     return lines.join('\n');
   }
 
@@ -210,7 +210,7 @@
     if (!lastCaptions.length) return;
     var joined = lastCaptions.map(function (c, i) {
       return 'Caption ' + (i + 1) + '\n' + c;
-    }).join('\n\n———\n\n');
+    }).join('\n\n---\n\n');
     copyText(els.copyAll, joined);
   });
 

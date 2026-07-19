@@ -1,4 +1,4 @@
-/* About Us Page Writer — turns a few honest facts about a small Indian
+/* About Us Page Writer, turns a few honest facts about a small Indian
    business into a warm, ready-to-paste "About Us" section. All AI runs through
    AIShared (the visitor's own OpenRouter key). No backend, no stored data. */
 (function () {
@@ -26,15 +26,15 @@
   var TONES = {
     warm: {
       label: 'Warm & personal',
-      note: 'Warm and personal — write like a real person talking to a neighbour. First person ("we"/"I") is welcome. Friendly, sincere, a little heart. Plain words over corporate ones.'
+      note: 'Warm and personal, write like a real person talking to a neighbour. First person ("we"/"I") is welcome. Friendly, sincere, a little heart. Plain words over corporate ones.'
     },
     professional: {
       label: 'Professional & established',
-      note: 'Professional and established — confident, credible, reassuring. Emphasise experience, reliability and quality of service. Polished but still human; never stiff or full of jargon.'
+      note: 'Professional and established, confident, credible, reassuring. Emphasise experience, reliability and quality of service. Polished but still human; never stiff or full of jargon.'
     },
     bold: {
       label: 'Modern & bold',
-      note: 'Modern and bold — punchy, energetic, contemporary. Short confident sentences. A clear point of view. Fresh and forward-looking, but never gimmicky or over-hyped.'
+      note: 'Modern and bold, punchy, energetic, contemporary. Short confident sentences. A clear point of view. Fresh and forward-looking, but never gimmicky or over-hyped.'
     }
   };
 
@@ -51,19 +51,19 @@
   /* ── prompt construction ── the product ── */
   function buildSystem(toneNote) {
     return [
-      'You are a seasoned Indian small-business copywriter who has written "About Us" pages for hundreds of local businesses across India — dentists, retailers, manufacturers, salons, consultants, clinics, restaurants and family firms. You write in warm, natural Indian English for an Indian audience.',
+      'You are a seasoned Indian small-business copywriter who has written "About Us" pages for hundreds of local businesses across India, dentists, retailers, manufacturers, salons, consultants, clinics, restaurants and family firms. You write in warm, natural Indian English for an Indian audience.',
       '',
-      'Your job: turn the plain facts the owner gives you into a polished "About Us" section that reads like real, professional website copy — the kind a visitor actually reads and trusts, not a dry list of facts.',
+      'Your job: turn the plain facts the owner gives you into a polished "About Us" section that reads like real, professional website copy, the kind a visitor actually reads and trusts, not a dry list of facts.',
       '',
       'HOW TO WRITE IT:',
       '- Open with a short, inviting HEADLINE on its own line (5 to 9 words). Not the business name alone, and not the words "About Us". Make it about the visitor or the promise.',
-      '- Then 2 to 4 short paragraphs (2 to 4 sentences each). Tell a small story: who they are, why they started, what they believe, who they serve — and close with a warm, inviting line that makes the reader want to walk in, call, or message on WhatsApp.',
-      '- Build trust with concrete, specific details drawn ONLY from what the owner gave you (years in business, the founder, the neighbourhood, the way they treat customers). Weave the facts into sentences — never bullet-list them.',
+      '- Then 2 to 4 short paragraphs (2 to 4 sentences each). Tell a small story: who they are, why they started, what they believe, who they serve, and close with a warm, inviting line that makes the reader want to walk in, call, or message on WhatsApp.',
+      '- Build trust with concrete, specific details drawn ONLY from what the owner gave you (years in business, the founder, the neighbourhood, the way they treat customers). Weave the facts into sentences, never bullet-list them.',
       '',
       'HARD RULES:',
-      '- Use ONLY the facts provided. Never invent awards, numbers, client counts, certifications, locations or claims that were not given. If a detail is missing, simply write around it — do not make one up.',
+      '- Use ONLY the facts provided. Never invent awards, numbers, client counts, certifications, locations or claims that were not given. If a detail is missing, simply write around it, do not make one up.',
       '- Indian context throughout: Indian English spelling and phrasing, ₹ for any prices, references to WhatsApp/calling as natural ways to reach out where it fits.',
-      '- No emojis. No hashtags. No markdown, asterisks, headings or bullet points — plain paragraphs only, separated by blank lines, with the headline as the first line.',
+      '- No emojis. No hashtags. No markdown, asterisks, headings or bullet points, plain paragraphs only, separated by blank lines, with the headline as the first line.',
       '- No hollow marketing filler ("we are passionate about excellence", "customer-centric solutions", "one-stop destination", "we go the extra mile"). Every sentence must say something real about THIS business.',
       '- Keep the whole section tight: roughly 110 to 200 words. Better to be short and genuine than long and padded.',
       '',
@@ -111,7 +111,7 @@
   function validate(v) {
     if (!v.name) return 'Please enter your business name.';
     if (!v.what) return 'Please tell us what your business does.';
-    if (!v.story || v.story.length < 15) return 'Add a sentence or two about what makes you different — that is what the writer builds the story from.';
+    if (!v.story || v.story.length < 15) return 'Add a sentence or two about what makes you different, that is what the writer builds the story from.';
     return null;
   }
 
@@ -166,7 +166,7 @@
         els.copy.classList.remove('ai-copied');
       }, 1500);
     }).catch(function () {
-      els.error.textContent = 'Could not copy automatically — select the text and copy manually.';
+      els.error.textContent = 'Could not copy automatically, select the text and copy manually.';
     });
   });
 

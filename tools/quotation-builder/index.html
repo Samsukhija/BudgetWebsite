@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quotation / Estimate Builder | Budget Website Tools</title>
-<meta name="description" content="Build a professional quotation or estimate in seconds — auto CGST/SGST/IGST split, amount in words, status tracking, print-ready PDF output.">
+<meta name="description" content="Build a professional quotation or estimate in seconds, auto CGST/SGST/IGST split, amount in words, status tracking, print-ready PDF output.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
@@ -28,7 +28,7 @@
 <section style="padding-top:50px;">
   <div class="section-label">Tools · Quotation / Estimate Builder</div>
   <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Quote the job.<br><span class="accent">Win it before you start it.</span></h1>
-  <p class="section-sub">Fill in your details once — they're saved on this device. Every quotation after that is line items, a status, and a click.</p>
+  <p class="section-sub">Fill in your details once, they're saved on this device. Every quotation after that is line items, a status, and a click.</p>
 </section>
 
 <section class="qb-app">
@@ -101,14 +101,14 @@
         <div>
           <div class="qb-seller-name" id="p-seller-name">Your Business Name</div>
           <div class="qb-seller-meta" id="p-seller-addr">Address line</div>
-          <div class="qb-seller-meta" id="p-seller-gstin">GSTIN: —</div>
+          <div class="qb-seller-meta" id="p-seller-gstin">GSTIN:-</div>
           <div class="qb-seller-meta" id="p-seller-contact"></div>
         </div>
         <div class="qb-head-right">
           <div class="qb-doctitle">QUOTATION</div>
-          <div class="qb-meta"><span>Quotation No.</span><strong id="p-quote-no">—</strong></div>
-          <div class="qb-meta"><span>Date</span><strong id="p-quote-date">—</strong></div>
-          <div class="qb-meta"><span>Valid Until</span><strong id="p-valid-until">—</strong></div>
+          <div class="qb-meta"><span>Quotation No.</span><strong id="p-quote-no">-</strong></div>
+          <div class="qb-meta"><span>Date</span><strong id="p-quote-date">-</strong></div>
+          <div class="qb-meta"><span>Valid Until</span><strong id="p-valid-until">-</strong></div>
           <div class="qb-status-row"><span class="tool-badge tool-badge-neutral" id="p-status-badge">Draft</span></div>
         </div>
       </div>
@@ -117,7 +117,7 @@
         <div class="tool-panel-title" style="margin-bottom:6px;">Quote To</div>
         <div class="qb-buyer-name" id="p-buyer-name">Customer Name</div>
         <div class="qb-seller-meta" id="p-buyer-addr">Customer address</div>
-        <div class="qb-seller-meta" id="p-buyer-gstin">GSTIN: —</div>
+        <div class="qb-seller-meta" id="p-buyer-gstin">GSTIN:-</div>
       </div>
 
       <table class="qb-table">
@@ -157,7 +157,7 @@
         </div>
       </div>
 
-      <p class="qb-disclaimer">This is an estimate, not a tax invoice. Valid until <span id="p-valid-note">—</span>.</p>
+      <p class="qb-disclaimer">This is an estimate, not a tax invoice. Valid until <span id="p-valid-note">-</span>.</p>
     </div>
   </div>
 </section>
@@ -170,5 +170,6 @@
 <script src="../../js/tools-shared.js"></script>
 <script src="../../js/quotation-builder.js"></script>
 
+  <script src="../../js/tool-info.js"></script>
 </body>
 </html>

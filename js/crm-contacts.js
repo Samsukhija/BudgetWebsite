@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  // ── shared schema — DO NOT change this key or shape. The CRM Pipeline tool
+  // ── shared schema, DO NOT change this key or shape. The CRM Pipeline tool
   // reads this exact localStorage key and object shape to look up contacts. ──
   var STORAGE_KEY = 'bw_tools_crm_contacts_v1';
 
@@ -92,9 +92,9 @@
 
       tr.appendChild(tdName);
       tr.innerHTML +=
-        '<td>' + TS.escapeHtml(c.company || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(c.phone || '—') + '</td>' +
-        '<td><div class="crm-tag-pills">' + (tagsHtml || '—') + '</div></td>' +
+        '<td>' + TS.escapeHtml(c.company || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(c.phone || '-') + '</td>' +
+        '<td><div class="crm-tag-pills">' + (tagsHtml || '-') + '</div></td>' +
         '<td></td>';
 
       var tdView = tr.lastElementChild;
@@ -193,7 +193,7 @@
     if (!c) return;
     var name = els['d-name'].value.trim();
     if (!name) {
-      els['detail-save-note'].textContent = 'Name is required — not saved.';
+      els['detail-save-note'].textContent = 'Name is required, not saved.';
       return;
     }
     c.name = name;
@@ -205,7 +205,7 @@
     c.notes = els['d-notes'].value.trim();
     persist();
     renderList();
-    els['detail-save-note'].textContent = 'Saved — ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+    els['detail-save-note'].textContent = 'Saved-' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
   }
 
   ['d-name', 'd-company', 'd-phone', 'd-email', 'd-tags', 'd-address', 'd-notes'].forEach(function (id) {
@@ -307,7 +307,7 @@
       alert('No contacts to export yet.');
       return;
     }
-    // Flattened CSV — intentionally excludes interactions (they're a nested
+    // Flattened CSV, intentionally excludes interactions (they're a nested
     // history list, not a flat field; view a contact to see them).
     var headers = [
       { key: 'name', label: 'Name' },

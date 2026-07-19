@@ -2,8 +2,8 @@
    No backend, no cost to budgetwebsite.store: the visitor pastes their own
    API key, it's stored ONLY in their browser's localStorage, and requests
    go directly from their browser to the provider. We never see the key or
-   the traffic. OpenRouter is the default provider because — unlike the
-   OpenAI/Anthropic APIs — it permits direct in-browser (CORS) calls with a
+   the traffic. OpenRouter is the default provider because, unlike the
+   OpenAI/Anthropic APIs, it permits direct in-browser (CORS) calls with a
    single key that fans out to many models. */
 window.AIShared = (function () {
   'use strict';
@@ -13,10 +13,10 @@ window.AIShared = (function () {
 
   // Curated cheap-but-capable defaults. Users can type any OpenRouter model id.
   var MODELS = [
-    { id: 'openai/gpt-4o-mini', label: 'GPT-4o mini — cheap, fast, reliable (recommended)' },
-    { id: 'anthropic/claude-3.5-haiku', label: 'Claude 3.5 Haiku — strong writing' },
-    { id: 'google/gemini-flash-1.5', label: 'Gemini 1.5 Flash — very cheap' },
-    { id: 'meta-llama/llama-3.1-8b-instruct', label: 'Llama 3.1 8B — cheapest' }
+    { id: 'openai/gpt-4o-mini', label: 'GPT-4o mini, cheap, fast, reliable (recommended)' },
+    { id: 'anthropic/claude-3.5-haiku', label: 'Claude 3.5 Haiku, strong writing' },
+    { id: 'google/gemini-flash-1.5', label: 'Gemini 1.5 Flash, very cheap' },
+    { id: 'meta-llama/llama-3.1-8b-instruct', label: 'Llama 3.1 8B, cheapest' }
   ];
   var DEFAULT_MODEL = 'openai/gpt-4o-mini';
 
@@ -71,7 +71,7 @@ window.AIShared = (function () {
             '<button type="button" class="btn-primary btn-sm" id="ai-key-save">Save</button>' +
             '<a href="https://openrouter.ai/keys" target="_blank" rel="noopener" class="ai-settings-link">Get a free key →</a>' +
           '</div>' +
-          '<p class="ai-settings-note">Stored only in this browser and sent straight to OpenRouter — never to us. You pay OpenRouter directly for usage (typically a fraction of a rupee per generation).</p>' +
+          '<p class="ai-settings-note">Stored only in this browser and sent straight to OpenRouter, never to us. You pay OpenRouter directly for usage (typically a fraction of a rupee per generation).</p>' +
         '</div>' +
       '</div>';
 
@@ -119,7 +119,7 @@ window.AIShared = (function () {
   function friendlyError(status, bodyText) {
     if (status === 401) return 'Your API key was rejected. Check it in AI settings and try again.';
     if (status === 402) return 'Your OpenRouter account is out of credit. Top up at openrouter.ai and retry.';
-    if (status === 429) return 'Too many requests right now — wait a few seconds and try again.';
+    if (status === 429) return 'Too many requests right now, wait a few seconds and try again.';
     if (status >= 500) return 'The AI provider had a temporary error. Try again in a moment.';
     var detail = '';
     try { detail = (JSON.parse(bodyText).error || {}).message || ''; } catch (e) {}

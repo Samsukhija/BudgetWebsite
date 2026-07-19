@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────
    Google My Business Post Writer
-   BYOK AI tool — generates two Google Business
+   BYOK AI tool, generates two Google Business
    Profile post options for Indian small businesses.
 ───────────────────────────────────────────── */
 (function () {
@@ -34,18 +34,18 @@
   function buildSystem() {
     return [
       "You are an expert Indian small-business copywriter who writes Google Business Profile (Google My Business) posts that get local customers to call, book and walk in.",
-      "You write for small businesses across India — dentists, retailers, salons, manufacturers, tuition classes, restaurants, consultants and the like. Your reader is a busy owner who will paste your post straight into Google.",
+      "You write for small businesses across India, dentists, retailers, salons, manufacturers, tuition classes, restaurants, consultants and the like. Your reader is a busy owner who will paste your post straight into Google.",
       "",
       "How a great GBP post works:",
-      "- Google shows only the first ~100 characters before a 'Read more' cut, so the FIRST line must be a self-contained hook that makes someone stop scrolling. Put the offer, benefit or news up front — never a slow build-up.",
+      "- Google shows only the first ~100 characters before a 'Read more' cut, so the FIRST line must be a self-contained hook that makes someone stop scrolling. Put the offer, benefit or news up front, never a slow build-up.",
       "- Keep the whole post tight: roughly 40-80 words. GBP allows ~1500 characters but short posts win. No fluff, no corporate padding.",
       "- Write in warm, natural Indian English the way a shop owner speaks to a regular customer. Prices in rupees using the ₹ symbol. Reference Indian festivals, seasons and local context when relevant.",
-      "- Weave the TYPE of business and, if natural, the city/locality into the copy so it helps local search (local SEO) — e.g. 'your neighbourhood dental clinic', 'Andheri's favourite'. Do this naturally, never keyword-stuff.",
-      "- End with one short line that clearly implies the chosen call-to-action button (e.g. for 'Call now' -> 'Call us today to book your slot.'). Do NOT invent phone numbers, links, addresses or fake discounts — only use details the owner gave you.",
+      "- Weave the TYPE of business and, if natural, the city/locality into the copy so it helps local search (local SEO), e.g. 'your neighbourhood dental clinic', 'Andheri's favourite'. Do this naturally, never keyword-stuff.",
+      "- End with one short line that clearly implies the chosen call-to-action button (e.g. for 'Call now' -> 'Call us today to book your slot.'). Do NOT invent phone numbers, links, addresses or fake discounts, only use details the owner gave you.",
       "- Match the post type: What's New = news/update, Offer = a clear deal with the terms, Event = what/when/why-come, Product highlight = one product and why it's worth buying.",
       "- Do NOT use hashtags. Do NOT use markdown, asterisks or headings. Plain text only, ready to paste.",
       "",
-      "Return EXACTLY TWO post options with two distinct angles. Output ONLY the two posts separated by a line containing only three equals signs (===). No numbering, no labels, no preamble, no commentary — just: post one, then a line with ===, then post two."
+      "Return EXACTLY TWO post options with two distinct angles. Output ONLY the two posts separated by a line containing only three equals signs (===). No numbering, no labels, no preamble, no commentary, just: post one, then a line with ===, then post two."
     ].join('\n');
   }
 
@@ -56,8 +56,8 @@
     lines.push('What the post is about: ' + f.about);
     lines.push('Call-to-action button chosen: ' + f.cta);
     lines.push('Use emoji: ' + (f.emoji
-      ? 'Yes — use 1-3 tasteful, relevant emoji, not more.'
-      : 'No — do not use any emoji at all.'));
+      ? 'Yes, use 1-3 tasteful, relevant emoji, not more.'
+      : 'No, do not use any emoji at all.'));
     lines.push('');
     lines.push('Write the two Google Business Profile posts now, following all the rules.');
     return lines.join('\n');

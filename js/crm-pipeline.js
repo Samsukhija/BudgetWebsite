@@ -3,7 +3,7 @@
 
   var TS = window.ToolsShared;
   var OWN_KEY = 'bw_tools_crm_pipeline_v1';
-  var CONTACTS_KEY = 'bw_tools_crm_contacts_v1'; // owned by CRM Contacts tool — READ ONLY here
+  var CONTACTS_KEY = 'bw_tools_crm_contacts_v1'; // owned by CRM Contacts tool, READ ONLY here
 
   var STAGES = ['New', 'Contacted', 'Quoted', 'Won', 'Lost'];
 
@@ -29,7 +29,7 @@
   }
   function contactLabel(c) {
     var name = (c.name || 'Unnamed contact').trim() || 'Unnamed contact';
-    return c.company ? name + ' — ' + c.company : name;
+    return c.company ? name + '-' + c.company : name;
   }
 
   // ── stats ──
@@ -193,7 +193,7 @@
     if (contacts.length === 0) {
       els['contact-picker-wrap'].querySelector('label').style.display = 'none';
       els['contact-hint'].style.display = '';
-      els['contact-hint'].textContent = 'No contacts yet — add one in the CRM Contacts tool first.';
+      els['contact-hint'].textContent = 'No contacts yet, add one in the CRM Contacts tool first.';
       els['f-name-fallback-wrap'].style.display = '';
       els['f-contact-name-freetext'].disabled = false;
       els['f-contact-name-freetext'].value = freetextValue || '';
@@ -206,7 +206,7 @@
 
     var opt0 = document.createElement('option');
     opt0.value = '';
-    opt0.textContent = '— Type a name instead —';
+    opt0.textContent = '-Type a name instead-';
     select.appendChild(opt0);
     contacts.forEach(function (c) {
       var opt = document.createElement('option');

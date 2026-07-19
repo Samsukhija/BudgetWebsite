@@ -159,11 +159,11 @@
         : TS.escapeHtml(TS.formatMoney(v.outstanding || 0));
 
       tr.innerHTML =
-        '<td class="vt-cell-truncate" title="' + TS.escapeHtml(v.name) + '">' + TS.escapeHtml(v.name || '—') + '</td>' +
-        '<td class="vt-cell-truncate" title="' + TS.escapeHtml(v.contactPerson || '') + '">' + TS.escapeHtml(v.contactPerson || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(v.phone || '—') + '</td>' +
-        '<td class="vt-cell-truncate" title="' + TS.escapeHtml(v.category || '') + '">' + TS.escapeHtml(v.category || '—') + '</td>' +
-        '<td>' + TS.escapeHtml(v.paymentTerms || '—') + '</td>' +
+        '<td class="vt-cell-truncate" title="' + TS.escapeHtml(v.name) + '">' + TS.escapeHtml(v.name || '-') + '</td>' +
+        '<td class="vt-cell-truncate" title="' + TS.escapeHtml(v.contactPerson || '') + '">' + TS.escapeHtml(v.contactPerson || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(v.phone || '-') + '</td>' +
+        '<td class="vt-cell-truncate" title="' + TS.escapeHtml(v.category || '') + '">' + TS.escapeHtml(v.category || '-') + '</td>' +
+        '<td>' + TS.escapeHtml(v.paymentTerms || '-') + '</td>' +
         '<td>' + outstandingBadge + '</td>' +
         '<td><div class="vt-row-actions">' +
           '<button type="button" class="btn-ghost btn-sm" data-action="edit" data-id="' + v.id + '">Edit</button>' +

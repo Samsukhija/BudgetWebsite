@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────
-   TOOLS — shared base for CRUD-style /tools/* pages
-   (GST Invoice's tools.css stays separate — it's a
+   TOOLS, shared base for CRUD-style /tools/* pages
+   (GST Invoice's tools.css stays separate, it's a
    print-document layout, not a CRUD app layout.)
 ───────────────────────────────────────────── */
 

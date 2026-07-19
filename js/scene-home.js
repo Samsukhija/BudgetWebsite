@@ -1,4 +1,4 @@
-// scene-home.js — three.js hero scene + five-act scroll choreography.
+// scene-home.js, three.js hero scene + five-act scroll choreography.
 // Only runs on window.BW_TIER === 'full' (set by js/perf-gate.js). The CSS
 // fallback (.grad-bg alone, #scene-canvas hidden) is the intentional static
 // experience and needs zero help from this file.
@@ -21,7 +21,7 @@ import * as THREE from '../vendor/three.module.min.js';
   try {
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: true });
   } catch (e) {
-    return; // context creation failed outright — leave the CSS fallback in place
+    return; // context creation failed outright, leave the CSS fallback in place
   }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(0x000000, 0);
@@ -42,7 +42,7 @@ import * as THREE from '../vendor/three.module.min.js';
         if (raw.indexOf(flags[i]) !== -1) return raw;
       }
       return null;
-    } catch (e) { return null; } // extension unavailable/blocked — can't tell, proceed normally
+    } catch (e) { return null; } // extension unavailable/blocked, can't tell, proceed normally
   }
   var softwareRenderer = detectSoftwareRenderer();
   if (softwareRenderer) {
@@ -182,13 +182,13 @@ import * as THREE from '../vendor/three.module.min.js';
       depthWrite: false,
       blending: THREE.AdditiveBlending,
       fog: false // the scene fog would otherwise wash this out at the pulled-back
-                 // camera distance reached by the end of the scroll choreography —
+                 // camera distance reached by the end of the scroll choreography-
                  // the glow is meant to punch through the recede, not fade with it
     });
     glowSprite = new THREE.Sprite(mat);
     glowSprite.scale.set(3, 3, 1);
     glowSprite.position.set(0, 0, -3);
-    scene.add(glowSprite); // outside rig — stays camera-facing, not part of pointer parallax drift
+    scene.add(glowSprite); // outside rig, stays camera-facing, not part of pointer parallax drift
   }
 
   // ---- pointer parallax -----------------------------------------------
@@ -242,7 +242,7 @@ import * as THREE from '../vendor/three.module.min.js';
   var io = null; // IntersectionObserver, hoisted so downgradeToStatic() can disconnect it
 
   function updateRunState() {
-    // once torn down (permanent downgrade), never allow the loop to restart —
+    // once torn down (permanent downgrade), never allow the loop to restart-
     // a late-firing visibilitychange or IntersectionObserver callback must not
     // resurrect requestAnimationFrame(tick) against a disposed renderer.
     if (torn) {
@@ -298,7 +298,7 @@ import * as THREE from '../vendor/three.module.min.js';
   }
 
   // frees GPU-side geometry/material/texture buffers for everything left in
-  // the scene graph — renderer.dispose() alone only clears the renderer's
+  // the scene graph, renderer.dispose() alone only clears the renderer's
   // own internal caches, not the objects still parented under `scene`.
   function disposeSceneResources() {
     scene.traverse(function (obj) {
@@ -323,7 +323,7 @@ import * as THREE from '../vendor/three.module.min.js';
     canvas.style.display = 'none';
     // motion.js may have left .reveal elements at opacity:0 (inline style,
     // which beats the [data-tier="static"] CSS rule) waiting for a scroll
-    // trigger that assumed full tier — force them visible directly.
+    // trigger that assumed full tier, force them visible directly.
     document.querySelectorAll('.reveal').forEach(function (el) {
       el.style.opacity = 1; el.style.transform = 'none';
     });
@@ -331,7 +331,7 @@ import * as THREE from '../vendor/three.module.min.js';
     // applies its {opacity:0, y:24} "from" state synchronously the moment it's
     // called, before the scroll trigger ever fires. If tier flips to static
     // AFTER that (this downgrade), those children are stuck invisible until
-    // scrolled into view — which defeats "static tier = show everything
+    // scrolled into view, which defeats "static tier = show everything
     // immediately, no motion." Force them visible too.
     document.querySelectorAll('[data-stagger] > *').forEach(function (el) {
       el.style.opacity = 1; el.style.transform = 'none';
@@ -345,7 +345,7 @@ import * as THREE from '../vendor/three.module.min.js';
       });
     }
     scrollTriggers.forEach(function (st) { try { st.kill(); } catch (e) {} });
-    // disconnect the event sources that call updateRunState() — belt-and-
+    // disconnect the event sources that call updateRunState(), belt-and-
     // braces alongside the `torn` guard so they can't even fire again.
     if (io) { try { io.disconnect(); } catch (e) {} }
     document.removeEventListener('visibilitychange', onVisibilityChange);
@@ -355,7 +355,7 @@ import * as THREE from '../vendor/three.module.min.js';
 
   // ---- render loop -----------------------------------------------------
   var clock = new THREE.Clock();
-  var clockStarted = false; // clock.start() resets elapsedTime to 0 — only do it once,
+  var clockStarted = false; // clock.start() resets elapsedTime to 0, only do it once,
                              // so pause/resume (tab refocus, scroll in/out) doesn't snap
                              // the camera dolly / particle rotation phase back to the start
 

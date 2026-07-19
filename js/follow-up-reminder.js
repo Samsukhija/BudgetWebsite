@@ -12,7 +12,7 @@
   var reminders = TS.loadJSON(STORAGE_KEY, []);
   if (!Array.isArray(reminders)) reminders = [];
 
-  // Notified-this-session tracker — intentionally NOT persisted (per-session only).
+  // Notified-this-session tracker, intentionally NOT persisted (per-session only).
   var notifiedIds = new Set();
 
   function save() {
@@ -65,7 +65,7 @@
 
     if (!visible.length) {
       var tr = document.createElement('tr');
-      tr.innerHTML = '<td colspan="5" class="tool-empty" style="padding:24px;">All caught up — nothing pending. ' +
+      tr.innerHTML = '<td colspan="5" class="tool-empty" style="padding:24px;">All caught up, nothing pending. ' +
         (done.length ? 'Check "Show completed" to see finished follow-ups.' : '') + '</td>';
       els['tbl-body'].appendChild(tr);
       renderStats(pending, snoozed, done);
@@ -84,7 +84,7 @@
           (r.phone ? '<br><span style="color:var(--text-dim); font-size:calc(12px * var(--font-scale));">' + TS.escapeHtml(r.phone) + '</span>' : '') +
         '</td>' +
         '<td>' + TS.escapeHtml(formatDue(r)) + '</td>' +
-        '<td>' + TS.escapeHtml(r.note || '—') + '</td>' +
+        '<td>' + TS.escapeHtml(r.note || '-') + '</td>' +
         '<td>' + statusBadge(r) + '</td>' +
         '<td></td>';
 
@@ -205,7 +205,7 @@
     render();
   }
 
-  // ── browser notifications (progressive enhancement — must never throw) ──
+  // ── browser notifications (progressive enhancement, must never throw) ──
   function setupNotifications() {
     try {
       if (typeof Notification === 'undefined') return;
@@ -217,7 +217,7 @@
             els['notify-status'].textContent = '🔔 Reminders enabled on this device';
           } else if (Notification.permission === 'denied') {
             els['btn-notify'].style.display = 'none';
-            els['notify-status'].textContent = 'Notifications blocked — enable them in your browser settings to get reminders.';
+            els['notify-status'].textContent = 'Notifications blocked, enable them in your browser settings to get reminders.';
           } else {
             els['btn-notify'].style.display = '';
             els['notify-status'].textContent = '';
@@ -246,7 +246,7 @@
             var due = new Date(r.dueDate + 'T' + (r.dueTime || '00:00') + ':00').getTime();
             if (isNaN(due)) return;
             var diffMs = now - due;
-            // Fire only for items that just became due — within the last 5 minutes —
+            // Fire only for items that just became due, within the last 5 minutes-
             // so we don't spam notifications for every old overdue item on load.
             if (diffMs >= 0 && diffMs <= 5 * 60 * 1000) {
               try {
@@ -263,7 +263,7 @@
       checkDueNotifications();
       setInterval(checkDueNotifications, 60000);
     } catch (e) {
-      // Notification API unsupported or blocked — degrade silently, no reminders.
+      // Notification API unsupported or blocked, degrade silently, no reminders.
     }
   }
 

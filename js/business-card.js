@@ -91,7 +91,7 @@
 
   function save() {
     window.ToolsShared.saveJSON(STORAGE_KEY, record);
-    els['bc-savenote'].textContent = 'Saved on this device — ' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+    els['bc-savenote'].textContent = 'Saved on this device-' + new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
   }
 
   function scheduleUpdate() {
@@ -150,7 +150,7 @@
       if (window.QRCode && window.QRCode.CorrectLevel) opts.correctLevel = window.QRCode.CorrectLevel.M;
       new window.QRCode(el, opts);
     } catch (e) {
-      el.innerHTML = '<div class="tool-empty" style="padding:20px 10px;">Card details are too long to fit in a QR code — try shortening the address. The .vcf download still works.</div>';
+      el.innerHTML = '<div class="tool-empty" style="padding:20px 10px;">Card details are too long to fit in a QR code, try shortening the address. The .vcf download still works.</div>';
     }
   }
 

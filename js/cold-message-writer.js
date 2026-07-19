@@ -1,4 +1,4 @@
-/* Cold Message Writer — BYOK AI tool.
+/* Cold Message Writer, BYOK AI tool.
    Generates THREE distinct short cold messages tuned to the chosen channel,
    goal and tone, each in its own copyable card. All AI goes through
    window.AIShared (the visitor's own OpenRouter key). */
@@ -39,10 +39,10 @@
   /* ── prompt building ── */
   var SYSTEM_PROMPT =
     "You are an expert Indian small-business copywriter who writes cold outreach messages " +
-    "for members of a BNI networking chapter in Mumbai — dentists, retailers, manufacturers, " +
+    "for members of a BNI networking chapter in Mumbai, dentists, retailers, manufacturers, " +
     "consultants, chartered accountants, salon owners, and similar local business owners.\n\n" +
     "Your job: write short, genuinely personal cold messages that get a reply. You write the way " +
-    "a real, well-mannered Indian business owner texts — natural Indian English, warm but not " +
+    "a real, well-mannered Indian business owner texts, natural Indian English, warm but not " +
     "servile, confident but never salesy.\n\n" +
     "Hard rules:\n" +
     "- Sound like a specific human wrote it to a specific person. Reference concrete details from " +
@@ -81,7 +81,7 @@
       'RECIPIENT / who is being messaged:',
       (els.target.value.trim() || '(not specified)'),
       '',
-      'GOAL: ' + els.goal.value + ' — ' + (goalHints[els.goal.value] || ''),
+      'GOAL: ' + els.goal.value + '-' + (goalHints[els.goal.value] || ''),
       'CHANNEL: ' + els.channel.value + ' (format strictly for this channel).',
       'TONE: ' + els.tone.value + '.'
     ].join('\n');
@@ -200,7 +200,7 @@
 
   els.copyAll.addEventListener('click', function () {
     var parts = lastFull.split(SEP).map(function (p) { return p.trim(); }).filter(function (p) { return p.length; });
-    var joined = parts.map(function (p, i) { return 'Option ' + (i + 1) + ':\n' + p; }).join('\n\n———\n\n');
+    var joined = parts.map(function (p, i) { return 'Option ' + (i + 1) + ':\n' + p; }).join('\n\n---\n\n');
     copyText(els.copyAll, joined || lastFull.trim());
   });
 

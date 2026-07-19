@@ -60,10 +60,10 @@
       var tr = document.createElement('tr');
       tr.innerHTML =
         '<td>' + esc(it.name) + '</td>' +
-        '<td>' + esc(it.sku || '—') + '</td>' +
-        '<td>' + esc(it.category || '—') + '</td>' +
+        '<td>' + esc(it.sku || '-') + '</td>' +
+        '<td>' + esc(it.category || '-') + '</td>' +
         '<td>' + it.qty + (isLow ? ' <span class="tool-badge tool-badge-warn">Low Stock</span>' : '') + '</td>' +
-        '<td>' + esc(it.unit || '—') + '</td>' +
+        '<td>' + esc(it.unit || '-') + '</td>' +
         '<td>' + money(it.costPrice) + '</td>' +
         '<td>' + money(it.sellPrice) + '</td>' +
         '<td class="tool-actions-cell">' +
@@ -129,7 +129,7 @@
 
     var actualChange = proposedQty - currentQty;
     if (actualChange === 0) {
-      alert('Stock is already at 0 — nothing to remove.');
+      alert('Stock is already at 0, nothing to remove.');
       return;
     }
 
@@ -150,7 +150,7 @@
     renderAll();
 
     if (clamped) {
-      alert('That change would have taken stock below 0, so it was clamped — quantity is now 0 (recorded change: ' + actualChange + ').');
+      alert('That change would have taken stock below 0, so it was clamped, quantity is now 0 (recorded change: ' + actualChange + ').');
     }
   }
 
@@ -181,7 +181,7 @@
         '<td>' + TS.formatDateDisplay(mv.date) + '</td>' +
         '<td>' + sign + mv.qtyChange + '</td>' +
         '<td>' + esc(mv.reason) + '</td>' +
-        '<td>' + esc(mv.note || '—') + '</td>';
+        '<td>' + esc(mv.note || '-') + '</td>';
       tbody.appendChild(tr);
     });
   }
