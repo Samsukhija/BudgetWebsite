@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Card Scanner + Contact Saver | Budget Website Tools</title>
+<meta name="description" content="Snap a photo of any business card and let AI pull out the name, company, phone and email — then save it and download a .vcf straight into your phone's contacts. No typing.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="../ai.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Business Card Scanner</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Snap the card.<br><span class="accent">Skip the typing.</span></h1>
+  <p class="section-sub">Point your phone at a business card, let the AI read it, fix anything it got wrong, and save the contact — then download a .vcf that drops straight into your phone.</p>
+</section>
+
+<section class="tool-app">
+
+  <div id="ai-settings-mount"></div>
+
+  <!-- Step 1: upload / capture -->
+  <div class="tool-panel">
+    <div class="tool-panel-title">1 · Upload or Photograph the Card</div>
+
+    <label class="bcs-drop" id="bcs-drop">
+      <input type="file" id="bcs-file" accept="image/*" capture="environment" hidden>
+      <div class="bcs-drop-inner" id="bcs-drop-inner">
+        <div class="bcs-drop-icon">📇</div>
+        <div class="bcs-drop-title">Tap to take a photo or choose an image</div>
+        <div class="bcs-drop-sub">JPG or PNG · on mobile this opens your camera</div>
+      </div>
+    </label>
+
+    <div class="bcs-preview-wrap" id="bcs-preview-wrap" hidden>
+      <img id="bcs-preview" class="bcs-preview" alt="Uploaded business card preview">
+      <button type="button" class="btn-danger btn-sm" id="bcs-clear">Remove image</button>
+    </div>
+
+    <button type="button" class="btn-primary ai-generate-btn" id="generate-btn" style="margin-top:16px;" disabled>Scan Card</button>
+    <p class="ai-hint" id="bcs-hint">Add your API key above to enable scanning.</p>
+
+    <div class="ai-error" id="ai-error"></div>
+  </div>
+
+  <!-- Step 2: extracted, editable form -->
+  <div class="tool-panel" id="bcs-result-panel" hidden>
+    <div class="ai-output-head" style="margin-top:0;">
+      <h3>2 · Check &amp; Fix the Details</h3>
+      <div class="ai-output-actions">
+        <button type="button" class="ai-copy-btn" id="bcs-copy">Copy</button>
+        <button type="button" class="ai-regen-btn" id="bcs-regen">Re-scan</button>
+      </div>
+    </div>
+    <p class="ai-hint">The AI filled these in from the photo. Correct anything before saving.</p>
+
+    <div class="tool-row tool-row-2" style="margin-top:14px;">
+      <label>Name<input type="text" id="bcs-name" placeholder="Full name"></label>
+      <label>Title / Designation<input type="text" id="bcs-title" placeholder="e.g. Managing Director"></label>
+    </div>
+    <label>Company<input type="text" id="bcs-company" placeholder="Business name"></label>
+    <div class="tool-row tool-row-2">
+      <label>Phone<input type="text" id="bcs-phone" placeholder="e.g. +91 98200 12345"></label>
+      <label>Email<input type="text" id="bcs-email" placeholder="name@company.in"></label>
+    </div>
+    <label>Website<input type="text" id="bcs-website" placeholder="e.g. www.company.in"></label>
+    <label>Address<textarea id="bcs-address" rows="2" placeholder="Shop / office address"></textarea></label>
+
+    <button type="button" class="btn-primary" id="bcs-save" style="margin-top:16px;">＋ Save Contact</button>
+  </div>
+
+  <!-- Step 3: saved contacts -->
+  <div class="tool-panel">
+    <div class="ai-output-head" style="margin-top:0;">
+      <h3>Saved Contacts</h3>
+      <div class="ai-output-actions">
+        <button type="button" class="ai-regen-btn" id="bcs-export-csv">Export all as CSV</button>
+      </div>
+    </div>
+    <p class="ai-hint">Saved only on this device. Download a .vcf to add any contact to your phone.</p>
+
+    <div class="tool-table-wrap" style="margin-top:14px;">
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bcs-list"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="bcs-empty">No saved contacts yet. Scan a card above to get started.</div>
+  </div>
+
+  <p class="ai-settings-note" style="margin-top:18px;">Scanning uses your own AI key (vision) and runs in your browser. Saved contacts never leave this device.</p>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/ai-shared.js"></script>
+<script src="../../js/business-card-scanner.js"></script>
+
+</body>
+</html>

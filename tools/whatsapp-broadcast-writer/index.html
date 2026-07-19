@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Broadcast Writer | Budget Website Tools</title>
+<meta name="description" content="Write ready-to-send WhatsApp broadcast messages for your business in seconds — offers, announcements and reminders that read like a real Indian business, with a clear CTA. Powered by your own AI key.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="../ai.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · WhatsApp Broadcast Writer</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Say it once.<br><span class="accent">Send it to everyone.</span></h1>
+  <p class="section-sub">Describe your offer, announcement or reminder — get two ready-to-send WhatsApp broadcasts that sound like your business, not a template.</p>
+</section>
+
+<section class="tool-app">
+
+  <div id="ai-settings-mount"></div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">What are you sending?</div>
+
+    <div class="tool-row tool-row-2">
+      <label>Business name<input type="text" id="f-business" placeholder="e.g. Sharma Dental Care"></label>
+      <label>Who is it going to?<input type="text" id="f-audience" placeholder="e.g. past customers, regular patients"></label>
+    </div>
+
+    <label>What is the broadcast about?
+      <textarea id="f-about" rows="3" placeholder="e.g. Diwali offer — 20% off on all teeth cleaning &amp; whitening, valid till 5 Nov. Book early, slots filling fast."></textarea>
+    </label>
+
+    <label>Call-to-action link or number (optional)
+      <input type="text" id="f-cta" placeholder="e.g. Call 98765 43210 or wa.me/919876543210">
+    </label>
+
+    <label style="display:flex;align-items:center;gap:10px;margin-top:4px;">
+      <input type="checkbox" id="f-emoji" checked style="width:auto;margin-top:0;">
+      Use a few tasteful emoji
+    </label>
+
+    <button type="button" class="btn-primary ai-generate-btn" id="generate-btn" style="margin-top:18px;">Generate 2 broadcasts</button>
+    <p class="ai-hint" id="ai-hint" style="display:none;">Add your API key above to enable AI generation.</p>
+  </div>
+
+  <div class="ai-error" id="ai-error"></div>
+
+  <div class="ai-output-head" id="output-head" style="display:none;">
+    <h3>Your broadcasts</h3>
+    <div class="ai-output-actions">
+      <button type="button" class="ai-regen-btn" id="regen-btn">↻ Regenerate</button>
+    </div>
+  </div>
+
+  <div class="ai-variation" id="var-1-wrap" style="display:none;">
+    <div class="ai-output-head" style="margin-bottom:-2px;">
+      <h3 style="font-size:calc(13px * var(--font-scale));color:var(--text-mid);">Option 1</h3>
+      <div class="ai-output-actions">
+        <button type="button" class="ai-copy-btn" id="copy-1">Copy</button>
+      </div>
+    </div>
+    <div class="ai-output" id="var-1"></div>
+  </div>
+
+  <div class="ai-variation" id="var-2-wrap" style="display:none;">
+    <div class="ai-output-head" style="margin-bottom:-2px;">
+      <h3 style="font-size:calc(13px * var(--font-scale));color:var(--text-mid);">Option 2</h3>
+      <div class="ai-output-actions">
+        <button type="button" class="ai-copy-btn" id="copy-2">Copy</button>
+      </div>
+    </div>
+    <div class="ai-output" id="var-2"></div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/ai-shared.js"></script>
+<script src="../../js/whatsapp-broadcast-writer.js"></script>
+
+</body>
+</html>

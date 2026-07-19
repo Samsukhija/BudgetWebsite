@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us Page Writer | Budget Website Tools</title>
+<meta name="description" content="Turn a few facts about your business into a warm, trust-building 'About Us' section — real website copy, not a list of facts. Powered by your own AI key.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="../ai.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · About Us Page Writer</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Your story,<br><span class="accent">told the way a customer wants to read it.</span></h1>
+  <p class="section-sub">Give the AI a few honest facts about your business. It writes a warm, ready-to-paste "About Us" section — a headline and a handful of short paragraphs that build trust and invite people in.</p>
+</section>
+
+<div class="tool-app">
+
+  <div id="ai-settings-mount"></div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">Tell us about your business</div>
+
+    <div class="tool-row tool-row-2">
+      <label>Business name
+        <input type="text" id="f-name" placeholder="e.g. Sharma Dental Care" maxlength="120">
+      </label>
+      <label>Year founded <span style="color:var(--text-dim);font-weight:400;">(optional)</span>
+        <input type="text" id="f-year" placeholder="e.g. 2012" maxlength="20">
+      </label>
+    </div>
+
+    <label>What you do
+      <input type="text" id="f-what" placeholder="e.g. Family dental clinic in Andheri — cleanings, braces, implants" maxlength="200">
+    </label>
+
+    <label>What makes you different / your story
+      <textarea id="f-story" rows="5" placeholder="Speak plainly. e.g. Started by Dr. Sharma after 10 years at a big hospital because he wanted to actually know his patients. Painless treatment, honest advice, never upsell. Most patients come from word of mouth. Open on Sundays."></textarea>
+    </label>
+
+    <label>Tone
+      <select id="f-tone">
+        <option value="warm">Warm &amp; personal</option>
+        <option value="professional">Professional &amp; established</option>
+        <option value="bold">Modern &amp; bold</option>
+      </select>
+    </label>
+
+    <div style="margin-top:18px;">
+      <button type="button" class="btn-primary ai-generate-btn" id="generate-btn">Write my About Us</button>
+      <p class="ai-hint" id="ai-hint" hidden>Add your API key above to enable the writer.</p>
+    </div>
+  </div>
+
+  <div class="ai-error" id="ai-error"></div>
+
+  <div class="ai-output-head" id="output-head" hidden>
+    <h3>Your About Us section</h3>
+    <div class="ai-output-actions">
+      <button type="button" class="ai-copy-btn" id="copy-btn">Copy</button>
+      <button type="button" class="ai-regen-btn" id="regen-btn">Regenerate</button>
+    </div>
+  </div>
+  <div class="ai-output ai-variation" id="ai-output"></div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/ai-shared.js"></script>
+<script src="../../js/about-us-writer.js"></script>
+
+</body>
+</html>

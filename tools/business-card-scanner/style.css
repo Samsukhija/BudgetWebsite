@@ -1,0 +1,41 @@
+/* ─────────────────────────────────────────────
+   Business Card Scanner — upload area + preview.
+   Everything else reuses tools-base.css + ai.css.
+───────────────────────────────────────────── */
+
+.bcs-drop {
+  display: block;
+  border: 1.5px dashed var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 0;
+}
+.bcs-drop:hover, .bcs-drop.dragover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.bcs-drop-inner {
+  padding: 40px 20px;
+  text-align: center;
+  pointer-events: none;
+}
+.bcs-drop-icon { font-size: 34px; line-height: 1; margin-bottom: 12px; }
+.bcs-drop-title {
+  font-weight: 600; color: var(--text-hi);
+  font-size: calc(14.5px * var(--font-scale)); margin-bottom: 6px;
+}
+.bcs-drop-sub { color: var(--text-dim); font-size: calc(12.5px * var(--font-scale)); }
+
+.bcs-preview-wrap {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  margin-top: 4px;
+}
+.bcs-preview {
+  max-width: 100%;
+  max-height: 260px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  display: block;
+}

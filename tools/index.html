@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Business Tools | Budget Website</title>
+<meta name="description" content="24 free business tools for Indian small businesses — GST invoicing, quotations, CRM, inventory, staff attendance, plus AI writers for WhatsApp, Instagram, reviews and more. No login, no signup, runs in your browser.">
+<link rel="canonical" href="https://www.budgetwebsite.store/tools/">
+<meta property="og:title" content="Free Business Tools | Budget Website">
+<meta property="og:description" content="24 free tools for Indian small businesses — invoicing, CRM, inventory, AI writers. No login, runs in your browser.">
+<meta property="og:image" content="https://www.budgetwebsite.store/og-card.png">
+<meta property="og:url" content="https://www.budgetwebsite.store/tools/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.budgetwebsite.store/og-card.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="index.css">
+<script src="../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<header class="tools-hero">
+  <div class="section-label">Free Tools</div>
+  <h1 class="tools-hero-title reveal">Run your business.<br><span class="accent">Not your paperwork.</span></h1>
+  <p class="tools-hero-sub">24 free tools built for Indian small businesses — invoicing, quotations, CRM, inventory, staff, and AI writers for WhatsApp, Instagram and more.</p>
+  <div class="tools-hero-badges">
+    <span class="tools-hero-badge">✓ No login, no signup</span>
+    <span class="tools-hero-badge">✓ Runs in your browser</span>
+    <span class="tools-hero-badge">✓ Your data stays on your device</span>
+  </div>
+</header>
+
+<main class="tools-directory" id="tools-directory"></main>
+
+<section class="tools-cta-band">
+  <div class="tools-cta-inner">
+    <h2 class="reveal">Want all of this built into <span class="accent">your own website?</span></h2>
+    <p>That's what we do — a professional site for your business, delivered in a day.</p>
+    <a href="/#contact" class="btn-primary">Get Your Website →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  // font-size a11y toggle (same as the rest of the site)
+  const FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    let idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+
+<script src="tools-list.js"></script>
+<script src="../vendor/gsap.min.js"></script>
+<script src="../vendor/ScrollTrigger.min.js"></script>
+<script src="../js/motion.js"></script>
+
+</body>
+</html>

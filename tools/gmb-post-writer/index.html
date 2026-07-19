@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google My Business Post Writer | Budget Website Tools</title>
+<meta name="description" content="Write scroll-stopping Google Business Profile posts in seconds — What's New, offers, events and product highlights, local-SEO friendly and WhatsApp-ready. Bring your own AI key.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="../ai.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · Google My Business Post Writer</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Show up on Google Maps.<br><span class="accent">Post like you mean it.</span></h1>
+  <p class="section-sub">Google Business Profile rewards businesses that post. Fill in the details, get two ready-to-paste posts that lead with the hook and nudge customers to act.</p>
+</section>
+
+<div class="tool-app">
+
+  <div id="ai-settings-mount"></div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">What are you posting?</div>
+    <div class="tool-row tool-row-2">
+      <label>Business Name<input type="text" id="f-biz" placeholder="e.g. Sharma Dental Care"></label>
+      <label>Post Type
+        <select id="f-type">
+          <option value="What's New">What's New (general update)</option>
+          <option value="Offer">Offer (discount / deal)</option>
+          <option value="Event">Event</option>
+          <option value="Product highlight">Product highlight</option>
+        </select>
+      </label>
+    </div>
+    <label>What's it about?<textarea id="f-about" rows="3" placeholder="e.g. Painless root canal in a single sitting, this month ₹500 off. Or: Diwali sale, 20% off all sarees till 5 Nov. Include any dates, prices, offers."></textarea></label>
+    <div class="tool-row tool-row-2">
+      <label>Call-to-action button
+        <select id="f-cta">
+          <option value="Call now">Call now</option>
+          <option value="Learn more">Learn more</option>
+          <option value="Book">Book</option>
+          <option value="Order online">Order online</option>
+          <option value="Visit us">Visit us</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:26px;">
+        <input type="checkbox" id="f-emoji" style="width:auto;margin-top:0;">
+        <span>Include emoji</span>
+      </label>
+    </div>
+    <button type="button" class="btn-primary ai-generate-btn" id="generate-btn">Generate 2 posts</button>
+    <p class="ai-hint" id="ai-hint" style="display:none;">Add your AI key above to start generating.</p>
+  </div>
+
+  <div class="ai-error" id="ai-error"></div>
+
+  <div class="ai-output-head" id="output-head" style="display:none;">
+    <h3>Your posts</h3>
+    <div class="ai-output-actions">
+      <button type="button" class="ai-regen-btn" id="regen-btn">↻ Regenerate</button>
+    </div>
+  </div>
+
+  <div class="ai-variation" id="var-1-wrap" style="display:none;">
+    <div class="ai-output-head" style="margin-bottom:-4px;">
+      <h3 style="font-size:calc(13.5px * var(--font-scale));">Option 1</h3>
+      <div class="ai-output-actions">
+        <button type="button" class="ai-copy-btn" data-copy="out-1">Copy</button>
+      </div>
+    </div>
+    <div class="ai-output" id="out-1"></div>
+  </div>
+
+  <div class="ai-variation" id="var-2-wrap" style="display:none;">
+    <div class="ai-output-head" style="margin-bottom:-4px;">
+      <h3 style="font-size:calc(13.5px * var(--font-scale));">Option 2</h3>
+      <div class="ai-output-actions">
+        <button type="button" class="ai-copy-btn" data-copy="out-2">Copy</button>
+      </div>
+    </div>
+    <div class="ai-output" id="out-2"></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/ai-shared.js"></script>
+<script src="../../js/gmb-post-writer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Blog Post Writer | Budget Website Tools</title>
+<meta name="description" content="Write a complete, SEO-friendly blog post for your business in under a minute — title, intro, subheadings, and a call-to-action. Bring your own AI key.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../tools-base.css">
+<link rel="stylesheet" href="../ai.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/pricing/#tools" class="nav-blog-link">All Tools</a>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Tools · AI Blog Post Writer</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Fill your blog.<br><span class="accent">Watch it write itself.</span></h1>
+  <p class="section-sub">Give it a topic and your line of business. It writes a full, ready-to-publish post — title, intro, subheadings, and a call-to-action — live, word by word.</p>
+</section>
+
+<div class="tool-app">
+
+  <div id="ai-settings-mount"></div>
+
+  <div class="tool-panel">
+    <div class="tool-panel-title">What should the post be about?</div>
+
+    <label>Topic or working title
+      <input type="text" id="f-topic" placeholder="e.g. 5 signs it's time to replace your old wiring">
+    </label>
+
+    <div class="tool-row tool-row-2">
+      <label>Your business / industry
+        <input type="text" id="f-business" placeholder="e.g. Prasanna Electricals, Kolhapur">
+      </label>
+      <label>Target keyword for SEO <span style="color:var(--text-dim);">(optional)</span>
+        <input type="text" id="f-keyword" placeholder="e.g. electrician in Kolhapur">
+      </label>
+    </div>
+
+    <div class="tool-row tool-row-2">
+      <label>Length
+        <select id="f-length">
+          <option value="short">Short — around 400 words</option>
+          <option value="medium" selected>Medium — around 700 words</option>
+          <option value="long">Long — around 1200 words</option>
+        </select>
+      </label>
+      <label>Tone
+        <select id="f-tone">
+          <option value="Professional" selected>Professional</option>
+          <option value="Friendly">Friendly</option>
+          <option value="Authoritative">Authoritative</option>
+        </select>
+      </label>
+    </div>
+
+    <button type="button" class="btn-primary ai-generate-btn" id="generate-btn">Write the blog post</button>
+    <p class="ai-hint" id="ai-hint" hidden>Add your API key above to switch this on.</p>
+  </div>
+
+  <div class="ai-error" id="ai-error"></div>
+
+  <div class="ai-output-head" id="output-head" hidden>
+    <h3>Your blog post</h3>
+    <div class="ai-output-actions">
+      <button type="button" class="ai-copy-btn" id="copy-btn">Copy</button>
+      <button type="button" class="ai-regen-btn" id="regen-btn">Regenerate</button>
+    </div>
+  </div>
+  <div class="ai-output" id="ai-output"></div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/#tools" class="gallery-link">All Tools</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script src="../../js/ai-shared.js"></script>
+<script src="../../js/blog-post-writer.js"></script>
+
+</body>
+</html>
