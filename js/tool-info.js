@@ -144,6 +144,7 @@
       '.tool-info-card{background:var(--glass);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);' +
         'border:1px solid var(--glass-border);border-radius:14px;padding:22px 24px;' +
         'display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;}' +
+      '.tool-info-col-label svg{width:14px;height:14px;flex-shrink:0;}' +
       '.tool-info-col-label{font-size:calc(11px * var(--font-scale));font-weight:700;letter-spacing:0.5px;' +
         'text-transform:uppercase;color:var(--accent-text);margin-bottom:8px;display:flex;align-items:center;gap:7px;}' +
       '.tool-info-col p{font-size:calc(13.5px * var(--font-scale));color:var(--text-mid);line-height:1.6;margin:0;}' +
@@ -166,15 +167,15 @@
   wrap.innerHTML =
     '<div class="tool-info-card">' +
       '<div class="tool-info-col">' +
-        '<div class="tool-info-col-label">🎯 What it is for</div>' +
+        '<div class="tool-info-col-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4"/></svg> What it is for</div>' +
         '<p>' + esc(info.purpose) + '</p>' +
       '</div>' +
       '<div class="tool-info-col">' +
-        '<div class="tool-info-col-label">🧭 How to use it</div>' +
+        '<div class="tool-info-col-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 6 1.5 1.5L8 4.5"/><path d="m3.5 12.5 1.5 1.5L8 11"/><path d="m3.5 19 1.5 1.5L8 17.5"/><path d="M11.5 6H21M11.5 12.5H21M11.5 19H21"/></svg> How to use it</div>' +
         '<ol>' + steps + '</ol>' +
       '</div>' +
       '<div class="tool-info-col tool-info-saves">' +
-        '<div class="tool-info-col-label">💰 What it saves you</div>' +
+        '<div class="tool-info-col-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M8.5 6v5M6.5 7.5h4"/><path d="M14.5 9.7a5.5 5.5 0 1 1-4.8 9.1"/></svg> What it saves you</div>' +
         '<p>' + esc(info.saves) + '</p>' +
       '</div>' +
     '</div>';

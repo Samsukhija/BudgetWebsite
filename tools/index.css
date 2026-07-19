@@ -47,7 +47,7 @@
   border-color: var(--accent);
   box-shadow: 0 10px 40px rgba(124,58,237,0.18);
 }
-.tool-tile-icon { font-size: 30px; margin-bottom: 14px; line-height: 1; }
+.tool-tile-icon { margin-bottom: 14px; }
 .tool-tile-ai {
   position: absolute; top: 18px; right: 18px;
   font-size: 10px; font-weight: 800; letter-spacing: 0.5px;

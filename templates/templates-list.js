@@ -6,6 +6,28 @@
   var DEMO_BASE = 'https://website-project-liart.vercel.app';
   var WA_NUM = '918976587269';
 
+  var TRADE_ICONS = {
+    'gym-fitness': 'dumbbell', 'salon-beauty-parlour': 'scissors', 'car-rental-self-drive': 'car',
+    'cafe': 'coffee', 'restaurant-family-restaurant-bar': 'utensils', 'jeweller': 'gem',
+    'yoga-classes-studio': 'flower', 'diagnostic-centre-pathology-lab': 'microscope',
+    'tailor-bespoke-tailoring': 'ruler', 'clothing-boutique': 'shirt',
+    'medical-clinic-gp-specialist': 'stethoscope', 'real-estate-agency-broker': 'building',
+    'ca-firm-accounting-services': 'calculator', 'furniture-gallery-shop': 'armchair',
+    'sweet-shop-mithai-farsan': 'cookie', 'catering-services': 'chefHat',
+    'tours-travels-vehicle-hire': 'plane', 'general-hospital-policlinic': 'hospitalCross',
+    'interior-designer': 'armchair', 'bakery-cake-shop': 'cake', 'law-firm': 'scale',
+    'dental-clinic': 'tooth', 'manufacturing-industrial': 'factory', 'insurance-agent': 'shield',
+    'architect': 'compass', 'auto-repair-garage': 'wrench', 'business-consultant': 'briefcase',
+    'building-contractor': 'hammer', 'building-materials-retailer': 'layers',
+    'printing-press': 'printer', 'event-management': 'sparkles', 'wedding-planner': 'heart',
+    'vaastu-astrology': 'moonStar', 'artist-art-studio': 'palette'
+  };
+  function tradeIcon(slug) {
+    var key = slug.replace(/^\d+-/, '');
+    var name = TRADE_ICONS[key];
+    return (window.BW_ICONS && name && BW_ICONS[name]) || '';
+  }
+
   function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
   function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -46,7 +68,7 @@
     var searchText = (t.name + ' ' + t.blurb).toLowerCase();
     return '<div class="tpl-card" data-name="' + esc(searchText) + '">' +
       '<div class="tpl-card-head">' +
-        '<span class="tpl-card-icon">' + t.icon + '</span>' +
+        '<span class="tpl-card-icon icon-chip">' + tradeIcon(t.slug) + '</span>' +
         '<span class="tpl-card-num">' + pad2(t.n) + '</span>' +
       '</div>' +
       '<div class="tpl-card-name">' + esc(t.name) + '</div>' +

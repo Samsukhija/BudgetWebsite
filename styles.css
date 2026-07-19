@@ -213,7 +213,12 @@ section { padding: 90px 48px; max-width: 1200px; margin: 0 auto; }
   padding: 36px 30px; transition: transform 0.25s, box-shadow 0.25s;
 }
 .how-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.35); }
-.how-icon { font-size: calc(26px * var(--font-scale)); margin-bottom: 18px; }
+.how-icon {
+  width: 48px; height: 48px; margin-bottom: 18px;
+  background: var(--accent-dim); border: 1px solid rgba(139,92,246,0.25); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.how-icon svg { width: 22px; height: 22px; color: var(--accent-text); }
 .how-title {
   font-family: 'Fraunces', serif;
   font-weight: 700; font-size: calc(21px * var(--font-scale));
@@ -230,10 +235,11 @@ section { padding: 90px 48px; max-width: 1200px; margin: 0 auto; }
 }
 .why-card:hover { border-color: var(--accent); transform: translateY(-4px); }
 .why-icon {
-  font-size: calc(24px * var(--font-scale)); margin-bottom: 18px; width: 48px; height: 48px;
-  background: var(--accent-dim); border-radius: 10px;
+  margin-bottom: 18px; width: 48px; height: 48px;
+  background: var(--accent-dim); border: 1px solid rgba(139,92,246,0.25); border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
 }
+.why-icon svg { width: 22px; height: 22px; color: var(--accent-text); }
 .why-title {
   font-family: 'Fraunces', serif;
   font-weight: 700; font-size: calc(20px * var(--font-scale));
@@ -463,3 +469,67 @@ footer a { color: var(--text-dim); }
 .device-wall .portfolio-card { flex: 0 0 320px; scroll-snap-align: center; transform: rotateY(-14deg); transition: transform 0.35s; }
 .device-wall .portfolio-card:hover { transform: rotateY(0deg) translateZ(30px); }
 @media (max-width: 600px) { .device-wall .portfolio-card { flex-basis: 260px; } }
+
+/* ── POLISH LAYER (a11y, texture, micro-interactions) ── */
+
+/* Keyboard focus: a visible, on-brand ring everywhere. */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Text selection in brand color. */
+::selection { background: var(--accent); color: #fff; }
+
+/* Film-grain overlay: kills the flat-gradient look, adds material depth.
+   Sits above everything at very low opacity; pointer-events off. */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 2000;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Slim, dark scrollbar that belongs to the theme. */
+* { scrollbar-width: thin; scrollbar-color: rgba(139,92,246,0.35) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 100px; border: 2px solid var(--bg-deep); }
+*::-webkit-scrollbar-thumb:hover { background: rgba(139,92,246,0.5); }
+
+/* Buttons press down; links and buttons always show a pointer. */
+.btn-primary:active, .nav-cta:active, .price-cta:active, .btn-ghost:active,
+.cta-contact:active, .btn-quote:active { transform: translateY(1px); }
+a, button, select, [role="button"] { cursor: pointer; }
+
+/* Current-page marker in the nav (set aria-current="page" on the live link). */
+.nav-blog-link[aria-current="page"] { color: var(--accent-text); position: relative; }
+.nav-blog-link[aria-current="page"]::after {
+  content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: -3px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+}
+
+/* Portfolio thumbnails ease in on hover (transform only, no layout shift). */
+.portfolio-thumb img { transition: transform 0.45s cubic-bezier(0.2, 0.6, 0.2, 1); }
+.portfolio-card:hover .portfolio-thumb img { transform: scale(1.05); }
+
+/* Shared icon chip for SVG glyphs (tools, templates). */
+.icon-chip {
+  width: 46px; height: 46px;
+  background: var(--accent-dim); border: 1px solid rgba(139,92,246,0.25); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.icon-chip svg { width: 21px; height: 21px; color: var(--accent-text); }
+
+/* Respect reduced motion globally, not just in the hero. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
