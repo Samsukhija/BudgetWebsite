@@ -3,13 +3,12 @@
    Each card: tier-1 glimpse thumbnail, icon, per-trade accent, name, blurb,
    then a tier accordion built from the trade's ACTUAL built tiers (18 trades
    have four, 16 have three; no greyed-out rows). Every tier 1-3 panel shows
-   a real screenshot of the local build. Nothing links out yet: the new
-   generation is not publicly deployed, so panels say "Demo link coming
-   soon" with a WhatsApp fallback. When hosting is decided, set DEMO_BASE
-   and flip `linkable` in templates-data.js and the demo links + clickable
-   glimpses come back on their existing code path. */
+   a real screenshot AND links to the live demo (tiers 1-3 for all 34 trades
+   deployed 2026-07-19 to website-project-liart.vercel.app). Tier 4 is a
+   separate Next.js app per trade, not part of this static deploy, so it
+   always shows the "discuss on WhatsApp" panel regardless of `linkable`. */
 (function () {
-  var DEMO_BASE = '';   // set when the new builds are deployed
+  var DEMO_BASE = 'https://website-project-liart.vercel.app'; // deployed 2026-07-19, tiers 1-3, all 34 trades
   var WA_NUM = '918976587269';
 
   var TRADE_ICONS = {
@@ -98,10 +97,12 @@
       '</div>';
     }).join('');
     var searchText = (t.name + ' ' + t.blurb + ' ' + (CATS[t.n] || '')).toLowerCase();
+    var thumbImg = '<img src="glimpses/' + t.slug + '-tier-1.jpg" alt="' + esc(t.name) + ' template preview" loading="lazy" width="640" height="400">';
+    var thumb = (t.linkable && DEMO_BASE)
+      ? '<a class="tpl-card-thumb" href="' + DEMO_BASE + '/' + t.slug + '/tier-1/" target="_blank" rel="noopener" aria-label="Open the ' + esc(t.name) + ' Tier 1 live demo">' + thumbImg + '</a>'
+      : '<div class="tpl-card-thumb">' + thumbImg + '</div>';
     return '<div class="tpl-card" data-name="' + esc(searchText) + '" data-cat="' + esc(CATS[t.n] || '') + '" style="--tacc:' + esc(t.accent) + ';">' +
-      '<div class="tpl-card-thumb">' +
-        '<img src="glimpses/' + t.slug + '-tier-1.jpg" alt="' + esc(t.name) + ' template preview" loading="lazy" width="640" height="400">' +
-      '</div>' +
+      thumb +
       '<div class="tpl-card-head">' +
         '<span class="tpl-card-icon icon-chip">' + tradeIcon(t.slug) + '</span>' +
         '<span class="tpl-card-num"><i class="tpl-card-dot"></i>' + pad2(t.n) + '</span>' +

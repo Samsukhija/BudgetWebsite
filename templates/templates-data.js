@@ -1,9 +1,11 @@
 /* Generated from the Website Factory catalog dataset
    (Website Project/docs/budget-website-catalog-data.json) by gen-data.py.
-   Do not hand-edit; re-run the generator instead. Tier 1 shown as
+   Do not hand-edit; re-run the generator instead (python3 gen-data.py,
+   from any directory -- the output path is absolute). Tier 1 shown as
    Rs 8,000 per the site ladder (dataset says Rs 10,000; flagged).
-   linkable:false everywhere until the new builds are publicly
-   deployed; glimpses are real screenshots of the local builds. */
+   linkable:true for tiers 1-3, all 34 trades, deployed 2026-07-19 to
+   website-project-liart.vercel.app; glimpses are real screenshots of
+   those same local builds pre-deploy. */
 var LEDGER = [
  {
   "n": 1,
@@ -11,7 +13,7 @@ var LEDGER = [
   "name": "Gym & Fitness Centre",
   "blurb": "Free-trial funnel, batch timings, certified-trainer badges, transformation gallery.",
   "accent": "#F97316",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -65,7 +67,7 @@ var LEDGER = [
   "name": "Salon & Beauty Parlour",
   "blurb": "Bridal packages, before/after gallery, WhatsApp booking, hygiene trust signals.",
   "accent": "#DB2777",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -119,7 +121,7 @@ var LEDGER = [
   "name": "Car Rental / Self-Drive",
   "blurb": "Fleet tariffs, KYC & deposit terms, outstation and wedding packages.",
   "accent": "#1E293B",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -173,7 +175,7 @@ var LEDGER = [
   "name": "Cafe",
   "blurb": "Priced menu, ambience story, Zomato/Swiggy hand-off, event nights.",
   "accent": "#78350F",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -227,7 +229,7 @@ var LEDGER = [
   "name": "Restaurant & Family Bar",
   "blurb": "Full menu, banquet-hall booking, catering add-on, FSSAI trust.",
   "accent": "#DC2626",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -281,7 +283,7 @@ var LEDGER = [
   "name": "Jeweller",
   "blurb": "BIS hallmark trust, daily gold rate, old-gold exchange, custom orders.",
   "accent": "#1C1917",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -335,7 +337,7 @@ var LEDGER = [
   "name": "Yoga Classes / Studio",
   "blurb": "Batch schedule, certified-instructor bios, free trial class.",
   "accent": "#EC4899",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -389,7 +391,7 @@ var LEDGER = [
   "name": "Diagnostic Centre / Lab",
   "blurb": "Searchable test catalog, NABL trust, home sample collection.",
   "accent": "#0891B2",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -443,7 +445,7 @@ var LEDGER = [
   "name": "Tailor / Bespoke Tailoring",
   "blurb": "Since-YYYY heritage, portfolio gallery, measurement-appointment booking.",
   "accent": "#2563EB",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -497,7 +499,7 @@ var LEDGER = [
   "name": "Clothing Boutique",
   "blurb": "Lookbook, custom stitching, live Instagram feed, WhatsApp ordering.",
   "accent": "#18181B",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -551,7 +553,7 @@ var LEDGER = [
   "name": "Medical Clinic (GP / Specialist)",
   "blurb": "Doctor credentials, OPD timings, appointment booking.",
   "accent": "#0891B2",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -605,7 +607,7 @@ var LEDGER = [
   "name": "Real Estate Agency / Broker",
   "blurb": "RERA trust, property listings, per-listing enquiry forms.",
   "accent": "#0F766E",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -659,7 +661,7 @@ var LEDGER = [
   "name": "CA Firm / Accounting Services",
   "blurb": "Service menu, ICAI credibility, compliance-calendar resource.",
   "accent": "#F59E0B",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -713,7 +715,7 @@ var LEDGER = [
   "name": "Furniture Gallery / Shop",
   "blurb": "Room-wise gallery, custom orders, showroom-visit booking.",
   "accent": "#18181B",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -767,7 +769,7 @@ var LEDGER = [
   "name": "Sweet Shop / Mithai & Farsan",
   "blurb": "Per-kg pricing, FSSAI trust, festival gifting boxes.",
   "accent": "#78350F",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -821,7 +823,7 @@ var LEDGER = [
   "name": "Catering Services",
   "blurb": "Per-plate pricing tiers, past-event gallery, tasting appointment.",
   "accent": "#DB2777",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -875,7 +877,7 @@ var LEDGER = [
   "name": "Tours & Travels / Vehicle Hire",
   "blurb": "Fleet & tariff tables, popular routes, booking enquiry.",
   "accent": "#6366F1",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -928,7 +930,7 @@ var LEDGER = [
   "name": "General Hospital & Polyclinic",
   "blurb": "Department directory, NABH trust, 24×7 emergency banner.",
   "accent": "#0F766E",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -982,7 +984,7 @@ var LEDGER = [
   "name": "Interior Designer",
   "blurb": "Room-budget estimator, portfolio by style/budget, turnkey vs design-only clarity.",
   "accent": "#3E2A1F",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1025,7 +1027,7 @@ var LEDGER = [
   "name": "Bakery / Cake Shop",
   "blurb": "Custom-cake price estimator, eggless/egg labelling, lead-time-aware order scheduling.",
   "accent": "#7C2D42",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1068,7 +1070,7 @@ var LEDGER = [
   "name": "Lawyer / Law Firm",
   "blurb": "BCI-compliant, factual-only site: consultation-fee estimator, practice-area guide, zero testimonials.",
   "accent": "#1C2833",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1111,7 +1113,7 @@ var LEDGER = [
   "name": "Dentist / Dental Clinic",
   "blurb": "Treatment-cost estimator, sterilisation trust module, symptom-to-treatment guide.",
   "accent": "#0EA5E9",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1154,7 +1156,7 @@ var LEDGER = [
   "name": "Manufacturing / Industrial",
   "blurb": "Filterable capability catalog, multi-step RFQ configurator, lead-time estimator.",
   "accent": "#37474F",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1197,7 +1199,7 @@ var LEDGER = [
   "name": "Insurance Agent",
   "blurb": "IRDAI-compliant, cover-need calculator, illustrative premium estimator, claim-process guide.",
   "accent": "#0B3D66",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1225,7 +1227,7 @@ var LEDGER = [
   "name": "Architect",
   "blurb": "Design-fee estimator, BMC approval-timeline guide, filterable project portfolio.",
   "accent": "#1C2B24",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1268,7 +1270,7 @@ var LEDGER = [
   "name": "Auto Repair / Garage",
   "blurb": "Service-cost estimator, pickup/drop scheduler, insurance cashless-claim walkthrough.",
   "accent": "#1A1D21",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1311,7 +1313,7 @@ var LEDGER = [
   "name": "Business Consultant",
   "blurb": "Business-health diagnostic, engagement-fee configurator, MSME scheme finder.",
   "accent": "#0B7A55",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1354,7 +1356,7 @@ var LEDGER = [
   "name": "Building Contractor",
   "blurb": "Construction-cost estimator, stage-payment schedule calculator, site-visit booking.",
   "accent": "#24303C",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1397,7 +1399,7 @@ var LEDGER = [
   "name": "Building Materials Retailer",
   "blurb": "Tile-quantity estimator, filterable range browser, bulk-quote WhatsApp builder.",
   "accent": "#3B3A33",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1440,7 +1442,7 @@ var LEDGER = [
   "name": "Printing Press",
   "blurb": "Instant print-quote calculator, artwork-readiness checker, sample gallery.",
   "accent": "#1C1917",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1483,7 +1485,7 @@ var LEDGER = [
   "name": "Event Management",
   "blurb": "Per-head budget estimator, proposal configurator, date-availability calendar.",
   "accent": "#FFB627",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1526,7 +1528,7 @@ var LEDGER = [
   "name": "Wedding Planner",
   "blurb": "Line-item wedding budget planner, timeline generator, real-weddings gallery.",
   "accent": "#3D5136",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1569,7 +1571,7 @@ var LEDGER = [
   "name": "Vaastu Consultant / Astrologer",
   "blurb": "Private consultation intake, Vaastu pre-audit checklist, muhurat scheduler.",
   "accent": "#232E52",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,
@@ -1612,7 +1614,7 @@ var LEDGER = [
   "name": "Artist / Art Studio",
   "blurb": "Filterable gallery with sold markers, commission configurator, workshop booking.",
   "accent": "#FCFCFA",
-  "linkable": false,
+  "linkable": true,
   "tiers": [
    {
     "no": 1,

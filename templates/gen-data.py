@@ -1,11 +1,18 @@
 # Regenerates templates-data.js from the authoritative Website Factory
 # catalog dataset (docs/budget-website-catalog-data.json in the Website
 # Project repo). Run again whenever that dataset changes.
-import json, re, io, sys
+import json, re, io, sys, os
 sys.stdout.reconfigure(encoding='utf-8')
 
 SRC = r'C:/Users/kasar/Documents/Website Project/docs/budget-website-catalog-data.json'
 data = json.load(io.open(SRC, encoding='utf-8'))
+
+# Absolute output path: this must not depend on the caller's cwd. Running
+# this script as `python3 templates/gen-data.py` from the repo root (an
+# easy, natural way to invoke it) resolves a relative 'templates-data.js'
+# against the repo root, silently writing a stray file there instead of
+# into templates/ -- exactly what happened once already. Anchor it.
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates-data.js')
 
 DASH = r'[–—]'
 def sweep(t):
@@ -49,20 +56,23 @@ for e in data:
         'name': sweep(e['name']),
         'blurb': sweep(e['blurb']),
         'accent': e['designSystem']['primaryColor'],
-        # No public deployment of the new-generation builds yet: glimpses
-        # are real (captured from the local builds), links wait for the
-        # hosting decision. Flip linkable + set DEMO_BASE when deployed.
-        'linkable': False,
+        # Deployed 2026-07-19 to the existing website-project Vercel
+        # project (tiers 1-3 for all 34 trades, 445 files). Tier 4 apps
+        # are not part of this static deploy (separate Next.js runtime).
+        'linkable': True,
         'tiers': tiers,
     })
 
 js = '/* Generated from the Website Factory catalog dataset\n'
 js += '   (Website Project/docs/budget-website-catalog-data.json) by gen-data.py.\n'
-js += '   Do not hand-edit; re-run the generator instead. Tier 1 shown as\n'
+js += '   Do not hand-edit; re-run the generator instead (python3 gen-data.py,\n'
+js += '   from any directory -- the output path is absolute). Tier 1 shown as\n'
 js += '   Rs 8,000 per the site ladder (dataset says Rs 10,000; flagged).\n'
-js += '   linkable:false everywhere until the new builds are publicly\n'
-js += '   deployed; glimpses are real screenshots of the local builds. */\n'
+js += '   linkable:true for tiers 1-3, all 34 trades, deployed 2026-07-19 to\n'
+js += '   website-project-liart.vercel.app; glimpses are real screenshots of\n'
+js += '   those same local builds pre-deploy. */\n'
 js += 'var LEDGER = ' + json.dumps(out, ensure_ascii=False, indent=1) + ';\n'
-io.open('templates-data.js', 'w', encoding='utf-8', newline='\n').write(js)
+io.open(OUT, 'w', encoding='utf-8', newline='\n').write(js)
 assert not re.search(DASH, js)
+print('wrote', OUT)
 print('entries:', len(out), '| rows:', sum(len(x["tiers"]) for x in out), '| no dashes: ok')
