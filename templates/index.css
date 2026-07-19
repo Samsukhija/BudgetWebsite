@@ -27,7 +27,7 @@
   background: var(--glass); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border); border-radius: 14px; padding: 22px 24px;
 }
-.tpl-tier-featured { border-color: var(--accent); box-shadow: 0 0 32px rgba(124,58,237,0.18); }
+.tpl-tier-featured { border-color: var(--accent); box-shadow: 0 0 32px rgba(212,169,74,0.18); }
 .tpl-tier-name {
   font-size: calc(11px * var(--font-scale)); font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px;
@@ -62,7 +62,7 @@
   border: 1px solid var(--glass-border); border-radius: 14px; padding: 20px 20px 18px;
   transition: border-color 0.25s, transform 0.15s ease-out, box-shadow 0.25s;
 }
-.tpl-card:hover { border-color: var(--accent); box-shadow: 0 10px 40px rgba(124,58,237,0.16); }
+.tpl-card:hover { border-color: var(--accent); box-shadow: 0 10px 40px rgba(212,169,74,0.16); }
 .tpl-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .tpl-card-icon { width: 42px; height: 42px; border-radius: 11px; }
 .tpl-card-num {
@@ -94,7 +94,7 @@
   overflow: hidden;
   transition: border-color 0.2s;
 }
-.tpl-acc-item.open { border-color: rgba(139,92,246,0.45); }
+.tpl-acc-item.open { border-color: rgba(201,164,69,0.45); }
 .tpl-acc-head {
   display: flex; align-items: center; gap: 10px;
   width: 100%; padding: 11px 14px;
@@ -132,7 +132,7 @@
 .tpl-glimpse-open {
   position: absolute; right: 8px; bottom: 8px;
   font-size: calc(10.5px * var(--font-scale)); font-weight: 700; letter-spacing: 0.4px;
-  color: #fff; background: rgba(10,10,26,0.78);
+  color: #fff; background: rgba(8,13,26,0.78);
   border: 1px solid rgba(255,255,255,0.25); border-radius: 100px;
   padding: 5px 11px; opacity: 0; transform: translateY(4px);
   transition: opacity 0.2s, transform 0.2s;
@@ -140,7 +140,7 @@
 }
 .tpl-glimpse:hover .tpl-glimpse-open { opacity: 1; transform: translateY(0); }
 .tpl-glimpse-ph {
-  border: 1px dashed rgba(139,92,246,0.35); border-radius: 8px;
+  border: 1px dashed rgba(201,164,69,0.35); border-radius: 8px;
   background: var(--accent-dim); padding: 18px 16px; margin-bottom: 12px;
   font-size: calc(12px * var(--font-scale)); color: var(--text-mid); line-height: 1.6;
 }
@@ -169,11 +169,11 @@
 .tpl-chip {
   font-size: calc(11.5px * var(--font-scale)); font-weight: 600;
   color: var(--accent-text); background: var(--accent-dim);
-  border: 1px solid rgba(139,92,246,0.3); border-radius: 100px;
+  border: 1px solid rgba(201,164,69,0.3); border-radius: 100px;
   padding: 5px 12px; text-decoration: none;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-.tpl-chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tpl-chip:hover { background: var(--accent); color: #171207; border-color: var(--accent); }
 .tpl-chip-wa { color: #4ADE80; background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.3); }
 .tpl-chip-wa:hover { background: #22a55c; color: #fff; border-color: #22a55c; }
 
@@ -214,7 +214,7 @@
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 .tpl-fchip:hover { border-color: var(--accent); color: var(--text-hi); }
-.tpl-fchip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tpl-fchip.active { background: var(--accent); border-color: var(--accent); color: #171207; }
 
 /* card-top glimpse thumbnail (deployed trades) */
 .tpl-card-thumb {

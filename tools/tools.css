@@ -90,11 +90,11 @@
 .inv-seller-name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; }
 .inv-seller-meta { font-size: 12.5px; color: #555; line-height: 1.6; }
 .inv-head-right { text-align: right; }
-.inv-doctitle { font-weight: 700; letter-spacing: 1px; font-size: 14px; color: #6D28D9; margin-bottom: 10px; }
+.inv-doctitle { font-weight: 700; letter-spacing: 1px; font-size: 14px; color: #8C6A1D; margin-bottom: 10px; }
 .inv-meta { font-size: 12.5px; color: #555; display: flex; justify-content: flex-end; gap: 8px; }
 .inv-meta strong { color: #1A1A2E; }
 .inv-billto { margin-bottom: 20px; }
-.inv-billto .inv-panel-title { color: #6D28D9; }
+.inv-billto .inv-panel-title { color: #8C6A1D; }
 .inv-buyer-name { font-weight: 700; font-size: 14.5px; }
 
 .inv-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
@@ -113,7 +113,7 @@
 .inv-words { font-size: 12.5px; font-style: italic; color: #555; margin-bottom: 24px; }
 
 .inv-foot { display: flex; justify-content: space-between; gap: 30px; border-top: 1px solid #E4E0F5; padding-top: 18px; }
-.inv-foot-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #6D28D9; margin: 8px 0 2px; }
+.inv-foot-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #8C6A1D; margin: 8px 0 2px; }
 .inv-sign { text-align: right; min-width: 200px; }
 .inv-sign-line { font-size: 12.5px; color: #555; }
 .inv-sign-space { height: 46px; }

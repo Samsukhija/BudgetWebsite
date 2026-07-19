@@ -10,7 +10,7 @@ import * as THREE from '../vendor/three.module.min.js';
   var canvas = document.getElementById('scene-canvas');
   if (!canvas) return;
 
-  var GRAD_A = 0x7C3AED, GRAD_B = 0x3B82F6, GRAD_C = 0xEC4899;
+  var GRAD_A = 0xC9A445, GRAD_B = 0x2E4A78, GRAD_C = 0xF3D68B;
 
   // true once the render loop has been permanently torn down (downgrade to
   // static tier). Once set, nothing is allowed to resurrect the loop.
@@ -71,7 +71,7 @@ import * as THREE from '../vendor/three.module.min.js';
   }
 
   var scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x0A0A1A, 8, 18);
+  scene.fog = new THREE.Fog(0x080D1A, 8, 18);
 
   var camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 50);
   camera.position.set(0, 0, 9);
@@ -147,7 +147,7 @@ import * as THREE from '../vendor/three.module.min.js';
     var geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     particleMat = new THREE.PointsMaterial({
-      color: 0xC9CEFF,
+      color: 0xEFD9A0,
       size: 0.035,
       sizeAttenuation: true,
       transparent: true,
@@ -165,9 +165,9 @@ import * as THREE from '../vendor/three.module.min.js';
     c.width = c.height = size;
     var ctx = c.getContext('2d');
     var g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-    g.addColorStop(0, 'rgba(139,92,246,0.9)');
-    g.addColorStop(0.5, 'rgba(59,130,246,0.35)');
-    g.addColorStop(1, 'rgba(10,10,26,0)');
+    g.addColorStop(0, 'rgba(201,164,69,0.9)');
+    g.addColorStop(0.5, 'rgba(169,126,47,0.35)');
+    g.addColorStop(1, 'rgba(8,13,26,0)');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, size, size);
     var tex = new THREE.CanvasTexture(c);

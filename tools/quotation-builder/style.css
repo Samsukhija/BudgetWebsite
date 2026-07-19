@@ -66,12 +66,12 @@
 .qb-seller-name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; }
 .qb-seller-meta { font-size: 12.5px; color: #555; line-height: 1.6; }
 .qb-head-right { text-align: right; }
-.qb-doctitle { font-weight: 700; letter-spacing: 1px; font-size: 14px; color: #6D28D9; margin-bottom: 10px; }
+.qb-doctitle { font-weight: 700; letter-spacing: 1px; font-size: 14px; color: #8C6A1D; margin-bottom: 10px; }
 .qb-meta { font-size: 12.5px; color: #555; display: flex; justify-content: flex-end; gap: 8px; }
 .qb-meta strong { color: #1A1A2E; }
 .qb-status-row { margin-top: 8px; display: flex; justify-content: flex-end; }
 .qb-billto { margin-bottom: 20px; }
-.qb-billto .tool-panel-title { color: #6D28D9; }
+.qb-billto .tool-panel-title { color: #8C6A1D; }
 .qb-buyer-name { font-weight: 700; font-size: 14.5px; }
 
 .qb-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px; }
@@ -90,7 +90,7 @@
 .qb-words { font-size: 12.5px; font-style: italic; color: #555; margin-bottom: 24px; }
 
 .qb-foot { display: flex; justify-content: space-between; gap: 30px; border-top: 1px solid #E4E0F5; padding-top: 18px; margin-bottom: 14px; }
-.qb-foot-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #6D28D9; margin: 0 0 2px; }
+.qb-foot-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: #8C6A1D; margin: 0 0 2px; }
 .qb-sign { text-align: right; min-width: 200px; }
 .qb-sign-line { font-size: 12.5px; color: #555; }
 .qb-sign-space { height: 46px; }
