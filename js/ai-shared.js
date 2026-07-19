@@ -136,7 +136,18 @@ window.AIShared = (function () {
 
     var messages = [];
     if (opts.system) messages.push({ role: 'system', content: opts.system });
-    messages.push({ role: 'user', content: opts.user || '' });
+    // Multimodal: if images (array of data: URIs) are passed, build a content
+    // array so vision models (Business Card Scanner) can read them. Otherwise
+    // a plain string keeps text-only requests simple.
+    if (opts.images && opts.images.length) {
+      var content = [{ type: 'text', text: opts.user || '' }];
+      opts.images.forEach(function (url) {
+        content.push({ type: 'image_url', image_url: { url: url } });
+      });
+      messages.push({ role: 'user', content: content });
+    } else {
+      messages.push({ role: 'user', content: opts.user || '' });
+    }
 
     var wantStream = typeof opts.onToken === 'function';
     var body = {
