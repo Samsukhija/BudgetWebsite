@@ -1,0 +1,93 @@
+/* ─────────────────────────────────────────────
+   Shared styles for the AI (BYOK) tools.
+   Layout primitives come from tools-base.css; this
+   adds the API-settings bar, generate states, and
+   the output/result area used across every AI tool.
+───────────────────────────────────────────── */
+
+/* ── API key settings bar ── */
+.ai-settings {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.ai-settings-toggle {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  background: transparent; border: none; cursor: pointer;
+  padding: 14px 18px; color: var(--text-mid);
+  font-family: 'Inter', sans-serif; font-size: calc(13px * var(--font-scale)); text-align: left;
+}
+.ai-settings-toggle:hover { color: var(--text-hi); }
+.ai-key-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; }
+.ai-key-dot.on { background: #4ADE80; box-shadow: 0 0 8px rgba(74,222,128,0.6); }
+#ai-settings-toggle-label { flex: 1; }
+.ai-settings-chev { color: var(--text-dim); font-size: 12px; }
+.ai-settings-body { padding: 0 18px 18px; display: flex; flex-direction: column; gap: 12px; }
+.ai-settings-body label { font-size: calc(12.5px * var(--font-scale)); color: var(--text-mid); }
+.ai-settings-body input, .ai-settings-body select {
+  display: block; width: 100%; margin-top: 6px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; color: var(--text-hi);
+  font-family: 'Inter', sans-serif; font-size: calc(13.5px * var(--font-scale));
+}
+.ai-settings-body input:focus, .ai-settings-body select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+.ai-settings-body select { appearance: none; cursor: pointer; }
+.ai-settings-actions { display: flex; align-items: center; gap: 16px; }
+.ai-settings-link { color: var(--accent-text); font-size: calc(12.5px * var(--font-scale)); font-weight: 600; text-decoration: none; }
+.ai-settings-link:hover { text-decoration: underline; }
+.ai-settings-note { font-size: calc(11.5px * var(--font-scale)); color: var(--text-dim); line-height: 1.6; margin: 0; }
+
+/* ── input controls specific to AI tools reuse .tool-panel from tools-base.css ── */
+
+/* ── generate button + spinner ── */
+.ai-generate-btn { position: relative; }
+.ai-generate-btn[disabled] { opacity: 0.6; cursor: default; }
+.ai-spinner {
+  display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 8px;
+  border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%;
+  animation: ai-spin 0.7s linear infinite;
+}
+@keyframes ai-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ai-spinner { animation: none; } }
+
+/* ── output / result area ── */
+.ai-output {
+  background: var(--bg-raised); border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 22px 24px; margin-top: 20px;
+  white-space: pre-wrap; line-height: 1.7; color: var(--text-hi);
+  font-size: calc(14.5px * var(--font-scale)); min-height: 60px;
+}
+.ai-output:empty { display: none; }
+.ai-output-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 20px; margin-bottom: -8px;
+}
+.ai-output-head h3 { font-family: 'Fraunces', serif; font-weight: 700; font-size: calc(16px * var(--font-scale)); color: var(--text-hi); }
+.ai-output-actions { display: flex; gap: 8px; }
+.ai-copy-btn, .ai-regen-btn {
+  background: transparent; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text-mid); padding: 7px 14px; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: calc(12px * var(--font-scale)); font-weight: 600;
+  transition: border-color 0.2s, color 0.2s;
+}
+.ai-copy-btn:hover, .ai-regen-btn:hover { border-color: var(--accent); color: var(--accent-text); }
+.ai-copied { color: #4ADE80 !important; border-color: rgba(74,222,128,0.4) !important; }
+
+/* multiple variations stacked */
+.ai-variation { position: relative; }
+.ai-variation + .ai-variation { margin-top: 14px; }
+
+/* error banner */
+.ai-error {
+  background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.4);
+  color: #F87171; border-radius: 8px; padding: 12px 16px; margin-top: 16px;
+  font-size: calc(13px * var(--font-scale));
+}
+.ai-error:empty { display: none; }
+
+/* subtle helper text under headings */
+.ai-hint { color: var(--text-dim); font-size: calc(12.5px * var(--font-scale)); margin-top: 6px; }
