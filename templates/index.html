@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>34 Website Templates for Indian Businesses | Budget Website</title>
+<meta name="description" content="34 ready-made website templates for Indian businesses, from gyms and salons to law firms and manufacturers. Three tiers: ₹8,000, ₹15,000 and ₹25,000. See a live demo, pick one, and go live in a day.">
+<link rel="canonical" href="https://www.budgetwebsite.store/templates/">
+<meta property="og:title" content="34 Website Templates for Indian Businesses | Budget Website">
+<meta property="og:description" content="Ready-made templates for 34 business types, in three tiers from ₹8,000 to ₹25,000. See live demos and go live in a day.">
+<meta property="og:image" content="https://www.budgetwebsite.store/og-card.png">
+<meta property="og:url" content="https://www.budgetwebsite.store/templates/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.budgetwebsite.store/og-card.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="index.css">
+<script src="../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/templates/" class="nav-blog-link">Templates</a>
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<header class="tpl-hero">
+  <div class="section-label">Ready-Made Templates</div>
+  <h1 class="tpl-hero-title">Your trade. Your website.<br><span class="accent">Already designed.</span></h1>
+  <p class="tpl-hero-sub">34 business types, each with three ready tiers. See a live demo, tell us which one fits, and we put your name, photos and details on it. Live in a day.</p>
+</header>
+
+<section class="tpl-tiers">
+  <div class="tpl-tier-card">
+    <div class="tpl-tier-name">Tier 1</div>
+    <div class="tpl-tier-price">₹8,000</div>
+    <p>A sharp 3-page site: home, services, contact. Maps, WhatsApp button, enquiry form. Live in a day.</p>
+  </div>
+  <div class="tpl-tier-card tpl-tier-featured">
+    <div class="tpl-tier-name">Tier 2</div>
+    <div class="tpl-tier-price">₹15,000</div>
+    <p>5 pages with photo gallery, testimonials and your own domain. On-page SEO included. Live in 1-2 days.</p>
+  </div>
+  <div class="tpl-tier-card">
+    <div class="tpl-tier-name">Tier 3</div>
+    <div class="tpl-tier-price">₹25,000</div>
+    <p>8+ pages, full content build, booking and lead forms, blog and analytics. Live in 2-4 days.</p>
+  </div>
+</section>
+
+<section class="tpl-toolbar-wrap">
+  <input type="text" id="tpl-search" class="tpl-search" placeholder="Search your business type, e.g. salon, dentist, cafe...">
+  <p class="tpl-count" id="tpl-count"></p>
+</section>
+
+<main class="tpl-grid" id="tpl-grid"></main>
+
+<section class="tpl-cta-band">
+  <div class="tpl-cta-inner">
+    <h2>Don't see your trade? <span class="accent">We'll still build it.</span></h2>
+    <p>These 34 are just the ready-made starts. Anything else gets designed from scratch, and custom builds start at ₹50,000+.</p>
+    <a href="https://wa.me/918976587269?text=Hi%2C%20I%20want%20a%20website%20for%20my%20business%20through%20budgetwebsite.store." class="btn-primary">💬 &nbsp;Talk to us on WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/tools/" class="gallery-link">Tools</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  const FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    let idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+<script src="templates-list.js"></script>
+
+</body>
+</html>
