@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Workspace | Budget Website</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../tools/tools-base.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/templates/" class="nav-blog-link">Templates</a>
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <a href="/pricing/" class="nav-blog-link">Pricing</a>
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <a href="/app/" class="nav-blog-link" aria-current="page">Account</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section class="tool-app tool-app-wide" style="padding-top:50px;">
+  <div class="section-label">Customer Pack</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">One customer record, <span class="accent">not five.</span></h1>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 26px;">
+    <a href="/app/" class="nav-blog-link" style="padding:0;">← Back to Account</a>
+    <span id="hdr-biz" style="color:var(--text-dim);font-size:calc(13px * var(--font-scale));"></span>
+  </div>
+
+  <div class="tool-stats" id="cust-stats"></div>
+
+  <div class="billing-tabs">
+    <button type="button" class="billing-tab active" data-tab="customers">All Customers</button>
+    <button type="button" class="billing-tab" data-tab="pipeline">Pipeline</button>
+    <button type="button" class="billing-tab" data-tab="due">Due Today</button>
+  </div>
+
+  <!-- ── ALL CUSTOMERS ── -->
+  <div id="tab-customers" class="billing-tabpanel">
+
+    <div id="cs-list-view">
+      <div class="tool-toolbar">
+        <input type="text" class="tool-search" id="cs-search" placeholder="Search name, phone or company…">
+        <div class="tool-toolbar-spacer"></div>
+        <button type="button" class="btn-primary btn-sm" id="btn-new-cust">+ New Customer</button>
+      </div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Name</th><th>Phone</th><th>Company</th><th>Stage</th><th>Follow-up</th><th>Renewal</th><th></th></tr></thead>
+          <tbody id="cs-table-body"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="cs-empty" hidden>No customers yet. Click "+ New Customer" to add your first one.</div>
+    </div>
+
+    <div id="cs-form-view" class="tool-panel" hidden>
+      <div class="tool-panel-title" id="cf-title">New Customer</div>
+      <div class="tool-row tool-row-2">
+        <label>Name<input type="text" id="cf-name" placeholder="Customer / contact name"></label>
+        <label>Phone<input type="text" id="cf-phone" placeholder="10-digit mobile"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Company<input type="text" id="cf-company" placeholder="Optional"></label>
+        <label>Source<select id="cf-source">
+          <option value="Referral">Referral</option>
+          <option value="Walk-in">Walk-in</option>
+          <option value="Website">Website</option>
+          <option value="Social Media">Social Media</option>
+          <option value="Phone Call">Phone Call</option>
+          <option value="Other">Other</option>
+        </select></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Pipeline Stage<select id="cf-stage">
+          <option value="New">New</option>
+          <option value="Contacted">Contacted</option>
+          <option value="Quoted">Quoted</option>
+          <option value="Won">Won</option>
+          <option value="Lost">Lost</option>
+        </select></label>
+        <label>Deal Value (₹)<input type="number" id="cf-value" min="0" step="1" placeholder="0"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Follow-up Date<input type="date" id="cf-followup"></label>
+        <label>Renewal Date<input type="date" id="cf-renewal"></label>
+      </div>
+      <label>Notes<textarea id="cf-notes" rows="3" placeholder="Anything worth remembering about this customer"></textarea></label>
+
+      <div class="inv-actions" style="margin-top:20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <button type="button" class="btn-primary" id="cf-save">Save Customer</button>
+        <button type="button" class="btn-ghost" id="cf-cancel">Cancel</button>
+        <button type="button" class="btn-danger" id="cf-delete" style="margin-left:auto;" hidden>Delete Customer</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── PIPELINE ── -->
+  <div id="tab-pipeline" class="billing-tabpanel" hidden>
+    <p class="billing-empty-hint" style="margin-bottom:14px;">Drag a customer card to a new column, or use the stage picker on the card, to move them through the pipeline. It updates the same record you see in All Customers.</p>
+    <div id="pipeline-empty" class="tool-empty" hidden>No customers yet. Add one from the All Customers tab.</div>
+    <div class="tool-kanban" id="pipeline-board"></div>
+  </div>
+
+  <!-- ── DUE TODAY ── -->
+  <div id="tab-due" class="billing-tabpanel" hidden>
+
+    <div class="tool-panel-title">Follow-ups due</div>
+    <div class="tool-table-wrap" style="margin-bottom:8px;">
+      <table class="tool-table">
+        <thead><tr><th>Name</th><th>Phone</th><th>Due</th><th></th></tr></thead>
+        <tbody id="due-followups-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="due-followups-empty" hidden>Nothing due, you're all caught up.</div>
+
+    <div class="tool-panel-title" style="margin-top:28px;">Renewals due</div>
+    <div class="tool-table-wrap" style="margin-bottom:8px;">
+      <table class="tool-table">
+        <thead><tr><th>Name</th><th>Phone</th><th>Due</th><th></th></tr></thead>
+        <tbody id="due-renewals-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="due-renewals-empty" hidden>Nothing due, you're all caught up.</div>
+
+  </div>
+
+</section>
+
+<!-- customer view/edit is the same form panel above; row buttons deep-link into it via JS -->
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · <a href="/internal/proposal/" class="gallery-link">Proposal</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  var FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    var idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../config.js"></script>
+<script src="../auth.js"></script>
+<script src="../entitlement.js"></script>
+<script src="../../js/customer-workspace.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+/* /app/stock/ — the Stock & Suppliers Pack workspace. Built on
+   tools/tools-base.css (CRUD app shell). Page-specific styles only. */
+
+/* The `hidden` attribute must always win, even over display:inline-block from
+   .btn-primary/.btn-ghost etc. (an explicit display otherwise overrides [hidden]). */
+[hidden] { display: none !important; }
+
+.stock-tabs { display: flex; gap: 6px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+.stock-tab {
+  background: none; border: none; cursor: pointer;
+  padding: 10px 4px 12px; margin-right: 22px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: calc(14px * var(--font-scale));
+  color: var(--text-dim); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+.stock-tab:hover { color: var(--text-hi); }
+.stock-tab.active { color: var(--text-hi); border-color: var(--accent); }
+
+.tool-actions-cell { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+.stock-reorder-msg {
+  font-size: calc(12px * var(--font-scale)); color: #FBBF24;
+  margin-top: 4px; max-width: 220px;
+}
+
+.inv-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 700px) {
+  .tool-row-3 { grid-template-columns: 1fr 1fr; }
+}
