@@ -50,8 +50,14 @@
 .qb-item-remove:hover { border-color: #F87171; color: #F87171; }
 .qb-add-btn { width: 100%; margin-top: 4px; padding: 10px 22px; font-size: calc(13px * var(--font-scale)); text-align: center; cursor: pointer; }
 
-.qb-actions { display: flex; gap: 12px; }
-.qb-actions .btn-primary, .qb-actions .btn-ghost { flex: 1; text-align: center; cursor: pointer; }
+.qb-actions { display: flex; gap: 10px; }
+/* Same fix as .inv-actions in ../tools.css: the default standalone button
+   padding (14px 32px) left almost no room for the label in this ~130px-wide
+   flex-third, forcing it onto multiple broken lines. */
+.qb-actions .btn-primary, .qb-actions .btn-ghost, .qb-actions .btn-wa-doc {
+  flex: 1; text-align: center; cursor: pointer;
+  padding: 12px 8px !important; font-size: calc(12.5px * var(--font-scale)) !important;
+}
 .qb-savenote { font-size: calc(11.5px * var(--font-scale)); color: var(--text-dim); text-align: center; }
 
 /* ── quotation preview: a light "paper" sheet inside the dark app ── */

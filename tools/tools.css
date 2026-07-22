@@ -74,8 +74,16 @@
 .inv-item-remove:hover { border-color: #F87171; color: #F87171; }
 .inv-add-btn { width: 100%; margin-top: 4px; padding: 10px 22px; font-size: calc(13px * var(--font-scale)); text-align: center; cursor: pointer; }
 
-.inv-actions { display: flex; gap: 12px; }
-.inv-actions .btn-primary, .inv-actions .btn-ghost { flex: 1; text-align: center; cursor: pointer; }
+.inv-actions { display: flex; gap: 10px; }
+/* .btn-primary/.btn-ghost/.btn-wa-doc default to generous standalone padding
+   (14px 32px) meant for a full-width CTA - in this 3-up flex:1 row each button
+   is only ~130px wide, so that padding left almost no room for the label and
+   forced it onto 3+ broken lines. Override padding + font-size here, scoped to
+   this row only, so standalone uses of these classes elsewhere are unaffected. */
+.inv-actions .btn-primary, .inv-actions .btn-ghost, .inv-actions .btn-wa-doc {
+  flex: 1; text-align: center; cursor: pointer;
+  padding: 12px 8px !important; font-size: calc(12.5px * var(--font-scale)) !important;
+}
 .inv-savenote { font-size: calc(11.5px * var(--font-scale)); color: var(--text-dim); text-align: center; }
 
 /* ── invoice preview: a light "paper" sheet inside the dark app ── */
