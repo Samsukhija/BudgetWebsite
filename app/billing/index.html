@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Billing Workspace | Budget Website</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../tools/tools-base.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/templates/" class="nav-blog-link">Templates</a>
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <a href="/pricing/" class="nav-blog-link">Pricing</a>
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <a href="/app/" class="nav-blog-link" aria-current="page">Account</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section class="tool-app tool-app-wide" style="padding-top:50px;">
+  <div class="section-label">Billing Pack</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Everything you've <span class="accent">billed</span>, in one place.</h1>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 26px;">
+    <a href="/app/" class="nav-blog-link" style="padding:0;">← Back to Account</a>
+    <span id="hdr-biz" style="color:var(--text-dim);font-size:calc(13px * var(--font-scale));"></span>
+  </div>
+
+  <div class="tool-stats" id="billing-stats"></div>
+
+  <div class="billing-tabs">
+    <button type="button" class="billing-tab active" data-tab="invoices">Invoices</button>
+    <button type="button" class="billing-tab" data-tab="quotes">Quotations</button>
+  </div>
+
+  <!-- ── INVOICES ── -->
+  <div id="tab-invoices" class="billing-tabpanel">
+
+    <div id="inv-list-view">
+      <div class="tool-toolbar"><div class="tool-toolbar-spacer"></div><button type="button" class="btn-primary btn-sm" id="btn-new-inv">+ New Invoice</button></div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Number</th><th>Date</th><th>Customer</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody id="inv-table-body"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="inv-empty" hidden>No invoices yet. Create your first one above.</div>
+    </div>
+
+    <div id="inv-form-view" class="tool-panel" hidden>
+      <div class="tool-panel-title">Your Business</div>
+      <div class="tool-row tool-row-2">
+        <label>Business Name<input type="text" id="ifm-seller-name"></label>
+        <label>GSTIN<input type="text" id="ifm-seller-gstin" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Address<input type="text" id="ifm-seller-addr"></label>
+        <label>State<select id="ifm-seller-state"></select></label>
+      </div>
+
+      <div class="tool-panel-title" style="margin-top:22px;">Bill To</div>
+      <div class="tool-row tool-row-2">
+        <label>Customer Name<input type="text" id="ifm-buyer-name"></label>
+        <label>GSTIN (if registered)<input type="text" id="ifm-buyer-gstin" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Address<input type="text" id="ifm-buyer-addr"></label>
+        <label>State<select id="ifm-buyer-state"></select></label>
+      </div>
+
+      <div class="tool-panel-title" style="margin-top:22px;">Invoice Details</div>
+      <div class="tool-row tool-row-2">
+        <label>Invoice No.<input type="text" id="ifm-inv-no"></label>
+        <label>Date<input type="date" id="ifm-inv-date"></label>
+      </div>
+
+      <div class="tool-panel-title" style="margin-top:22px;">Line Items</div>
+      <div class="billing-item-head"><div>Description</div><div>HSN</div><div>Qty</div><div>Rate</div><div>GST%</div><div></div></div>
+      <div id="ifm-items"></div>
+      <button type="button" class="btn-ghost btn-sm" id="ifm-add-item">+ Add Item</button>
+
+      <label style="margin-top:18px;">Notes (optional)<textarea id="ifm-notes" rows="2"></textarea></label>
+
+      <div class="inv-actions" style="margin-top:20px;">
+        <button type="button" class="btn-primary" id="ifm-save">Save Invoice</button>
+        <button type="button" class="btn-ghost" id="ifm-cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div id="inv-detail-view" hidden>
+      <div class="billing-detail-actions">
+        <button type="button" class="btn-ghost btn-sm" id="ivd-back">← Back to list</button>
+        <button type="button" class="btn-primary btn-sm" id="ivd-print">Print / Save as PDF</button>
+        <button type="button" class="btn-wa-doc" id="ivd-wa">Send on WhatsApp</button>
+        <button type="button" class="btn-ghost btn-sm" id="ivd-toggle-status">Mark as Paid</button>
+      </div>
+      <div class="invoice-preview-wrap">
+        <div class="invoice-sheet" id="ivd-sheet"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUOTATIONS ── -->
+  <div id="tab-quotes" class="billing-tabpanel" hidden>
+
+    <div id="quote-list-view">
+      <div class="tool-toolbar"><div class="tool-toolbar-spacer"></div><button type="button" class="btn-primary btn-sm" id="btn-new-quote">+ New Quotation</button></div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Number</th><th>Date</th><th>Customer</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody id="quote-table-body"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="quote-empty" hidden>No quotations yet. Create your first one above.</div>
+    </div>
+
+    <div id="quote-form-view" class="tool-panel" hidden>
+      <div class="tool-panel-title">Your Business</div>
+      <div class="tool-row tool-row-2">
+        <label>Business Name<input type="text" id="qfm-seller-name"></label>
+        <label>GSTIN<input type="text" id="qfm-seller-gstin" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Address<input type="text" id="qfm-seller-addr"></label>
+        <label>State<select id="qfm-seller-state"></select></label>
+      </div>
+
+      <div class="tool-panel-title" style="margin-top:22px;">For</div>
+      <div class="tool-row tool-row-2">
+        <label>Customer Name<input type="text" id="qfm-buyer-name"></label>
+        <label>GSTIN (if registered)<input type="text" id="qfm-buyer-gstin" maxlength="15" style="text-transform:uppercase;"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Address<input type="text" id="qfm-buyer-addr"></label>
+        <label>State<select id="qfm-buyer-state"></select></label>
+      </div>
+
+      <div class="tool-panel-title" style="margin-top:22px;">Quotation Details</div>
+      <div class="tool-row tool-row-2">
+        <label>Quotation No.<input type="text" id="qfm-quote-no"></label>
+        <label>Date<input type="date" id="qfm-quote-date"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Valid Until<input type="date" id="qfm-valid-until"></label>
+        <label>Status<select id="qfm-status">
+          <option>Draft</option><option>Sent</option><option>Accepted</option><option>Rejected</option><option>Expired</option>
+        </select></label>
+      </div>
+
+      <div class="tool-panel-title" style="margin-top:22px;">Line Items</div>
+      <div class="billing-item-head"><div>Description</div><div>HSN</div><div>Qty</div><div>Rate</div><div>GST%</div><div></div></div>
+      <div id="qfm-items"></div>
+      <button type="button" class="btn-ghost btn-sm" id="qfm-add-item">+ Add Item</button>
+
+      <label style="margin-top:18px;">Notes (optional)<textarea id="qfm-notes" rows="2"></textarea></label>
+
+      <div class="inv-actions" style="margin-top:20px;">
+        <button type="button" class="btn-primary" id="qfm-save">Save Quotation</button>
+        <button type="button" class="btn-ghost" id="qfm-cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div id="quote-detail-view" hidden>
+      <div class="billing-detail-actions">
+        <button type="button" class="btn-ghost btn-sm" id="qvd-back">← Back to list</button>
+        <button type="button" class="btn-primary btn-sm" id="qvd-print">Print / Save as PDF</button>
+        <button type="button" class="btn-wa-doc" id="qvd-wa">Send on WhatsApp</button>
+        <select id="qvd-status" class="btn-ghost btn-sm" style="cursor:pointer;">
+          <option>Draft</option><option>Sent</option><option>Accepted</option><option>Rejected</option><option>Expired</option>
+        </select>
+        <button type="button" class="btn-primary btn-sm" id="qvd-make-invoice" hidden>Make Invoice →</button>
+      </div>
+      <div class="invoice-preview-wrap">
+        <div class="invoice-sheet" id="qvd-sheet"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  var FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    var idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../config.js"></script>
+<script src="../auth.js"></script>
+<script src="../entitlement.js"></script>
+<script src="../../js/billing-workspace.js"></script>
+</body>
+</html>

@@ -4,6 +4,10 @@
    One theme. No dark/light toggle.
 ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* The `hidden` attribute must always win, even over a component's own display
+   (flex/inline-block/grid), which otherwise silently overrides [hidden]'s
+   default display:none in the cascade. */
+[hidden] { display: none !important; }
 
 :root {
   --bg-deep: #080D1A;

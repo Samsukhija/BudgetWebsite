@@ -1,0 +1,49 @@
+/* /app/billing/ — the Billing Pack workspace. Built on tools/tools-base.css
+   (CRUD app shell) + tools/tools.css (print-sheet look for the detail view). */
+
+/* The `hidden` attribute must always win, even over display:inline-block from
+   .btn-primary/.btn-ghost etc. (an explicit display otherwise overrides [hidden]). */
+[hidden] { display: none !important; }
+
+.billing-tabs { display: flex; gap: 6px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+.billing-tab {
+  background: none; border: none; cursor: pointer;
+  padding: 10px 4px 12px; margin-right: 22px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: calc(14px * var(--font-scale));
+  color: var(--text-dim); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+.billing-tab:hover { color: var(--text-hi); }
+.billing-tab.active { color: var(--text-hi); border-color: var(--accent); }
+
+.billing-item-row {
+  display: grid; grid-template-columns: 1fr 90px 70px 90px 70px 30px;
+  gap: 8px; align-items: center; margin-bottom: 8px;
+}
+.billing-item-row input, .billing-item-row select {
+  margin-top: 0 !important; padding: 8px 9px !important; font-size: calc(12.5px * var(--font-scale)) !important;
+}
+.billing-item-remove {
+  background: transparent; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text-dim); width: 26px; height: 26px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.billing-item-remove:hover { border-color: #F87171; color: #F87171; }
+.billing-item-head {
+  display: grid; grid-template-columns: 1fr 90px 70px 90px 70px 30px; gap: 8px;
+  font-size: calc(10.5px * var(--font-scale)); text-transform: uppercase; letter-spacing: 0.4px;
+  color: var(--text-dim); margin-bottom: 6px;
+}
+
+.billing-detail-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.billing-empty-hint { color: var(--text-dim); font-size: calc(12.5px * var(--font-scale)); margin-top: 6px; }
+
+@media (max-width: 700px) {
+  .billing-item-row, .billing-item-head { grid-template-columns: 1fr 1fr; }
+  .billing-item-head { display: none; }
+}
+
+@media print {
+  nav, .section-label, .section-title, .billing-tabs, .tool-stats, .billing-detail-actions,
+  #inv-list-view, #quote-list-view, .grad-bg, footer { display: none !important; }
+  body { background: #fff !important; }
+}
