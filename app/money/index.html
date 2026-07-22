@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money &amp; Staff-Salary Workspace | Budget Website</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../tools/tools-base.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/templates/" class="nav-blog-link">Templates</a>
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <a href="/pricing/" class="nav-blog-link">Pricing</a>
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <a href="/app/" class="nav-blog-link" aria-current="page">Account</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section class="tool-app tool-app-wide" style="padding-top:50px;">
+  <div class="section-label">Money &amp; Staff-Salary Pack</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Attendance in. <span class="accent">Salary out.</span></h1>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 26px;">
+    <a href="/app/" class="nav-blog-link" style="padding:0;">← Back to Account</a>
+    <span id="hdr-biz" style="color:var(--text-dim);font-size:calc(13px * var(--font-scale));"></span>
+  </div>
+
+  <div class="tool-stats" id="money-stats"></div>
+
+  <div class="billing-tabs">
+    <button type="button" class="billing-tab active" data-tab="staff">Staff &amp; Attendance</button>
+    <button type="button" class="billing-tab" data-tab="salary">Salary Slips</button>
+    <button type="button" class="billing-tab" data-tab="expenses">Expenses</button>
+  </div>
+
+  <!-- ── STAFF & ATTENDANCE ── -->
+  <div id="tab-staff" class="billing-tabpanel">
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Staff Roster</div>
+      <div class="tool-row tool-row-4">
+        <label>Name<input type="text" id="stf-name" placeholder="e.g. Ramesh Yadav"></label>
+        <label>Role<input type="text" id="stf-role" placeholder="e.g. Sales Executive"></label>
+        <label>Phone<input type="text" id="stf-phone" placeholder="10-digit mobile"></label>
+        <label>Base Salary (₹/month)<input type="number" id="stf-base" min="0" step="0.01" placeholder="0.00"></label>
+      </div>
+      <div class="tool-toolbar" style="margin-top:6px;margin-bottom:0;">
+        <button type="button" class="btn-primary btn-sm" id="btn-stf-save">+ Add Staff</button>
+        <button type="button" class="btn-ghost btn-sm" id="btn-stf-cancel" hidden>Cancel Edit</button>
+      </div>
+      <div class="tool-table-wrap" style="margin-top:18px;">
+        <table class="tool-table">
+          <thead><tr><th>Name</th><th>Role</th><th>Phone</th><th>Base Salary</th><th>Status</th><th></th></tr></thead>
+          <tbody id="stf-tbody"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="stf-empty" hidden>No staff added yet. Add your first team member above.</div>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Mark Attendance</div>
+      <div class="tool-row-2" style="margin-bottom:6px;">
+        <label>Month<input type="month" id="att-month"></label>
+      </div>
+      <p class="tool-attend-legend">Click a cell to cycle: blank → <span class="attend-P">P</span> Present → <span class="attend-A">A</span> Absent → blank.</p>
+      <div class="tool-grid-scroll">
+        <table class="tool-month-grid" id="att-grid"></table>
+      </div>
+      <div class="tool-empty" id="att-empty" hidden>Add at least one active staff member above to start marking attendance.</div>
+    </div>
+
+  </div>
+
+  <!-- ── SALARY SLIPS ── -->
+  <div id="tab-salary" class="billing-tabpanel" hidden>
+
+    <div id="sal-list-view">
+      <div class="tool-toolbar"><div class="tool-toolbar-spacer"></div><button type="button" class="btn-primary btn-sm" id="btn-new-slip">+ New Salary Slip</button></div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Staff</th><th>Month</th><th>Present / Working Days</th><th>Net Pay</th><th>Generated</th><th></th></tr></thead>
+          <tbody id="sal-table-body"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="sal-empty" hidden>No salary slips yet. Generate your first one above.</div>
+    </div>
+
+    <div id="sal-form-view" class="tool-panel" hidden>
+      <div class="tool-panel-title">Generate Salary Slip</div>
+      <div class="tool-row tool-row-2">
+        <label>Staff Member<select id="sfm-staff"></select></label>
+        <label>Month<input type="month" id="sfm-month"></label>
+      </div>
+
+      <div class="tool-stats" id="sfm-calc-stats" style="margin-top:14px;"></div>
+
+      <div class="tool-row tool-row-2" style="margin-top:16px;">
+        <label>Additions (₹) — bonus, overtime, etc.<input type="number" id="sfm-additions" min="0" step="0.01" value="0"></label>
+        <label>Deductions (₹) — advance, fine, etc.<input type="number" id="sfm-deductions" min="0" step="0.01" value="0"></label>
+      </div>
+
+      <div class="tool-stats" style="margin-top:16px;">
+        <div class="tool-stat-card"><div class="tool-stat-label">Net Pay</div><div class="tool-stat-value" id="sfm-netpay">₹0.00</div></div>
+      </div>
+
+      <div class="inv-actions" style="margin-top:20px;">
+        <button type="button" class="btn-primary" id="sfm-save">Generate Slip</button>
+        <button type="button" class="btn-ghost" id="sfm-cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div id="sal-detail-view" hidden>
+      <div class="billing-detail-actions">
+        <button type="button" class="btn-ghost btn-sm" id="svd-back">← Back to list</button>
+        <button type="button" class="btn-primary btn-sm" id="svd-print">Save PDF</button>
+        <button type="button" class="btn-wa-doc" id="svd-wa">Send on WhatsApp</button>
+      </div>
+      <div class="invoice-preview-wrap">
+        <div class="invoice-sheet" id="svd-sheet"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EXPENSES ── -->
+  <div id="tab-expenses" class="billing-tabpanel" hidden>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">+ Add Expense</div>
+      <div class="tool-row tool-row-4">
+        <label>Date<input type="date" id="exp-date"></label>
+        <label>Category<select id="exp-category"></select></label>
+        <label>Note<input type="text" id="exp-note" placeholder="e.g. Office rent - July"></label>
+        <label>Amount (₹)<input type="number" id="exp-amount" min="0" step="0.01" placeholder="0.00"></label>
+      </div>
+      <button type="button" class="btn-primary btn-sm" id="btn-add-expense" style="margin-top:16px;">+ Add Expense</button>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-toolbar">
+        <div class="tool-panel-title" style="margin-bottom:0;">Expenses (<span id="exp-count">0</span>)</div>
+        <input type="month" id="exp-filter-month">
+        <div class="tool-toolbar-spacer"></div>
+        <div class="tool-filtered-total">Selected Month Total: <strong id="exp-month-total">₹0.00</strong></div>
+      </div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Date</th><th>Category</th><th>Note</th><th>Amount</th><th></th></tr></thead>
+          <tbody id="exp-tbody"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="exp-empty" hidden>No expenses yet. Add your first expense above.</div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · <a href="/internal/proposal/" class="gallery-link">Proposal</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  var FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    var idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../config.js"></script>
+<script src="../auth.js"></script>
+<script src="../entitlement.js"></script>
+<script src="../../js/money-workspace.js"></script>
+</body>
+</html>

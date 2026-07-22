@@ -1,0 +1,44 @@
+/* /app/money/ — the Money & Staff-Salary Pack workspace. Built on
+   tools/tools-base.css (CRUD app shell) + tools/tools.css (print-sheet look
+   for the salary-slip detail view). Tab look replicated from
+   app/billing/style.css (not linked directly — packs stay independent). */
+
+/* The `hidden` attribute must always win, even over display:inline-block from
+   .btn-primary/.btn-ghost etc. (an explicit display otherwise overrides [hidden]). */
+[hidden] { display: none !important; }
+
+.billing-tabs { display: flex; gap: 6px; margin-bottom: 22px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.billing-tab {
+  background: none; border: none; cursor: pointer;
+  padding: 10px 4px 12px; margin-right: 22px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: calc(14px * var(--font-scale));
+  color: var(--text-dim); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+.billing-tab:hover { color: var(--text-hi); }
+.billing-tab.active { color: var(--text-hi); border-color: var(--accent); }
+
+.billing-detail-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+
+/* attendance P/A color tints (staff-attendance tool only needed P/A here) */
+.attend-blank { background: rgba(255,255,255,0.03); color: var(--text-dim); }
+.attend-P { background: rgba(74,222,128,0.18); color: #4ADE80; }
+.attend-A { background: rgba(248,113,113,0.18); color: #F87171; }
+.tool-attend-legend { color: var(--text-dim); font-size: calc(12.5px * var(--font-scale)); margin-bottom: 14px; }
+.tool-attend-legend span { display: inline-block; padding: 1px 6px; border-radius: 4px; font-weight: 700; margin: 0 1px; }
+.tool-month-grid th:not(.name-col) { min-width: 26px; }
+
+/* status badge on the staff roster (active/inactive) */
+.stf-status-active { color: #4ADE80; }
+.stf-status-inactive { color: var(--text-dim); }
+
+.tool-filtered-total { color: var(--text-dim); font-size: calc(13px * var(--font-scale)); }
+
+@media (max-width: 700px) {
+  .billing-detail-actions { flex-direction: column; align-items: stretch; }
+}
+
+@media print {
+  nav, .section-label, .section-title, .billing-tabs, .tool-stats, .billing-detail-actions,
+  #tab-staff, #tab-expenses, #sal-list-view, #sal-form-view, .grad-bg, footer { display: none !important; }
+  body { background: #fff !important; }
+}
