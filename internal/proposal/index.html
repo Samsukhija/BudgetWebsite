@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal Builder | Internal</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <span class="nav-blog-link" style="opacity:0.6;cursor:default;">Internal — Proposal Builder</span>
+  </div>
+</nav>
+
+<section style="padding-top:50px;">
+  <div class="section-label">Internal Tool</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Build a quotation.<br><span class="accent">Close it on the call.</span></h1>
+  <p class="section-sub">Pick the tier, tick what they want, send it. Not listed anywhere public, this link is for you and Samar.</p>
+</section>
+
+<section class="invoice-app">
+  <div class="invoice-form">
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Client</div>
+      <div class="inv-row">
+        <label>Contact Name<input type="text" id="f-client-name" placeholder="e.g. Rohan Sharma"></label>
+        <label>Business Name<input type="text" id="f-biz-name" placeholder="e.g. Sharma Traders"></label>
+      </div>
+      <div class="inv-row">
+        <label>Phone / WhatsApp<input type="text" id="f-client-phone" placeholder="10-digit number"></label>
+        <label>Valid Until<input type="date" id="f-valid-until"></label>
+      </div>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Website Package</div>
+      <div class="tier-picker" id="tier-picker"></div>
+      <label id="row-custom-price" class="tier-custom-price" hidden>Custom price (₹)<input type="number" id="f-tier-custom-price" min="0" step="500" placeholder="e.g. 60000"></label>
+      <label>What's included (short note, optional)<textarea id="f-tier-note" rows="2" placeholder="e.g. 6-page site with online store and WhatsApp checkout"></textarea></label>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">One-time Add-ons</div>
+      <div id="onetime-list"></div>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Ongoing (optional)</div>
+      <div id="recurring-list"></div>
+    </div>
+
+    <div class="inv-panel">
+      <div class="inv-panel-title">Notes (printed on the proposal)</div>
+      <textarea id="f-notes" rows="3" placeholder="Anything else specific to this client"></textarea>
+    </div>
+
+    <div class="inv-actions">
+      <button type="button" class="btn-primary" id="btn-print">Print / PDF</button>
+      <button type="button" class="btn-wa-doc" id="btn-wa">Send on WhatsApp</button>
+      <button type="button" class="btn-ghost" id="btn-new">New Proposal</button>
+    </div>
+    <p class="inv-savenote" id="prop-savenote">Draft saved on this device.</p>
+  </div>
+
+  <div class="invoice-preview-wrap">
+    <div class="invoice-sheet" id="proposal-sheet">
+      <div class="inv-head">
+        <div>
+          <div class="inv-seller-name">budget<span style="color:#8C6A1D;">website</span>.store</div>
+          <div class="inv-seller-meta">Websites and business tools, built fast.</div>
+          <div class="inv-seller-meta">wa.me/918976587269</div>
+        </div>
+        <div class="inv-head-right">
+          <div class="inv-doctitle">PROPOSAL</div>
+          <div class="inv-meta"><span>No.</span><strong id="p-prop-no">-</strong></div>
+          <div class="inv-meta"><span>Date</span><strong id="p-date">-</strong></div>
+          <div class="inv-meta"><span>Valid Until</span><strong id="p-valid">-</strong></div>
+        </div>
+      </div>
+
+      <div class="inv-billto">
+        <div class="inv-panel-title" style="margin-bottom:6px;">Prepared For</div>
+        <div class="inv-buyer-name" id="p-client-name">Client Name</div>
+        <div class="inv-seller-meta" id="p-biz-name"></div>
+        <div class="inv-seller-meta" id="p-client-phone"></div>
+      </div>
+
+      <div class="prop-section-label">Website Package</div>
+      <table class="inv-table">
+        <thead><tr><th class="inv-col-desc">Item</th><th>Price</th></tr></thead>
+        <tbody id="p-tier-row"></tbody>
+      </table>
+
+      <div id="p-onetime-block">
+        <div class="prop-section-label">One-time Add-ons</div>
+        <table class="inv-table">
+          <thead><tr><th class="inv-col-desc">Item</th><th>Price</th></tr></thead>
+          <tbody id="p-onetime-rows"></tbody>
+        </table>
+      </div>
+
+      <div class="inv-totals">
+        <div class="inv-totals-row inv-grand"><span>One-time Total</span><strong id="p-onetime-total">₹0</strong></div>
+      </div>
+
+      <div id="p-recurring-block">
+        <div class="prop-section-label">Ongoing (optional)</div>
+        <table class="inv-table">
+          <thead><tr><th class="inv-col-desc">Item</th><th>Price</th></tr></thead>
+          <tbody id="p-recurring-rows"></tbody>
+        </table>
+      </div>
+
+      <div id="p-notes-block" style="display:none;">
+        <div class="prop-section-label">Notes</div>
+        <div class="inv-seller-meta" id="p-notes"></div>
+      </div>
+
+      <div class="prop-cta">
+        <strong>Ready to go ahead?</strong> Reply "YES" on WhatsApp to confirm this proposal, and we'll send your payment link and get started, most sites are delivered within 1-4 days of confirmation.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p>Internal tool · not indexed · © 2026</p>
+</footer>
+
+<script src="../../js/services-data.js"></script>
+<script src="../../js/proposal-tool.js"></script>
+</body>
+</html>
