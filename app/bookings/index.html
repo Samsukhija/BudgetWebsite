@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookings Workspace | Budget Website</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../tools/tools-base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/templates/" class="nav-blog-link">Templates</a>
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <a href="/pricing/" class="nav-blog-link">Pricing</a>
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <a href="/app/" class="nav-blog-link" aria-current="page">Account</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section class="tool-app tool-app-wide" style="padding-top:50px;">
+  <div class="section-label">Bookings Pack</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Every appointment, <span class="accent">tracked end to end.</span></h1>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 26px;">
+    <a href="/app/" class="nav-blog-link" style="padding:0;">← Back to Account</a>
+    <span id="hdr-biz" style="color:var(--text-dim);font-size:calc(13px * var(--font-scale));"></span>
+  </div>
+
+  <div class="tool-stats" id="bookings-stats"></div>
+
+  <div class="bookings-tabs">
+    <button type="button" class="bookings-tab active" data-tab="day">Day View</button>
+    <button type="button" class="bookings-tab" data-tab="all">All Bookings</button>
+  </div>
+
+  <!-- ── DAY VIEW ── -->
+  <div id="tab-day" class="bookings-tabpanel">
+
+    <div id="day-list-view">
+      <div class="tool-toolbar">
+        <label style="margin:0;">Date
+          <input type="date" id="bk-date">
+        </label>
+        <div class="tool-toolbar-spacer"></div>
+        <button type="button" class="btn-primary btn-sm" id="btn-new-booking">+ New Booking</button>
+      </div>
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Time</th><th>Customer</th><th>Service</th><th>Status</th><th></th></tr></thead>
+          <tbody id="day-table-body"></tbody>
+        </table>
+      </div>
+      <div class="tool-empty" id="day-empty" hidden>No bookings for this date. Create one above.</div>
+    </div>
+
+    <div id="bk-form-view" class="tool-panel" hidden>
+      <div class="tool-panel-title" id="bk-form-title">New Booking</div>
+      <div class="tool-row tool-row-2">
+        <label>Customer Name<input type="text" id="bkf-name" placeholder="e.g. Priya Nair"></label>
+        <label>Phone<input type="tel" id="bkf-phone" placeholder="10-digit mobile"></label>
+      </div>
+      <label>Service<input type="text" id="bkf-service" placeholder="e.g. Haircut, Consultation, Repair"></label>
+      <div class="tool-row tool-row-2">
+        <label>Date<input type="date" id="bkf-date"></label>
+        <label>Time<input type="time" id="bkf-time"></label>
+      </div>
+      <label>Notes<textarea id="bkf-notes" rows="2" placeholder="Optional notes"></textarea></label>
+      <p class="bk-form-error" id="bk-form-error" hidden></p>
+      <div class="bk-form-actions">
+        <button type="button" class="btn-primary" id="bkf-save">Save Booking</button>
+        <button type="button" class="btn-ghost" id="bkf-cancel">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── ALL BOOKINGS ── -->
+  <div id="tab-all" class="bookings-tabpanel" hidden>
+    <div class="tool-toolbar">
+      <label style="margin:0;">Status
+        <select id="all-status-filter">
+          <option value="">All statuses</option>
+          <option value="Upcoming">Upcoming</option>
+          <option value="Completed">Completed</option>
+          <option value="No-show">No-show</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </label>
+      <div class="tool-toolbar-spacer"></div>
+    </div>
+    <div class="tool-table-wrap">
+      <table class="tool-table">
+        <thead><tr><th>Date</th><th>Time</th><th>Customer</th><th>Phone</th><th>Service</th><th>Status</th><th></th></tr></thead>
+        <tbody id="all-table-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="all-empty" hidden>No bookings yet. Switch to Day View to create your first one.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · <a href="/internal/proposal/" class="gallery-link">Proposal</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  var FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    var idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../config.js"></script>
+<script src="../auth.js"></script>
+<script src="../entitlement.js"></script>
+<script src="../../js/bookings-workspace.js"></script>
+</body>
+</html>

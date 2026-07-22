@@ -1,0 +1,29 @@
+/* /app/bookings/ — the Bookings Pack workspace. Built on tools/tools-base.css
+   (CRUD app shell). Page-specific styles only. */
+
+.bookings-tabs { display: flex; gap: 6px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+.bookings-tab {
+  background: none; border: none; cursor: pointer;
+  padding: 10px 4px 12px; margin-right: 22px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: calc(14px * var(--font-scale));
+  color: var(--text-dim); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+.bookings-tab:hover { color: var(--text-hi); }
+.bookings-tab.active { color: var(--text-hi); border-color: var(--accent); }
+
+.bk-form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.bk-form-error {
+  color: #F87171; font-size: calc(12.5px * var(--font-scale)); margin: 10px 0 0;
+}
+
+.bk-customer-name { font-weight: 600; color: var(--text-hi); }
+.bk-customer-phone { color: var(--text-dim); font-size: calc(11.5px * var(--font-scale)); margin-top: 2px; }
+.bk-notes { color: var(--text-dim); font-size: calc(11.5px * var(--font-scale)); margin-top: 4px; }
+
+.bk-row-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.bk-row-actions .btn-wa-doc { padding: 6px 10px !important; font-size: calc(11.5px * var(--font-scale)) !important; }
+
+@media (max-width: 800px) {
+  .tool-toolbar label { width: 100%; }
+  .tool-toolbar input, .tool-toolbar select { width: 100%; }
+}
