@@ -1,0 +1,90 @@
+/* /app/cards/ — the Cards & Documents Pack workspace. Built on
+   tools/tools-base.css (CRUD app shell) + tools/ai.css (BYOK scan flow).
+   Card preview styling mirrors tools/business-card/style.css so the paid
+   workspace feels like the same product family as the free tool. */
+
+/* The `hidden` attribute must always win, even over display:inline-block from
+   .btn-primary/.btn-ghost etc. (an explicit display otherwise overrides [hidden]). */
+[hidden] { display: none !important; }
+
+.cc-tabs { display: flex; gap: 6px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+.cc-tab {
+  background: none; border: none; cursor: pointer;
+  padding: 10px 4px 12px; margin-right: 22px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: calc(14px * var(--font-scale));
+  color: var(--text-dim); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+}
+.cc-tab:hover { color: var(--text-hi); }
+.cc-tab.active { color: var(--text-hi); border-color: var(--accent); }
+
+.cc-savenote { margin-top: 12px; font-size: calc(12px * var(--font-scale)); color: var(--text-dim); }
+.cc-count { font-size: calc(12.5px * var(--font-scale)); color: var(--text-dim); }
+
+/* ── My Card layout ── */
+.cc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.cc-form-col, .cc-preview-col { min-width: 0; }
+.cc-photo-actions { margin-top: 10px; }
+
+input[type="file"]#mc-photo, input[type="file"]#dc-file { padding: 8px 10px; cursor: pointer; }
+
+/* ── branded card preview (mirrors the free Digital Business Card tool) ── */
+.cc-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--bg-raised) 0%, var(--bg-deep) 100%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  margin-bottom: 20px;
+}
+.cc-card-accent {
+  position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--accent-deep), var(--accent), var(--accent-text));
+}
+.cc-card-accent::after {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+}
+.cc-card-body { padding: 32px 28px 28px; position: relative; }
+.cc-photo {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: var(--accent-dim); border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  margin-bottom: 18px; font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: calc(26px * var(--font-scale)); color: var(--accent-text);
+}
+.cc-photo img { width: 100%; height: 100%; object-fit: cover; }
+.cc-name {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: calc(26px * var(--font-scale));
+  color: var(--text-hi); line-height: 1.2; margin-bottom: 4px; word-break: break-word;
+}
+.cc-title { font-size: calc(14px * var(--font-scale)); color: var(--accent-text); font-weight: 600; margin-bottom: 2px; }
+.cc-company { font-size: calc(13.5px * var(--font-scale)); color: var(--text-mid); margin-bottom: 18px; }
+.cc-title:empty, .cc-company:empty { display: none; }
+.cc-contacts { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--border); }
+.cc-contact-row { display: flex; align-items: baseline; gap: 8px; font-size: calc(13px * var(--font-scale)); color: var(--text-mid); word-break: break-word; }
+.cc-contact-row .cc-icon { flex: none; }
+.cc-contacts:empty { display: none; border-top: none; padding-top: 0; }
+
+.cc-qr-panel { text-align: center; }
+.cc-qr-wrap { display: flex; justify-content: center; padding: 16px; background: #fff; border-radius: 10px; width: fit-content; margin: 0 auto 14px; }
+.cc-qr-note { font-size: calc(12.5px * var(--font-scale)); color: var(--text-dim); line-height: 1.5; }
+
+/* ── AI scan drop zone (mirrors the free Business Card Scanner tool) ── */
+.cc-scan-drop {
+  display: block; border: 1.5px dashed var(--glass-border); border-radius: 12px;
+  background: rgba(255,255,255,0.02); cursor: pointer; margin-bottom: 0; margin-top: 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cc-scan-drop:hover, .cc-scan-drop.dragover { border-color: var(--accent); background: var(--accent-dim); }
+.cc-scan-drop-inner { padding: 32px 20px; text-align: center; pointer-events: none; }
+.cc-scan-drop-icon { font-size: 30px; line-height: 1; margin-bottom: 10px; }
+.cc-scan-drop-title { font-weight: 600; color: var(--text-hi); font-size: calc(14px * var(--font-scale)); margin-bottom: 4px; }
+.cc-scan-drop-sub { color: var(--text-dim); font-size: calc(12px * var(--font-scale)); }
+.cc-scan-preview-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 12px; }
+.cc-scan-preview { max-width: 100%; max-height: 220px; border-radius: 10px; border: 1px solid var(--glass-border); display: block; }
+
+@media (max-width: 900px) {
+  .cc-layout { grid-template-columns: 1fr; }
+}

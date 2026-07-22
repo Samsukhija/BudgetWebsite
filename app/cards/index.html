@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cards & Documents Workspace | Budget Website</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../tools/tools-base.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<link rel="stylesheet" href="../../tools/ai.css">
+<link rel="stylesheet" href="style.css">
+<script src="../../js/perf-gate.js"></script>
+</head>
+<body>
+
+<div class="grad-bg"></div>
+
+<nav>
+  <a href="/" class="nav-logo">budget<span>website</span>.store</a>
+  <div class="nav-tools">
+    <a href="/templates/" class="nav-blog-link">Templates</a>
+    <a href="/tools/" class="nav-blog-link">Tools</a>
+    <a href="/pricing/" class="nav-blog-link">Pricing</a>
+    <a href="/blog/" class="nav-blog-link">Blog</a>
+    <a href="/app/" class="nav-blog-link" aria-current="page">Account</a>
+    <button class="font-toggle-btn" id="font-toggle-btn" onclick="cycleFontSize()" title="Change text size">A+</button>
+    <a href="/#contact" class="nav-cta">Get Your Website →</a>
+  </div>
+</nav>
+
+<section class="tool-app tool-app-wide" style="padding-top:50px;">
+  <div class="section-label">Cards & Documents Pack</div>
+  <h1 class="section-title" style="font-size:clamp(24px,4vw,36px);">Your card, your contacts, your papers.<br><span class="accent">One workspace, not three.</span></h1>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 26px;">
+    <a href="/app/" class="nav-blog-link" style="padding:0;">← Back to Account</a>
+    <span id="hdr-biz" style="color:var(--text-dim);font-size:calc(13px * var(--font-scale));"></span>
+  </div>
+
+  <div class="tool-stats" id="cards-stats"></div>
+
+  <div class="cc-tabs">
+    <button type="button" class="cc-tab active" data-tab="mycard">My Card</button>
+    <button type="button" class="cc-tab" data-tab="contacts">Contacts</button>
+    <button type="button" class="cc-tab" data-tab="documents">Documents</button>
+  </div>
+
+  <!-- ── MY CARD ── -->
+  <div id="tab-mycard" class="cc-tabpanel">
+    <div class="cc-layout">
+
+      <div class="cc-form-col">
+        <div class="tool-panel">
+          <div class="tool-panel-title">Your Details</div>
+          <div class="tool-row tool-row-2">
+            <label>Full Name<input type="text" id="mc-name" placeholder="e.g. Priya Sharma"></label>
+            <label>Title / Designation<input type="text" id="mc-title" placeholder="e.g. Founder &amp; Director"></label>
+          </div>
+          <div class="tool-row tool-row-2">
+            <label>Company<input type="text" id="mc-company" placeholder="e.g. Sharma Traders"></label>
+            <label>Website<input type="text" id="mc-website" placeholder="e.g. www.example.com"></label>
+          </div>
+          <div class="tool-row tool-row-2">
+            <label>Phone<input type="tel" id="mc-phone" placeholder="+91 98765 43210"></label>
+            <label>Email<input type="email" id="mc-email" placeholder="you@example.com"></label>
+          </div>
+          <label>Address<textarea id="mc-address" rows="2" placeholder="Shop no., street, city, PIN"></textarea></label>
+          <label>Photo / Logo (optional)
+            <input type="file" id="mc-photo" accept="image/*">
+          </label>
+          <div id="mc-photo-actions" class="cc-photo-actions" hidden>
+            <button type="button" class="btn-danger btn-sm" id="mc-remove-photo">Remove Photo</button>
+          </div>
+        </div>
+
+        <div class="tool-panel">
+          <div class="tool-panel-title">Save &amp; Share</div>
+          <div class="tool-row tool-row-2">
+            <button type="button" class="btn-primary" id="mc-download-vcf">⬇ Download Contact Card (.vcf)</button>
+            <button type="button" class="btn-wa-doc" id="mc-whatsapp">Share on WhatsApp</button>
+          </div>
+          <p class="cc-savenote" id="mc-savenote">Saved on this device.</p>
+        </div>
+      </div>
+
+      <div class="cc-preview-col">
+        <div class="cc-card" id="cc-card">
+          <div class="cc-card-accent"></div>
+          <div class="cc-card-body">
+            <div class="cc-photo" id="cc-photo-wrap">
+              <span id="cc-photo-initial">?</span>
+              <img id="cc-photo-img" alt="" style="display:none;">
+            </div>
+            <div class="cc-name" id="cc-name">Your Name</div>
+            <div class="cc-title" id="cc-title"></div>
+            <div class="cc-company" id="cc-company"></div>
+            <div class="cc-contacts" id="cc-contacts"></div>
+          </div>
+        </div>
+
+        <div class="tool-panel cc-qr-panel">
+          <div class="tool-panel-title">Scan to Save Contact</div>
+          <div class="cc-qr-wrap"><div id="cc-qr"></div></div>
+          <p class="cc-qr-note">Point a phone camera at this code, it opens your contact directly, ready to save.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CONTACTS ── -->
+  <div id="tab-contacts" class="cc-tabpanel" hidden>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">+ Add Contact Manually</div>
+      <div class="tool-row tool-row-2">
+        <label>Name<input type="text" id="ct-name" placeholder="Full name"></label>
+        <label>Role / Title<input type="text" id="ct-role" placeholder="e.g. Purchase Manager"></label>
+      </div>
+      <div class="tool-row tool-row-2">
+        <label>Company<input type="text" id="ct-company" placeholder="Business name"></label>
+        <label>Phone<input type="tel" id="ct-phone" placeholder="+91 98765 43210"></label>
+      </div>
+      <label>Email<input type="email" id="ct-email" placeholder="name@company.in"></label>
+      <button type="button" class="btn-primary" id="ct-add" style="margin-top:6px;">＋ Add Contact</button>
+      <div class="ai-error" id="ct-add-error"></div>
+    </div>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">Scan a Card (AI)</div>
+      <div id="cc-ai-settings-mount"></div>
+
+      <div id="cc-scan-locked" class="tool-empty" hidden>
+        Add your OpenRouter API key above to scan a business-card photo straight into a contact. Manual add above always works without one.
+      </div>
+
+      <div id="cc-scan-area" hidden>
+        <label class="cc-scan-drop" id="cc-scan-drop">
+          <input type="file" id="cc-scan-file" accept="image/*" capture="environment" hidden>
+          <div class="cc-scan-drop-inner" id="cc-scan-drop-inner">
+            <div class="cc-scan-drop-icon">📇</div>
+            <div class="cc-scan-drop-title">Tap to photograph or choose a card</div>
+            <div class="cc-scan-drop-sub">JPG or PNG · on mobile this opens your camera</div>
+          </div>
+        </label>
+
+        <div class="cc-scan-preview-wrap" id="cc-scan-preview-wrap" hidden>
+          <img id="cc-scan-preview" class="cc-scan-preview" alt="Uploaded business card preview">
+          <button type="button" class="btn-danger btn-sm" id="cc-scan-clear">Remove image</button>
+        </div>
+
+        <button type="button" class="btn-primary ai-generate-btn" id="cc-scan-btn" style="margin-top:16px;" disabled>Scan Card</button>
+        <p class="ai-hint" id="cc-scan-hint"></p>
+        <div class="ai-error" id="cc-scan-error"></div>
+
+        <div id="cc-scan-result" class="tool-panel" style="margin-top:16px;" hidden>
+          <div class="tool-panel-title">Check &amp; Fix Before Saving</div>
+          <div class="tool-row tool-row-2">
+            <label>Name<input type="text" id="sc-name"></label>
+            <label>Role / Title<input type="text" id="sc-role"></label>
+          </div>
+          <div class="tool-row tool-row-2">
+            <label>Company<input type="text" id="sc-company"></label>
+            <label>Phone<input type="text" id="sc-phone"></label>
+          </div>
+          <label>Email<input type="text" id="sc-email"></label>
+          <button type="button" class="btn-primary" id="sc-save" style="margin-top:6px;">＋ Save Scanned Contact</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-table-wrap">
+      <table class="tool-table">
+        <thead><tr><th>Name</th><th>Company</th><th>Role</th><th>Phone</th><th>Email</th><th></th></tr></thead>
+        <tbody id="ct-table-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="ct-empty" hidden>No contacts yet. Add one manually or scan a card above.</div>
+  </div>
+
+  <!-- ── DOCUMENTS ── -->
+  <div id="tab-documents" class="cc-tabpanel" hidden>
+
+    <div class="tool-panel">
+      <div class="tool-panel-title">+ Add Document</div>
+      <div class="tool-row tool-row-2">
+        <label>Name<input type="text" id="dc-name" placeholder="e.g. Shop &amp; Establishment Certificate"></label>
+        <label>Category<select id="dc-category"></select></label>
+      </div>
+      <label>File (optional)<input type="file" id="dc-file"></label>
+      <label>Note (optional)<textarea id="dc-note" rows="2" placeholder="Anything worth remembering about this document"></textarea></label>
+      <button type="button" class="btn-primary" id="dc-add" style="margin-top:6px;">＋ Add Document</button>
+      <p class="cc-savenote" id="dc-status"></p>
+    </div>
+
+    <div class="tool-toolbar">
+      <select id="dc-filter-category"></select>
+      <div class="tool-toolbar-spacer"></div>
+      <span id="dc-count" class="cc-count"></span>
+    </div>
+
+    <div class="tool-table-wrap">
+      <table class="tool-table">
+        <thead><tr><th>Name</th><th>Category</th><th>Note</th><th>Added</th><th></th></tr></thead>
+        <tbody id="dc-table-body"></tbody>
+      </table>
+    </div>
+    <div class="tool-empty" id="dc-empty" hidden>No documents yet, add your first one above.</div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">budget<span>website</span>.store</div>
+  <p><a href="/blog/" class="gallery-link">Blog</a> · <a href="/portfolio/" class="gallery-link">Portfolio</a> · <a href="/pricing/" class="gallery-link">Pricing</a> · <a href="/internal/proposal/" class="gallery-link">Proposal</a> · © 2026 · Built in a day, just like yours will be.</p>
+</footer>
+
+<script>
+  var FONT_STEPS = [1, 1.1, 1.2, 1.3, 1.4];
+  function applyFontScale(scale) { document.documentElement.style.setProperty('--font-scale', scale); }
+  function cycleFontSize() {
+    var idx = parseInt(localStorage.getItem('bw-font-step')) || 0;
+    idx = (idx + 1) % FONT_STEPS.length;
+    applyFontScale(FONT_STEPS[idx]);
+    localStorage.setItem('bw-font-step', idx);
+  }
+  applyFontScale(FONT_STEPS[parseInt(localStorage.getItem('bw-font-step')) || 0]);
+</script>
+
+<script src="../../js/tools-shared.js"></script>
+<script src="../../js/ai-shared.js"></script>
+<script src="../../vendor/qrcode.min.js"></script>
+<script src="../config.js"></script>
+<script src="../auth.js"></script>
+<script src="../entitlement.js"></script>
+<script src="../../js/cards-workspace.js"></script>
+</body>
+</html>
