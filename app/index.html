@@ -37,12 +37,12 @@
   <section id="view-auth" class="auth-shell">
     <div class="auth-intro">
       <div class="section-label">Your business account</div>
-      <h1>One account for all your billing.</h1>
-      <p>Log in to keep your invoices, quotations and customers together in one place — and pick up where you left off from any device.</p>
+      <h1>One account for everything you run.</h1>
+      <p>Log in to unlock the paid packs, billing, staff and salary, customers, bookings, stock, marketing writing, and cards and documents, each one giving you more than the free tool it's built on.</p>
       <ul class="auth-points">
-        <li>Your business details filled in once, used on every document</li>
-        <li>A running ledger of everything you have billed</li>
-        <li>Turn a quotation into an invoice in one tap</li>
+        <li>Your business details filled in once, used everywhere</li>
+        <li>Unlock only the packs you need, ₹3,000-6,000/year each</li>
+        <li>Every pack turns a free single-purpose tool into a real workspace</li>
       </ul>
     </div>
 
@@ -78,7 +78,7 @@
       <button type="button" class="btn-ghost" id="btn-logout">Log out</button>
     </header>
 
-    <div class="pack-card" id="pack-billing"></div>
+    <div id="packs-list"></div>
 
     <div class="dash-tools">
       <h2>Your free tools</h2>
@@ -158,10 +158,10 @@
     render();
   });
 
-  function renderPack(user) {
-    var el = document.getElementById('pack-billing');
-    var pack = BW_APP.PACKS.billing;
-    var owned = BWEntitlement.has(user.email, 'billing');
+  function renderPack(user, packKey) {
+    var el = document.getElementById('pack-' + packKey);
+    var pack = BW_APP.PACKS[packKey];
+    var owned = BWEntitlement.has(user.email, packKey);
     var feats = pack.features.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('');
 
     if (owned) {
@@ -173,7 +173,7 @@
         '</div>' +
         '<ul class="pack-feats">' + feats + '</ul>' +
         '<div class="pack-actions">' +
-          '<a class="btn-primary" href="/app/billing/">Open Billing workspace →</a>' +
+          '<a class="btn-primary" href="' + esc(pack.workspaceUrl) + '">Open ' + esc(pack.name.replace(' Pack', '')) + ' workspace →</a>' +
         '</div>';
       return;
     }
@@ -186,31 +186,31 @@
       '</div>' +
       '<ul class="pack-feats">' + feats + '</ul>' +
       '<div class="pack-actions">' +
-        '<button type="button" class="btn-wa" id="pk-wa">Get it on WhatsApp</button>' +
-        '<button type="button" class="pack-activate-link" id="pk-have">Already paid? Enter your activation code</button>' +
+        '<button type="button" class="btn-wa" data-act="wa">Get it on WhatsApp</button>' +
+        '<button type="button" class="pack-activate-link" data-act="have">Already paid? Enter your activation code</button>' +
       '</div>' +
-      '<div class="pack-code" id="pk-codebox" hidden>' +
-        '<input type="text" id="pk-code" placeholder="Activation code" autocomplete="off">' +
-        '<button type="button" class="btn-ghost" id="pk-activate">Activate</button>' +
+      '<div class="pack-code" data-act="codebox" hidden>' +
+        '<input type="text" data-act="code" placeholder="Activation code" autocomplete="off">' +
+        '<button type="button" class="btn-ghost" data-act="activate">Activate</button>' +
       '</div>' +
-      '<p class="pack-msg" id="pk-msg" hidden></p>' +
+      '<p class="pack-msg" data-act="msg" hidden></p>' +
       '<p class="pack-note">Tap “Get it on WhatsApp”, pay us directly, and we send you an activation code to unlock it here. Card payment is coming soon.</p>';
 
-    document.getElementById('pk-wa').addEventListener('click', function () {
-      BWPay.whatsappActivate(user.email, 'billing');
+    el.querySelector('[data-act="wa"]').addEventListener('click', function () {
+      BWPay.whatsappActivate(user.email, packKey);
     });
-    var codeBox = document.getElementById('pk-codebox');
-    document.getElementById('pk-have').addEventListener('click', function () {
+    var codeBox = el.querySelector('[data-act="codebox"]');
+    el.querySelector('[data-act="have"]').addEventListener('click', function () {
       codeBox.hidden = !codeBox.hidden;
-      if (!codeBox.hidden) document.getElementById('pk-code').focus();
+      if (!codeBox.hidden) el.querySelector('[data-act="code"]').focus();
     });
-    document.getElementById('pk-activate').addEventListener('click', function () {
-      var msg = document.getElementById('pk-msg');
-      var res = BWEntitlement.activate(user.email, 'billing', document.getElementById('pk-code').value);
+    el.querySelector('[data-act="activate"]').addEventListener('click', function () {
+      var msg = el.querySelector('[data-act="msg"]');
+      var res = BWEntitlement.activate(user.email, packKey, el.querySelector('[data-act="code"]').value);
       if (res.error) { msg.textContent = res.error; msg.className = 'pack-msg err'; msg.hidden = false; return; }
-      msg.textContent = 'Activated. Opening your Billing workspace…';
+      msg.textContent = 'Activated. Opening your ' + esc(pack.name.replace(' Pack', '')) + ' workspace…';
       msg.className = 'pack-msg ok'; msg.hidden = false;
-      renderPack(user);
+      renderPack(user, packKey);
     });
   }
 
@@ -222,7 +222,11 @@
     }
     viewAuth.hidden = true; viewDash.hidden = false;
     document.getElementById('dash-hi').textContent = 'Welcome, ' + user.name;
-    renderPack(user);
+    var list = document.getElementById('packs-list');
+    list.innerHTML = Object.keys(BW_APP.PACKS).map(function (key) {
+      return '<div class="pack-card" id="pack-' + key + '"></div>';
+    }).join('');
+    Object.keys(BW_APP.PACKS).forEach(function (key) { renderPack(user, key); });
   }
 
   render();

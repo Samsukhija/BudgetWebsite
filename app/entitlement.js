@@ -21,7 +21,8 @@ window.BWEntitlement = (function () {
   }
 
   function activate(email, pack, code) {
-    if ((code || '').trim().toUpperCase() !== String(BW_APP.ACTIVATION_CODE).toUpperCase()) {
+    var def = BW_APP.PACKS[pack];
+    if (!def || (code || '').trim().toUpperCase() !== String(def.activationCode).toUpperCase()) {
       return { error: 'That code is not right. Check the activation code we sent you on WhatsApp.' };
     }
     email = norm(email);
