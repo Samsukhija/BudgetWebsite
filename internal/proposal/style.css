@@ -1,0 +1,39 @@
+/* Additions specific to the internal Proposal tool, on top of ../tools/tools.css */
+
+.tier-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.tier-opt {
+  border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px;
+  cursor: pointer; transition: border-color 0.2s, background 0.2s;
+}
+.tier-opt:hover { border-color: var(--accent); }
+.tier-opt.active { border-color: var(--accent); background: var(--accent-dim); }
+.tier-opt-name { font-weight: 700; font-size: calc(13px * var(--font-scale)); color: var(--text-hi); }
+.tier-opt-price { font-size: calc(12px * var(--font-scale)); color: var(--accent-text); margin-top: 2px; }
+.tier-custom-price { margin-top: 10px; }
+
+.svc-row {
+  display: grid; grid-template-columns: 20px 1fr 90px; gap: 10px; align-items: start;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.svc-row:last-child { border-bottom: none; }
+.svc-row input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+.svc-name { font-weight: 700; font-size: calc(13px * var(--font-scale)); color: var(--text-hi); }
+.svc-desc { font-size: calc(11.5px * var(--font-scale)); color: var(--text-dim); line-height: 1.5; margin-top: 2px; }
+.svc-price-input {
+  width: 100%; margin-top: 0 !important; text-align: right;
+  padding: 7px 9px !important; font-size: calc(12.5px * var(--font-scale)) !important;
+}
+
+/* proposal sheet extras (light "paper", matches .invoice-sheet) */
+.prop-intro { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 20px; }
+.prop-section-label {
+  font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+  color: #8C6A1D; margin: 20px 0 8px;
+}
+.prop-cta {
+  margin-top: 22px; background: #FBF6E8; border: 1px solid #E9D9A8; border-radius: 8px;
+  padding: 16px 18px; font-size: 12.5px; color: #4A3C10; line-height: 1.7;
+}
+.prop-cta strong { color: #1A1A2E; }
+
+@media print { .prop-cta { background: #FBF6E8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
